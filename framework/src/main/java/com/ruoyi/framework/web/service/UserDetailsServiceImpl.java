@@ -7,11 +7,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import com.ruoyi.common.core.domain.entity.SysUser;
-import com.ruoyi.common.core.domain.model.LoginUser;
-import com.ruoyi.common.enums.UserStatus;
-import com.ruoyi.common.exception.BaseException;
-import com.ruoyi.common.utils.StringUtils;
+import com.example.common.core.domain.entity.SysUser;
+import com.example.common.core.domain.model.LoginUser;
+import com.example.common.enums.UserStatus;
+import com.example.common.exception.BaseException;
+import com.example.common.utils.StringUtils;
 import com.ruoyi.system.service.ISysUserService;
 
 /**

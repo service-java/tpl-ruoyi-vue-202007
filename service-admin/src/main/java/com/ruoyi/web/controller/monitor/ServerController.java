@@ -4,13 +4,13 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.ruoyi.common.core.controller.BaseController;
-import com.ruoyi.common.core.domain.AjaxResult;
+import com.example.common.core.controller.BaseController;
+import com.example.common.core.domain.AjaxResult;
 import com.ruoyi.framework.web.domain.Server;
 
 /**
  * 服务器监控
- * 
+ *
  * @author ruoyi
  */
 @RestController

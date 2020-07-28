@@ -9,19 +9,19 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import com.alibaba.fastjson.JSON;
-import com.ruoyi.common.constant.Constants;
-import com.ruoyi.common.constant.HttpStatus;
-import com.ruoyi.common.core.domain.AjaxResult;
-import com.ruoyi.common.core.domain.model.LoginUser;
-import com.ruoyi.common.utils.ServletUtils;
-import com.ruoyi.common.utils.StringUtils;
+import com.example.common.constant.Constants;
+import com.example.common.constant.HttpStatus;
+import com.example.common.core.domain.AjaxResult;
+import com.example.common.core.domain.model.LoginUser;
+import com.example.common.utils.ServletUtils;
+import com.example.common.utils.StringUtils;
 import com.ruoyi.framework.manager.AsyncManager;
 import com.ruoyi.framework.manager.factory.AsyncFactory;
 import com.ruoyi.framework.web.service.TokenService;
 
 /**
  * 自定义退出处理类 返回成功
- * 
+ *
  * @author ruoyi
  */
 @Configuration
@@ -32,7 +32,7 @@ public class LogoutSuccessHandlerImpl implements LogoutSuccessHandler
 
     /**
      * 退出处理
-     * 
+     *
      * @return
      */
     @Override

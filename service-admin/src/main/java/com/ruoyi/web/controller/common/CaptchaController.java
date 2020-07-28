@@ -12,15 +12,15 @@ import org.springframework.util.FastByteArrayOutputStream;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.google.code.kaptcha.Producer;
-import com.ruoyi.common.constant.Constants;
-import com.ruoyi.common.core.domain.AjaxResult;
-import com.ruoyi.common.core.redis.RedisCache;
-import com.ruoyi.common.utils.sign.Base64;
-import com.ruoyi.common.utils.uuid.IdUtils;
+import com.example.common.constant.Constants;
+import com.example.common.core.domain.AjaxResult;
+import com.example.common.core.redis.RedisCache;
+import com.example.common.utils.sign.Base64;
+import com.example.common.utils.uuid.IdUtils;
 
 /**
  * 验证码操作处理
- * 
+ *
  * @author ruoyi
  */
 @RestController
@@ -34,7 +34,7 @@ public class CaptchaController
 
     @Autowired
     private RedisCache redisCache;
-    
+
     // 验证码类型
     @Value("${ruoyi.captchaType}")
     private String captchaType;

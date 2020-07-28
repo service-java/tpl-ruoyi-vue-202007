@@ -7,7 +7,7 @@ import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import com.ruoyi.common.utils.Threads;
+import com.example.common.utils.Threads;
 
 /**
  * 线程池配置

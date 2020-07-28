@@ -7,16 +7,16 @@ import javax.validation.constraints.Size;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.ruoyi.common.annotation.Excel;
-import com.ruoyi.common.annotation.Excel.ColumnType;
-import com.ruoyi.common.constant.ScheduleConstants;
-import com.ruoyi.common.core.domain.BaseEntity;
-import com.ruoyi.common.utils.StringUtils;
+import com.example.common.annotation.Excel;
+import com.example.common.annotation.Excel.ColumnType;
+import com.example.common.constant.ScheduleConstants;
+import com.example.common.core.domain.BaseEntity;
+import com.example.common.utils.StringUtils;
 import com.ruoyi.quartz.util.CronUtils;
 
 /**
  * 定时任务调度表 sys_job
- * 
+ *
  * @author ruoyi
  */
 public class SysJob extends BaseEntity implements Serializable

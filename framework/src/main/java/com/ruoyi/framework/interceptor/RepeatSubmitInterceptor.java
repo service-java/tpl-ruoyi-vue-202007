@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.alibaba.fastjson.JSONObject;
-import com.ruoyi.common.annotation.RepeatSubmit;
-import com.ruoyi.common.core.domain.AjaxResult;
-import com.ruoyi.common.utils.ServletUtils;
+import com.example.common.annotation.RepeatSubmit;
+import com.example.common.core.domain.AjaxResult;
+import com.example.common.utils.ServletUtils;
 
 /**
  * 防止重复提交拦截器

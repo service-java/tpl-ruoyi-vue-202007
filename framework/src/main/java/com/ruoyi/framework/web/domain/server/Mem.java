@@ -1,10 +1,10 @@
 package com.ruoyi.framework.web.domain.server;
 
-import com.ruoyi.common.utils.Arith;
+import com.example.common.utils.Arith;
 
 /**
  * 內存相关信息
- * 
+ *
  * @author ruoyi
  */
 public class Mem

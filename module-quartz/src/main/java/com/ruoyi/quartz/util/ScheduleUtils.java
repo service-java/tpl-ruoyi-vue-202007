@@ -10,14 +10,14 @@ import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
-import com.ruoyi.common.constant.ScheduleConstants;
-import com.ruoyi.common.exception.job.TaskException;
-import com.ruoyi.common.exception.job.TaskException.Code;
+import com.example.common.constant.ScheduleConstants;
+import com.example.common.exception.job.TaskException;
+import com.example.common.exception.job.TaskException.Code;
 import com.ruoyi.quartz.domain.SysJob;
 
 /**
  * 定时任务工具类
- * 
+ *
  * @author ruoyi
  *
  */

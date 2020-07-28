@@ -11,13 +11,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import com.ruoyi.common.annotation.DataSource;
-import com.ruoyi.common.utils.StringUtils;
+import com.example.common.annotation.DataSource;
+import com.example.common.utils.StringUtils;
 import com.ruoyi.framework.datasource.DynamicDataSourceContextHolder;
 
 /**
  * 多数据源处理
- * 
+ *
  * @author ruoyi
  */
 @Aspect
@@ -27,8 +27,8 @@ public class DataSourceAspect
 {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Pointcut("@annotation(com.ruoyi.common.annotation.DataSource)"
-            + "|| @within(com.ruoyi.common.annotation.DataSource)")
+    @Pointcut("@annotation(com.example.common.annotation.DataSource)"
+            + "|| @within(com.example.common.annotation.DataSource)")
     public void dsPointCut()
     {
 
