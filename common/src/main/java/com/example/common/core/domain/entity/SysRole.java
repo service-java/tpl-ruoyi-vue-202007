@@ -3,6 +3,7 @@ package com.example.common.core.domain.entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.example.common.annotation.Excel;
@@ -49,12 +50,15 @@ public class SysRole extends BaseEntity
     private String delFlag;
 
     /** 用户是否存在此角色标识 默认不存在 */
+    @TableField(exist = false)
     private boolean flag = false;
 
     /** 菜单组 */
+    @TableField(exist = false)
     private Long[] menuIds;
 
     /** 部门组（数据权限） */
+    @TableField(exist = false)
     private Long[] deptIds;
 
     public SysRole()

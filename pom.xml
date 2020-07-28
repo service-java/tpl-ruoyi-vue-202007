@@ -23,7 +23,9 @@
         <bitwalker.version>1.19</bitwalker.version>
         <swagger.version>2.9.2</swagger.version>
 		<kaptcha.version>2.3.2</kaptcha.version>
-        <pagehelper.boot.version>1.2.5</pagehelper.boot.version>
+<!--        <pagehelper.boot.version>1.2.5</pagehelper.boot.version>-->
+        <pagehelper.version>5.1.0</pagehelper.version>
+        <jsqlparser.version>2.1</jsqlparser.version>
         <fastjson.version>1.2.70</fastjson.version>
         <oshi.version>3.9.1</oshi.version>
         <commons.io.version>2.5</commons.io.version>
@@ -64,10 +66,21 @@
             </dependency>
 
             <!-- pagehelper 分页插件 -->
+<!--            <dependency>-->
+<!--                <groupId>com.github.pagehelper</groupId>-->
+<!--                <artifactId>pagehelper-spring-boot-starter</artifactId>-->
+<!--                <version>${pagehelper.boot.version}</version>-->
+<!--            </dependency>-->
+
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <version>${pagehelper.boot.version}</version>
+                <artifactId>pagehelper</artifactId>
+                <version>${pagehelper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.jsqlparser</groupId>
+                <artifactId>jsqlparser</artifactId>
+                <version>${jsqlparser.version}</version>
             </dependency>
 
             <!-- 获取系统信息 -->
@@ -176,11 +189,11 @@
                 </exclusions>
             </dependency>
 
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus</artifactId>
-                <version>${mybatisplus.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>com.baomidou</groupId>-->
+<!--                <artifactId>mybatis-plus</artifactId>-->
+<!--                <version>${mybatisplus.version}</version>-->
+<!--            </dependency>-->
 
             <!-- 定时任务-->
             <dependency>
@@ -216,9 +229,6 @@
                 <artifactId>common</artifactId>
                 <version>${example.version}</version>
             </dependency>
-
-
-
 
 
         </dependencies>
