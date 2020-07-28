@@ -1,13 +1,16 @@
 package com.example.system.service;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.common.constant.UserConstants;
 import com.example.common.core.domain.TreeSelect;
 import com.example.common.core.domain.entity.SysMenu;
 import com.example.common.core.domain.entity.SysUser;
 import com.example.common.utils.SecurityUtils;
 import com.example.common.utils.StringUtils;
+import com.example.system.entity.SysConfig;
 import com.example.system.entity.vo.MetaVo;
 import com.example.system.entity.vo.RouterVo;
+import com.example.system.mapper.SysConfigMapper;
 import com.example.system.mapper.SysMenuMapper;
 import com.example.system.mapper.SysRoleMenuMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +25,7 @@ import java.util.stream.Collectors;
  * @author ruoyi
  */
 @Service
-public class SysMenuService {
+public class SysMenuService  extends ServiceImpl<SysMenuMapper, SysMenu>  {
     public static final String PREMISSION_STRING = "perms[\"{0}\"]";
 
     @Autowired

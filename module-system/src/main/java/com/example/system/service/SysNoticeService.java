@@ -1,6 +1,9 @@
 package com.example.system.service;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.system.entity.SysConfig;
 import com.example.system.entity.SysNotice;
+import com.example.system.mapper.SysConfigMapper;
 import com.example.system.mapper.SysNoticeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +16,7 @@ import java.util.List;
  * @author ruoyi
  */
 @Service
-public class SysNoticeService {
+public class SysNoticeService  extends ServiceImpl<SysNoticeMapper, SysNotice>  {
     @Autowired
     private SysNoticeMapper noticeMapper;
 

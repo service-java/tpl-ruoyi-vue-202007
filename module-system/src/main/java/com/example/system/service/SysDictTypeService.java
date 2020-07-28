@@ -1,5 +1,6 @@
 package com.example.system.service;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.common.constant.UserConstants;
 import com.example.common.core.domain.entity.SysDictData;
 import com.example.common.core.domain.entity.SysDictType;
@@ -21,7 +22,7 @@ import java.util.List;
  * @author ruoyi
  */
 @Service
-public class SysDictTypeService {
+public class SysDictTypeService  extends ServiceImpl<SysDictTypeMapper, SysDictType> {
     @Autowired
     private SysDictTypeMapper dictTypeMapper;
 

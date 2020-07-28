@@ -1,16 +1,19 @@
 package com.example.system.mapper;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.common.core.domain.entity.SysUser;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * 用户表 数据层
  *
  * @author ruoyi
  */
-public interface SysUserMapper {
+@Mapper
+public interface SysUserMapper extends BaseMapper<SysUser> {
     /**
      * 根据条件分页查询用户列表
      *

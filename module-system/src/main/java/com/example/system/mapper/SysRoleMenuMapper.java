@@ -1,15 +1,18 @@
 package com.example.system.mapper;
 
-import java.util.List;
-
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.system.entity.SysRoleMenu;
+import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * 角色与菜单关联表 数据层
  *
  * @author ruoyi
  */
-public interface SysRoleMenuMapper {
+@Mapper
+public interface SysRoleMenuMapper extends BaseMapper<SysRoleMenu> {
     /**
      * 查询菜单使用数量
      *

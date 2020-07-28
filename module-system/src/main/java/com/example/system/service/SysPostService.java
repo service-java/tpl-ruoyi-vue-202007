@@ -1,9 +1,12 @@
 package com.example.system.service;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.common.constant.UserConstants;
 import com.example.common.exception.CustomException;
 import com.example.common.utils.StringUtils;
+import com.example.system.entity.SysConfig;
 import com.example.system.entity.SysPost;
+import com.example.system.mapper.SysConfigMapper;
 import com.example.system.mapper.SysPostMapper;
 import com.example.system.mapper.SysUserPostMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +20,7 @@ import java.util.List;
  * @author ruoyi
  */
 @Service
-public class SysPostService {
+public class SysPostService  extends ServiceImpl<SysPostMapper, SysPost> {
     @Autowired
     private SysPostMapper postMapper;
 

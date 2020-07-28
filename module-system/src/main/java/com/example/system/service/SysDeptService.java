@@ -1,11 +1,14 @@
 package com.example.system.service;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.common.annotation.DataScope;
 import com.example.common.constant.UserConstants;
 import com.example.common.core.domain.TreeSelect;
 import com.example.common.core.domain.entity.SysDept;
 import com.example.common.exception.CustomException;
 import com.example.common.utils.StringUtils;
+import com.example.system.entity.SysConfig;
+import com.example.system.mapper.SysConfigMapper;
 import com.example.system.mapper.SysDeptMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +24,7 @@ import java.util.stream.Collectors;
  * @author ruoyi
  */
 @Service
-public class SysDeptService {
+public class SysDeptService extends ServiceImpl<SysDeptMapper, SysDept> {
     @Autowired
     private SysDeptMapper deptMapper;
 

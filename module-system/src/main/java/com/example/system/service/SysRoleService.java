@@ -1,17 +1,17 @@
 package com.example.system.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.common.annotation.DataScope;
 import com.example.common.constant.UserConstants;
 import com.example.common.core.domain.entity.SysRole;
 import com.example.common.exception.CustomException;
 import com.example.common.utils.StringUtils;
 import com.example.common.utils.spring.SpringUtils;
+import com.example.system.entity.SysConfig;
 import com.example.system.entity.SysRoleDept;
 import com.example.system.entity.SysRoleMenu;
-import com.example.system.mapper.SysRoleDeptMapper;
-import com.example.system.mapper.SysRoleMapper;
-import com.example.system.mapper.SysRoleMenuMapper;
-import com.example.system.mapper.SysUserRoleMapper;
+import com.example.system.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +24,7 @@ import java.util.*;
  * @author ruoyi
  */
 @Service
-public class SysRoleService {
+public class SysRoleService  extends ServiceImpl<SysRoleMapper, SysRole>  {
     @Autowired
     private SysRoleMapper roleMapper;
 
@@ -47,6 +47,10 @@ public class SysRoleService {
     @DataScope(deptAlias = "d")
     public List<SysRole> selectRoleList(SysRole role) {
         return roleMapper.selectRoleList(role);
+    }
+
+    public List<SysRole> listDemo() {
+        return this.list();
     }
 
     /**

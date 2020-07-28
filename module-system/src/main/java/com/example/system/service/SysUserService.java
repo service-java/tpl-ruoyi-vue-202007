@@ -1,5 +1,6 @@
 package com.example.system.service;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.common.annotation.DataScope;
 import com.example.common.constant.UserConstants;
 import com.example.common.core.domain.entity.SysRole;
@@ -26,7 +27,7 @@ import java.util.List;
  * @author ruoyi
  */
 @Service
-public class SysUserService {
+public class SysUserService  {
     private static final Logger log = LoggerFactory.getLogger(SysUserService.class);
 
     @Autowired

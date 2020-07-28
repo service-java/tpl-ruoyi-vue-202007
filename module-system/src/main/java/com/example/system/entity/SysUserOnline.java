@@ -1,10 +1,13 @@
 package com.example.system.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+
 /**
  * 当前在线会话
  *
  * @author ruoyi
  */
+@TableName
 public class SysUserOnline {
     /**
      * 会话编号

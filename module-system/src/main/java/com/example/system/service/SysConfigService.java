@@ -1,5 +1,6 @@
 package com.example.system.service;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.common.annotation.DataSource;
 import com.example.common.constant.Constants;
 import com.example.common.constant.UserConstants;
@@ -22,7 +23,7 @@ import java.util.List;
  * @author ruoyi
  */
 @Service
-public class SysConfigService {
+public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> {
     @Autowired
     private SysConfigMapper configMapper;
 

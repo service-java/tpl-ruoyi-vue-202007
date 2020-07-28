@@ -3,6 +3,8 @@ package com.example.system.entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.example.common.core.domain.BaseEntity;
@@ -12,12 +14,14 @@ import com.example.common.core.domain.BaseEntity;
  *
  * @author ruoyi
  */
+@TableName
 public class SysNotice extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
      * 公告ID
      */
+    @TableId
     private Long noticeId;
 
     /**

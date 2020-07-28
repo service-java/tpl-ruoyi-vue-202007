@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import javax.sql.DataSource;
+
+import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.apache.ibatis.io.VFS;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -28,7 +30,7 @@ import org.springframework.util.ClassUtils;
  * @author ruoyi
  */
 @Configuration
-public class MyBatisConfig
+public class MyBatisPlusConfig
 {
     @Autowired
     private Environment env;
@@ -92,9 +94,9 @@ public class MyBatisConfig
     @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception
     {
-        String typeAliasesPackage = env.getProperty("mybatis.typeAliasesPackage");
-        String mapperLocations = env.getProperty("mybatis.mapperLocations");
-        String configLocation = env.getProperty("mybatis.configLocation");
+        String typeAliasesPackage = env.getProperty("mybatis-plus.typeAliasesPackage");
+        String mapperLocations = env.getProperty("mybatis-plus.mapperLocations");
+        String configLocation = env.getProperty("mybatis-plus.configLocation");
         typeAliasesPackage = setTypeAliasesPackage(typeAliasesPackage);
         VFS.addImplClass(SpringBootVFS.class);
 
@@ -104,5 +106,13 @@ public class MyBatisConfig
         sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(mapperLocations));
         sessionFactory.setConfigLocation(new DefaultResourceLoader().getResource(configLocation));
         return sessionFactory.getObject();
+    }
+
+    /**
+     * 分页插件
+     */
+    @Bean
+    public PaginationInterceptor paginationInterceptor() {
+        return new PaginationInterceptor();
     }
 }

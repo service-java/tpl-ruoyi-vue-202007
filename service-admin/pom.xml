@@ -17,6 +17,18 @@
 
     <dependencies>
 
+        <!--  mybatis-plus插件 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus</artifactId>
+        </dependency>
+
+
         <!-- spring-boot-devtools -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -102,6 +114,20 @@
                 </configuration>
            </plugin>
         </plugins>
+  <!--      <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            &lt;!&ndash; mybatis-xml位置 &ndash;&gt;
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>-->
         <finalName>${project.artifactId}</finalName>
     </build>
 

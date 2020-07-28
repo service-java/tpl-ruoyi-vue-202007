@@ -1,5 +1,7 @@
 package com.example.system.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -8,6 +10,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *
  * @author ruoyi
  */
+@TableName
 public class SysRoleMenu {
     /**
      * 角色ID

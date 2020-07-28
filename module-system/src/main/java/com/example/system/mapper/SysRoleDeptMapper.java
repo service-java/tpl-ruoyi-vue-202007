@@ -2,14 +2,18 @@ package com.example.system.mapper;
 
 import java.util.List;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.system.entity.SysConfig;
 import com.example.system.entity.SysRoleDept;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 角色与部门关联表 数据层
  *
  * @author ruoyi
  */
-public interface SysRoleDeptMapper {
+@Mapper
+public interface SysRoleDeptMapper extends BaseMapper<SysRoleDept> {
     /**
      * 通过角色ID删除角色和部门关联
      *

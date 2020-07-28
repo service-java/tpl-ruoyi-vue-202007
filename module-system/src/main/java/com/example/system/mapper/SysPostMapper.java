@@ -2,14 +2,18 @@ package com.example.system.mapper;
 
 import java.util.List;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.system.entity.SysConfig;
 import com.example.system.entity.SysPost;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 岗位信息 数据层
  *
  * @author ruoyi
  */
-public interface SysPostMapper {
+@Mapper
+public interface SysPostMapper extends BaseMapper<SysPost> {
     /**
      * 查询岗位数据集合
      *

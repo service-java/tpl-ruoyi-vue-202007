@@ -1,8 +1,12 @@
 package com.example.system.service;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.common.core.domain.model.LoginUser;
 import com.example.common.utils.StringUtils;
+import com.example.system.entity.SysConfig;
 import com.example.system.entity.SysUserOnline;
+import com.example.system.mapper.SysConfigMapper;
+import com.example.system.mapper.SysUserMapper;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,7 +15,7 @@ import org.springframework.stereotype.Service;
  * @author ruoyi
  */
 @Service
-public class SysUserOnlineService {
+public class SysUserOnlineService   {
     /**
      * 通过登录地址查询信息
      *

@@ -2,6 +2,8 @@ package com.example.system.entity;
 
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.example.common.annotation.Excel;
 import com.example.common.annotation.Excel.ColumnType;
@@ -12,12 +14,14 @@ import com.example.common.core.domain.BaseEntity;
  *
  * @author ruoyi
  */
+@TableName
 public class SysOperLog extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
      * 日志主键
      */
+    @TableId
     @Excel(name = "操作序号", cellType = ColumnType.NUMERIC)
     private Long operId;
 

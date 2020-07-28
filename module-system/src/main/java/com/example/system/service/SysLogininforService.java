@@ -1,6 +1,9 @@
 package com.example.system.service;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.system.entity.SysConfig;
 import com.example.system.entity.SysLogininfor;
+import com.example.system.mapper.SysConfigMapper;
 import com.example.system.mapper.SysLogininforMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +16,7 @@ import java.util.List;
  * @author ruoyi
  */
 @Service
-public class SysLogininforService {
+public class SysLogininforService  {
 
     @Autowired
     private SysLogininforMapper logininforMapper;

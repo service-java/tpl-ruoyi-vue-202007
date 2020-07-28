@@ -1,15 +1,18 @@
 package com.example.system.mapper;
 
-import java.util.List;
-
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.system.entity.SysLogininfor;
+import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * 系统访问日志情况信息 数据层
  *
  * @author ruoyi
  */
-public interface SysLogininforMapper {
+@Mapper
+public interface SysLogininforMapper extends BaseMapper<SysLogininfor> {
     /**
      * 新增系统登录日志
      *

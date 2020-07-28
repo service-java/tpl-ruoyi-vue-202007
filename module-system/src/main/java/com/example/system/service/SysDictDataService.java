@@ -1,7 +1,10 @@
 package com.example.system.service;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.common.core.domain.entity.SysDictData;
 import com.example.common.utils.DictUtils;
+import com.example.system.entity.SysConfig;
+import com.example.system.mapper.SysConfigMapper;
 import com.example.system.mapper.SysDictDataMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +17,7 @@ import java.util.List;
  * @author ruoyi
  */
 @Service
-public class SysDictDataService {
+public class SysDictDataService extends ServiceImpl<SysDictDataMapper, SysDictData>  {
     @Autowired
     private SysDictDataMapper dictDataMapper;
 

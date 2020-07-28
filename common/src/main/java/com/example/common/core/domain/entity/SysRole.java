@@ -3,6 +3,8 @@ package com.example.common.core.domain.entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.example.common.annotation.Excel;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -13,11 +15,13 @@ import com.example.common.core.domain.BaseEntity;
  *
  * @author ruoyi
  */
+@TableName
 public class SysRole extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
     /** 角色ID */
+    @TableId
     @Excel(name = "角色序号", cellType = Excel.ColumnType.NUMERIC)
     private Long roleId;
 

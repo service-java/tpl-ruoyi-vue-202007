@@ -2,14 +2,17 @@ package com.example.system.mapper;
 
 import java.util.List;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.system.entity.SysConfig;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 参数配置 数据层
  *
  * @author ruoyi
  */
-public interface SysConfigMapper {
+@Mapper
+public interface SysConfigMapper extends BaseMapper<SysConfig> {
     /**
      * 查询参数配置信息
      *
