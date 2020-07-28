@@ -9,8 +9,7 @@ import com.example.system.domain.SysNotice;
  *
  * @author ruoyi
  */
-public interface SysNoticeMapper
-{
+public interface SysNoticeMapper {
     /**
      * 查询公告信息
      *

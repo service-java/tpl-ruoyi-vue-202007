@@ -1,12 +1,12 @@
-package com.example.system.service.impl;
+package com.example.system.service;
 
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.example.common.core.domain.entity.SysDictData;
 import com.example.common.utils.DictUtils;
 import com.example.system.mapper.SysDictDataMapper;
-import com.example.system.service.ISysDictDataService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 字典 业务层处理
@@ -14,8 +14,7 @@ import com.example.system.service.ISysDictDataService;
  * @author ruoyi
  */
 @Service
-public class SysDictDataServiceImpl implements ISysDictDataService
-{
+public class SysDictDataService {
     @Autowired
     private SysDictDataMapper dictDataMapper;
 
@@ -25,22 +24,20 @@ public class SysDictDataServiceImpl implements ISysDictDataService
      * @param dictData 字典数据信息
      * @return 字典数据集合信息
      */
-    @Override
-    public List<SysDictData> selectDictDataList(SysDictData dictData)
-    {
+
+    public List<SysDictData> selectDictDataList(SysDictData dictData) {
         return dictDataMapper.selectDictDataList(dictData);
     }
 
     /**
      * 根据字典类型和字典键值查询字典数据信息
      *
-     * @param dictType 字典类型
+     * @param dictType  字典类型
      * @param dictValue 字典键值
      * @return 字典标签
      */
-    @Override
-    public String selectDictLabel(String dictType, String dictValue)
-    {
+
+    public String selectDictLabel(String dictType, String dictValue) {
         return dictDataMapper.selectDictLabel(dictType, dictValue);
     }
 
@@ -50,9 +47,8 @@ public class SysDictDataServiceImpl implements ISysDictDataService
      * @param dictCode 字典数据ID
      * @return 字典数据
      */
-    @Override
-    public SysDictData selectDictDataById(Long dictCode)
-    {
+
+    public SysDictData selectDictDataById(Long dictCode) {
         return dictDataMapper.selectDictDataById(dictCode);
     }
 
@@ -62,12 +58,10 @@ public class SysDictDataServiceImpl implements ISysDictDataService
      * @param dictCodes 需要删除的字典数据ID
      * @return 结果
      */
-    @Override
-    public int deleteDictDataByIds(Long[] dictCodes)
-    {
+
+    public int deleteDictDataByIds(Long[] dictCodes) {
         int row = dictDataMapper.deleteDictDataByIds(dictCodes);
-        if (row > 0)
-        {
+        if (row > 0) {
             DictUtils.clearDictCache();
         }
         return row;
@@ -79,12 +73,10 @@ public class SysDictDataServiceImpl implements ISysDictDataService
      * @param dictData 字典数据信息
      * @return 结果
      */
-    @Override
-    public int insertDictData(SysDictData dictData)
-    {
+
+    public int insertDictData(SysDictData dictData) {
         int row = dictDataMapper.insertDictData(dictData);
-        if (row > 0)
-        {
+        if (row > 0) {
             DictUtils.clearDictCache();
         }
         return row;
@@ -96,12 +88,10 @@ public class SysDictDataServiceImpl implements ISysDictDataService
      * @param dictData 字典数据信息
      * @return 结果
      */
-    @Override
-    public int updateDictData(SysDictData dictData)
-    {
+
+    public int updateDictData(SysDictData dictData) {
         int row = dictDataMapper.updateDictData(dictData);
-        if (row > 0)
-        {
+        if (row > 0) {
             DictUtils.clearDictCache();
         }
         return row;

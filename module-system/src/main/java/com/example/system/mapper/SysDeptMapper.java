@@ -1,6 +1,7 @@
 package com.example.system.mapper;
 
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import com.example.common.core.domain.entity.SysDept;
 
@@ -9,8 +10,7 @@ import com.example.common.core.domain.entity.SysDept;
  *
  * @author ruoyi
  */
-public interface SysDeptMapper
-{
+public interface SysDeptMapper {
     /**
      * 查询部门管理数据
      *

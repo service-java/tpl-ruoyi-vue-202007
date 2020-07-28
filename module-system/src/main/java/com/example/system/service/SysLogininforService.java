@@ -1,11 +1,11 @@
-package com.example.system.service.impl;
+package com.example.system.service;
 
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.example.system.domain.SysLogininfor;
 import com.example.system.mapper.SysLogininforMapper;
-import com.example.system.service.ISysLogininforService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 系统访问日志情况信息 服务层处理
@@ -13,8 +13,7 @@ import com.example.system.service.ISysLogininforService;
  * @author ruoyi
  */
 @Service
-public class SysLogininforServiceImpl implements ISysLogininforService
-{
+public class SysLogininforService {
 
     @Autowired
     private SysLogininforMapper logininforMapper;
@@ -24,9 +23,8 @@ public class SysLogininforServiceImpl implements ISysLogininforService
      *
      * @param logininfor 访问日志对象
      */
-    @Override
-    public void insertLogininfor(SysLogininfor logininfor)
-    {
+
+    public void insertLogininfor(SysLogininfor logininfor) {
         logininforMapper.insertLogininfor(logininfor);
     }
 
@@ -36,9 +34,8 @@ public class SysLogininforServiceImpl implements ISysLogininforService
      * @param logininfor 访问日志对象
      * @return 登录记录集合
      */
-    @Override
-    public List<SysLogininfor> selectLogininforList(SysLogininfor logininfor)
-    {
+
+    public List<SysLogininfor> selectLogininforList(SysLogininfor logininfor) {
         return logininforMapper.selectLogininforList(logininfor);
     }
 
@@ -48,18 +45,16 @@ public class SysLogininforServiceImpl implements ISysLogininforService
      * @param infoIds 需要删除的登录日志ID
      * @return
      */
-    @Override
-    public int deleteLogininforByIds(Long[] infoIds)
-    {
+
+    public int deleteLogininforByIds(Long[] infoIds) {
         return logininforMapper.deleteLogininforByIds(infoIds);
     }
 
     /**
      * 清空系统登录日志
      */
-    @Override
-    public void cleanLogininfor()
-    {
+
+    public void cleanLogininfor() {
         logininforMapper.cleanLogininfor();
     }
 }

@@ -9,8 +9,7 @@ import com.example.quartz.domain.SysJobLog;
  *
  * @author ruoyi
  */
-public interface SysJobLogMapper
-{
+public interface SysJobLogMapper {
     /**
      * 获取quartz调度器日志的计划任务
      *

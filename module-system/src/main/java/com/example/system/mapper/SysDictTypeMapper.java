@@ -1,6 +1,7 @@
 package com.example.system.mapper;
 
 import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import com.example.common.core.domain.entity.SysDictType;
 
@@ -10,8 +11,7 @@ import com.example.common.core.domain.entity.SysDictType;
  * @author ruoyi
  */
 @Mapper
-public interface SysDictTypeMapper
-{
+public interface SysDictTypeMapper {
     /**
      * 根据条件分页查询字典类型
      *

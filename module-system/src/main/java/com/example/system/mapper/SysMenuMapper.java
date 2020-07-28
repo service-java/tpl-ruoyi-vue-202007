@@ -1,6 +1,7 @@
 package com.example.system.mapper;
 
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import com.example.common.core.domain.entity.SysMenu;
 
@@ -9,8 +10,7 @@ import com.example.common.core.domain.entity.SysMenu;
  *
  * @author ruoyi
  */
-public interface SysMenuMapper
-{
+public interface SysMenuMapper {
     /**
      * 查询系统菜单列表
      *

@@ -1,6 +1,7 @@
 package com.example.quartz.mapper;
 
 import java.util.List;
+
 import com.example.quartz.domain.SysJob;
 
 /**
@@ -8,8 +9,7 @@ import com.example.quartz.domain.SysJob;
  *
  * @author ruoyi
  */
-public interface SysJobMapper
-{
+public interface SysJobMapper {
     /**
      * 查询调度任务日志集合
      *

@@ -1,6 +1,7 @@
 package com.example.system.mapper;
 
 import java.util.List;
+
 import com.example.system.domain.SysLogininfor;
 
 /**
@@ -8,8 +9,7 @@ import com.example.system.domain.SysLogininfor;
  *
  * @author ruoyi
  */
-public interface SysLogininforMapper
-{
+public interface SysLogininforMapper {
     /**
      * 新增系统登录日志
      *

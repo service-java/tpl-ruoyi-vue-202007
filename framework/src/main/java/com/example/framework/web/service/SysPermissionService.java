@@ -1,12 +1,13 @@
 package com.example.framework.web.service;
 
-import java.util.HashSet;
-import java.util.Set;
+import com.example.common.core.domain.entity.SysUser;
+import com.example.system.service.SysMenuService;
+import com.example.system.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import com.example.common.core.domain.entity.SysUser;
-import com.example.system.service.ISysMenuService;
-import com.example.system.service.ISysRoleService;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 用户权限处理
@@ -17,10 +18,10 @@ import com.example.system.service.ISysRoleService;
 public class SysPermissionService
 {
     @Autowired
-    private ISysRoleService roleService;
+    private SysRoleService roleService;
 
     @Autowired
-    private ISysMenuService menuService;
+    private SysMenuService menuService;
 
     /**
      * 获取角色数据权限

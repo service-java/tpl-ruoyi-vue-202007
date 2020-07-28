@@ -2,6 +2,7 @@ package com.example.web.controller.system;
 
 import java.util.List;
 import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,7 @@ import com.example.common.utils.ServletUtils;
 import com.example.framework.web.service.SysLoginService;
 import com.example.framework.web.service.SysPermissionService;
 import com.example.framework.web.service.TokenService;
-import com.example.system.service.ISysMenuService;
+import com.example.system.service.SysMenuService;
 
 /**
  * 登录验证
@@ -25,13 +26,12 @@ import com.example.system.service.ISysMenuService;
  * @author ruoyi
  */
 @RestController
-public class SysLoginController
-{
+public class SysLoginController {
     @Autowired
     private SysLoginService loginService;
 
     @Autowired
-    private ISysMenuService menuService;
+    private SysMenuService menuService;
 
     @Autowired
     private SysPermissionService permissionService;
@@ -46,8 +46,7 @@ public class SysLoginController
      * @return 结果
      */
     @PostMapping("/login")
-    public AjaxResult login(@RequestBody LoginBody loginBody)
-    {
+    public AjaxResult login(@RequestBody LoginBody loginBody) {
         AjaxResult ajax = AjaxResult.success();
         // 生成令牌
         String token = loginService.login(loginBody.getUsername(), loginBody.getPassword(), loginBody.getCode(),
@@ -62,8 +61,7 @@ public class SysLoginController
      * @return 用户信息
      */
     @GetMapping("getInfo")
-    public AjaxResult getInfo()
-    {
+    public AjaxResult getInfo() {
         LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
         SysUser user = loginUser.getUser();
         // 角色集合
@@ -83,8 +81,7 @@ public class SysLoginController
      * @return 路由信息
      */
     @GetMapping("getRouters")
-    public AjaxResult getRouters()
-    {
+    public AjaxResult getRouters() {
         LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
         // 用户信息
         SysUser user = loginUser.getUser();

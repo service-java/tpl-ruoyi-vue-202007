@@ -1,6 +1,7 @@
 package com.example.system.mapper;
 
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import com.example.system.domain.SysUserRole;
 
@@ -9,8 +10,7 @@ import com.example.system.domain.SysUserRole;
  *
  * @author ruoyi
  */
-public interface SysUserRoleMapper
-{
+public interface SysUserRoleMapper {
     /**
      * 通过用户ID删除用户和角色关联
      *
@@ -54,7 +54,7 @@ public interface SysUserRoleMapper
     /**
      * 批量取消授权用户角色
      *
-     * @param roleId 角色ID
+     * @param roleId  角色ID
      * @param userIds 需要删除的用户数据ID
      * @return 结果
      */

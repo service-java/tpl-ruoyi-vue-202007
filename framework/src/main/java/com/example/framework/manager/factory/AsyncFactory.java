@@ -1,6 +1,9 @@
 package com.example.framework.manager.factory;
 
 import java.util.TimerTask;
+
+import com.example.system.service.SysLogininforService;
+import com.example.system.service.SysOperLogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.example.common.constant.Constants;
@@ -11,8 +14,7 @@ import com.example.common.utils.ip.IpUtils;
 import com.example.common.utils.spring.SpringUtils;
 import com.example.system.domain.SysLogininfor;
 import com.example.system.domain.SysOperLog;
-import com.example.system.service.ISysLogininforService;
-import com.example.system.service.ISysOperLogService;
+
 import eu.bitwalker.useragentutils.UserAgent;
 
 /**
@@ -74,7 +76,7 @@ public class AsyncFactory
                     logininfor.setStatus(Constants.FAIL);
                 }
                 // 插入数据
-                SpringUtils.getBean(ISysLogininforService.class).insertLogininfor(logininfor);
+                SpringUtils.getBean(SysLogininforService.class).insertLogininfor(logininfor);
             }
         };
     }
@@ -94,7 +96,7 @@ public class AsyncFactory
             {
                 // 远程查询操作地点
                 operLog.setOperLocation(AddressUtils.getRealAddressByIP(operLog.getOperIp()));
-                SpringUtils.getBean(ISysOperLogService.class).insertOperlog(operLog);
+                SpringUtils.getBean(SysOperLogService.class).insertOperlog(operLog);
             }
         };
     }

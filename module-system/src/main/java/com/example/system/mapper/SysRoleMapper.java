@@ -1,6 +1,7 @@
 package com.example.system.mapper;
 
 import java.util.List;
+
 import com.example.common.core.domain.entity.SysRole;
 
 /**
@@ -8,8 +9,7 @@ import com.example.common.core.domain.entity.SysRole;
  *
  * @author ruoyi
  */
-public interface SysRoleMapper
-{
+public interface SysRoleMapper {
     /**
      * 根据条件分页查询角色数据
      *

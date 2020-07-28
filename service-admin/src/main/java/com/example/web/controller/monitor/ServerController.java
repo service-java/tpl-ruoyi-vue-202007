@@ -15,12 +15,10 @@ import com.example.framework.web.domain.Server;
  */
 @RestController
 @RequestMapping("/monitor/server")
-public class ServerController extends BaseController
-{
+public class ServerController extends BaseController {
     @PreAuthorize("@ss.hasPermi('monitor:server:list')")
     @GetMapping()
-    public AjaxResult getInfo() throws Exception
-    {
+    public AjaxResult getInfo() throws Exception {
         Server server = new Server();
         server.copyTo();
         return AjaxResult.success(server);

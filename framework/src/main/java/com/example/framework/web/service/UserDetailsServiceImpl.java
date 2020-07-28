@@ -12,7 +12,7 @@ import com.example.common.core.domain.model.LoginUser;
 import com.example.common.enums.UserStatus;
 import com.example.common.exception.BaseException;
 import com.example.common.utils.StringUtils;
-import com.example.system.service.ISysUserService;
+import com.example.system.service.SysUserService;
 
 /**
  * 用户验证处理
@@ -25,7 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService
     private static final Logger log = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
 
     @Autowired
-    private ISysUserService userService;
+    private SysUserService userService;
 
     @Autowired
     private SysPermissionService permissionService;
