@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ruoyi.system.mapper.SysMenuMapper">
+<mapper namespace="com.example.system.mapper.SysMenuMapper">
 
 	<resultMap type="SysMenu" id="SysMenuResult">
 		<id     property="menuId"         column="menu_id"        />
@@ -26,10 +26,10 @@
 	</resultMap>
 
 	<sql id="selectMenuVo">
-        select menu_id, menu_name, parent_id, order_num, path, component, is_frame, menu_type, visible, status, ifnull(perms,'') as perms, icon, create_time 
+        select menu_id, menu_name, parent_id, order_num, path, component, is_frame, menu_type, visible, status, ifnull(perms,'') as perms, icon, create_time
 		from sys_menu
     </sql>
-    
+
     <select id="selectMenuList" parameterType="SysMenu" resultMap="SysMenuResult">
 		<include refid="selectMenuVo"/>
 		<where>
@@ -45,13 +45,13 @@
 		</where>
 		order by parent_id, order_num
 	</select>
-	
+
 	<select id="selectMenuTreeAll" resultMap="SysMenuResult">
 		select distinct m.menu_id, m.parent_id, m.menu_name, m.path, m.component, m.visible, m.status, ifnull(m.perms,'') as perms, m.is_frame, m.menu_type, m.icon, m.order_num, m.create_time
 		from sys_menu m where m.menu_type in ('M', 'C') and m.status = 0
 		order by m.parent_id, m.order_num
 	</select>
-	
+
 	<select id="selectMenuListByUserId" parameterType="SysMenu" resultMap="SysMenuResult">
 		select distinct m.menu_id, m.parent_id, m.menu_name, m.path, m.component, m.visible, m.status, ifnull(m.perms,'') as perms, m.is_frame, m.menu_type, m.icon, m.order_num, m.create_time
 		from sys_menu m
@@ -70,7 +70,7 @@
 		</if>
 		order by m.parent_id, m.order_num
 	</select>
-    
+
     <select id="selectMenuTreeByUserId" parameterType="Long" resultMap="SysMenuResult">
 		select distinct m.menu_id, m.parent_id, m.menu_name, m.path, m.component, m.visible, m.status, ifnull(m.perms,'') as perms, m.is_frame, m.menu_type, m.icon, m.order_num, m.create_time
 		from sys_menu m
@@ -81,7 +81,7 @@
 		where u.user_id = #{userId} and m.menu_type in ('M', 'C') and m.status = 0  AND ro.status = 0
 		order by m.parent_id, m.order_num
 	</select>
-	
+
 	<select id="selectMenuListByRoleId" parameterType="Long" resultType="Integer">
 		select m.menu_id, m.parent_id
 		from sys_menu m
@@ -90,7 +90,7 @@
         	and m.menu_id not in (select m.parent_id from sys_menu m inner join sys_role_menu rm on m.menu_id = rm.menu_id and rm.role_id = #{roleId})
 		order by m.parent_id, m.order_num
 	</select>
-	
+
 	<select id="selectMenuPerms" resultType="String">
 		select distinct m.perms
 		from sys_menu m
@@ -106,21 +106,21 @@
 			 left join sys_role r on r.role_id = ur.role_id
 		where m.status = '0' and r.status = '0' and ur.user_id = #{userId}
 	</select>
-	
+
 	<select id="selectMenuById" parameterType="Long" resultMap="SysMenuResult">
 		<include refid="selectMenuVo"/>
 		where menu_id = #{menuId}
 	</select>
-	
+
 	<select id="hasChildByMenuId" resultType="Integer">
-	    select count(1) from sys_menu where parent_id = #{menuId}  
+	    select count(1) from sys_menu where parent_id = #{menuId}
 	</select>
-	
+
 	<select id="checkMenuNameUnique" parameterType="SysMenu" resultMap="SysMenuResult">
 		<include refid="selectMenuVo"/>
 		where menu_name=#{menuName} and parent_id = #{parentId}
 	</select>
-	
+
 	<update id="updateMenu" parameterType="SysMenu">
 		update sys_menu
 		<set>
@@ -177,9 +177,9 @@
 		sysdate()
 		)
 	</insert>
-	
+
 	<delete id="deleteMenuById" parameterType="Long">
 	    delete from sys_menu where menu_id = #{menuId}
 	</delete>
 
-</mapper> 
+</mapper>
