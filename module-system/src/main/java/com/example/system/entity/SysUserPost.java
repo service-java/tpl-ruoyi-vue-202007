@@ -9,7 +9,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *
  * @author ruoyi
  */
-@TableName
+
 public class SysUserPost {
     /**
      * 用户ID

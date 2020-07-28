@@ -9,11 +9,11 @@
 - 按照个人命名习惯, 调整了模块名称
 - service如果没有必要写接口, 就不要写, 会把Java的臃肿暴露无疑
 - 模块下的domain包改名为entity包, 更加贴合语义
+- 添加lombok及其全局链式支持的配置
 
 # TODO
 
-- lombok
-- mybatis-plus --> 貌似水土不服??暂时先强行整合进去了
+- mybatis-plus --> 貌似水土不服??
 - easyexcel
 
 # 常见问题 @faq

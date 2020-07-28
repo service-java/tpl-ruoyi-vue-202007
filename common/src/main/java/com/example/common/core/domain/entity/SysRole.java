@@ -16,7 +16,7 @@ import com.example.common.core.domain.BaseEntity;
  *
  * @author ruoyi
  */
-@TableName
+
 public class SysRole extends BaseEntity
 {
     private static final long serialVersionUID = 1L;

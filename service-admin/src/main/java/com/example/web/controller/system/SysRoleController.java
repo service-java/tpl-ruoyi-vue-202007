@@ -39,8 +39,7 @@ public class SysRoleController extends BaseController {
     @GetMapping("/list")
     public TableDataInfo list(SysRole role) {
         startPage();
-//        List<SysRole> list = roleService.selectRoleList(role);
-        List<SysRole> list = roleService.listDemo();
+        List<SysRole> list = roleService.selectRoleList(role);
         return getDataTable(list);
     }
 

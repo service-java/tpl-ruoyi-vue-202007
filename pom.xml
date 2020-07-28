@@ -240,6 +240,7 @@
         <module>generator</module>
         <module>module-system</module>
         <module>module-quartz</module>
+        <module>module-demo</module>
         <module>service-admin</module>
     </modules>
     <packaging>pom</packaging>

@@ -1,6 +1,7 @@
 package ${packageName}.mapper;
 
 import java.util.List;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import ${packageName}.entity.${ClassName};
 
 /**
@@ -9,7 +10,7 @@ import ${packageName}.entity.${ClassName};
  * @author ${author}
  * @date ${datetime}
  */
-public interface ${ClassName}Mapper
+public interface ${ClassName}Mapper extends BaseMapper<${ClassName}>
 {
     /**
      * 查询${functionName}

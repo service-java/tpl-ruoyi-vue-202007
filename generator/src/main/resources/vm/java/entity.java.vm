@@ -5,6 +5,7 @@ import ${import};
 #end
 import com.example.common.annotation.Excel;
 import lombok.Data;
+import com.example.common.core.domain.BaseEntity;
 #if($table.crud)
 #elseif($table.tree)
 #end
