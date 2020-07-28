@@ -10,11 +10,13 @@
 - service如果没有必要写接口, 就不要写, 会把Java的臃肿暴露无疑
 - 模块下的domain包改名为entity包, 更加贴合语义
 - 添加lombok及其全局链式支持的配置
+- 部分支持mybatis-plus --> 貌似水土不服??
+- generator模块部分支持mybatis-plus
 
 # TODO
 
-- mybatis-plus --> 貌似水土不服??
-- easyexcel
+- BaseEntity调整参数
+- easyexcel示例
 
 # 常见问题 @faq
 
