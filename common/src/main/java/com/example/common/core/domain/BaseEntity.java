@@ -23,20 +23,25 @@ public class BaseEntity implements Serializable
     private String searchValue;
 
     /** 创建者 */
+    @TableField(exist = false)
     private String createBy;
 
     /** 创建时间 */
+    @TableField(exist = false)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /** 更新者 */
+    @TableField(exist = false)
     private String updateBy;
 
     /** 更新时间 */
+    @TableField(exist = false)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     /** 备注 */
+    @TableField(exist = false)
     private String remark;
 
     /** 开始时间 */

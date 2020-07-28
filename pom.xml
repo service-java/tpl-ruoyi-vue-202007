@@ -223,6 +223,13 @@
                 <version>${example.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.example</groupId>
+                <artifactId>module-demo</artifactId>
+                <version>${example.version}</version>
+            </dependency>
+
+
             <!-- 通用工具-->
             <dependency>
                 <groupId>com.example</groupId>

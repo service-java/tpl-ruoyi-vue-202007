@@ -67,6 +67,11 @@
             <artifactId>module-quartz</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>module-demo</artifactId>
+        </dependency>
+
         <!-- 代码生成-->
         <dependency>
             <groupId>com.example</groupId>
