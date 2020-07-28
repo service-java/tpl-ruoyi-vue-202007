@@ -1,6 +1,7 @@
 # README
 
 - 在 https://gitee.com/y_project/RuoYi-Vue 基础上修改
+- 注意mybatis-plus的configuration配置
 
 # 修改
 

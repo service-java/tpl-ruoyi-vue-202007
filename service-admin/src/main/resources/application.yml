@@ -96,8 +96,6 @@ token:
 #    configLocation: classpath:mybatis/mybatis-config.xml
 
 mybatis-plus:
-  # 加载全局的配置文件
-  configLocation: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath*:mapper/**/*Mapper.xml
   #实体扫描，多个package用逗号或者分号分隔
   typeAliasesPackage: com.example.**.entity
@@ -109,14 +107,15 @@ mybatis-plus:
       logic-delete-value: -1
       logic-not-delete-value: 0
     banner: false
-  #原生配置
+  #原生配置(注意!!!)
   configuration:
     map-underscore-to-camel-case: true
-    cache-enabled: false
     call-setters-on-nulls: true
     jdbc-type-for-null: 'null'
-
-
+    cache-enabled: true
+    default-executor-type: reuse
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+    use-generated-keys: true
 
 # PageHelper分页插件
 pagehelper:
