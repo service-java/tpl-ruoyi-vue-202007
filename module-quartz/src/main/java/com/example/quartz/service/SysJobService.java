@@ -2,7 +2,7 @@ package com.example.quartz.service;
 
 import com.example.common.constant.ScheduleConstants;
 import com.example.common.exception.job.TaskException;
-import com.example.quartz.domain.SysJob;
+import com.example.quartz.entity.SysJob;
 import com.example.quartz.mapper.SysJobMapper;
 import com.example.quartz.util.CronUtils;
 import com.example.quartz.util.ScheduleUtils;

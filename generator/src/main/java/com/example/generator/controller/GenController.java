@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 
-import com.example.generator.domain.GenTable;
-import com.example.generator.domain.GenTableColumn;
+import com.example.generator.entity.GenTable;
+import com.example.generator.entity.GenTableColumn;
 import com.example.generator.service.IGenTableColumnService;
 import com.example.generator.service.IGenTableService;
 import org.apache.commons.io.IOUtils;

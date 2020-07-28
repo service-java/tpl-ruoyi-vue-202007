@@ -2,7 +2,7 @@ package com.example.system.mapper;
 
 import java.util.List;
 
-import com.example.system.domain.SysRoleDept;
+import com.example.system.entity.SysRoleDept;
 
 /**
  * 角色与部门关联表 数据层

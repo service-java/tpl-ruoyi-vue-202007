@@ -12,8 +12,8 @@ import com.example.common.utils.ServletUtils;
 import com.example.common.utils.ip.AddressUtils;
 import com.example.common.utils.ip.IpUtils;
 import com.example.common.utils.spring.SpringUtils;
-import com.example.system.domain.SysLogininfor;
-import com.example.system.domain.SysOperLog;
+import com.example.system.entity.SysLogininfor;
+import com.example.system.entity.SysOperLog;
 
 import eu.bitwalker.useragentutils.UserAgent;
 

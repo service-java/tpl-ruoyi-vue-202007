@@ -2,7 +2,7 @@ package com.example.system.service;
 
 import com.example.common.core.domain.model.LoginUser;
 import com.example.common.utils.StringUtils;
-import com.example.system.domain.SysUserOnline;
+import com.example.system.entity.SysUserOnline;
 import org.springframework.stereotype.Service;
 
 /**

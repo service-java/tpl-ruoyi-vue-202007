@@ -2,7 +2,7 @@ package com.example.generator.mapper;
 
 import java.util.List;
 
-import com.example.generator.domain.GenTable;
+import com.example.generator.entity.GenTable;
 
 /**
  * 业务 数据层

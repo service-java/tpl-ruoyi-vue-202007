@@ -15,7 +15,7 @@ import com.example.common.core.domain.AjaxResult;
 import com.example.common.core.page.TableDataInfo;
 import com.example.common.enums.BusinessType;
 import com.example.common.utils.poi.ExcelUtil;
-import com.example.system.domain.SysLogininfor;
+import com.example.system.entity.SysLogininfor;
 import com.example.system.service.SysLogininforService;
 
 /**

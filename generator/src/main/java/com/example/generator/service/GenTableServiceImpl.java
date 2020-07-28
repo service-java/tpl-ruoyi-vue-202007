@@ -10,8 +10,8 @@ import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import com.example.generator.domain.GenTable;
-import com.example.generator.domain.GenTableColumn;
+import com.example.generator.entity.GenTable;
+import com.example.generator.entity.GenTableColumn;
 import com.example.generator.mapper.GenTableColumnMapper;
 import com.example.generator.mapper.GenTableMapper;
 import com.example.generator.util.GenUtils;

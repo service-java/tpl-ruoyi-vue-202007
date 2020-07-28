@@ -2,7 +2,7 @@ package com.example.system.mapper;
 
 import java.util.List;
 
-import com.example.system.domain.SysNotice;
+import com.example.system.entity.SysNotice;
 
 /**
  * 通知公告表 数据层

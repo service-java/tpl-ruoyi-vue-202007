@@ -8,7 +8,7 @@ import com.example.common.enums.BusinessType;
 import com.example.common.exception.job.TaskException;
 import com.example.common.utils.SecurityUtils;
 import com.example.common.utils.poi.ExcelUtil;
-import com.example.quartz.domain.SysJob;
+import com.example.quartz.entity.SysJob;
 import com.example.quartz.service.SysJobService;
 import com.example.quartz.util.CronUtils;
 import org.quartz.SchedulerException;

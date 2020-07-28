@@ -2,7 +2,7 @@ package com.example.generator.service;
 
 import java.util.List;
 
-import com.example.generator.domain.GenTableColumn;
+import com.example.generator.entity.GenTableColumn;
 
 /**
  * 业务字段 服务层

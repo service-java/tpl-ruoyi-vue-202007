@@ -13,7 +13,7 @@ import org.quartz.TriggerKey;
 import com.example.common.constant.ScheduleConstants;
 import com.example.common.exception.job.TaskException;
 import com.example.common.exception.job.TaskException.Code;
-import com.example.quartz.domain.SysJob;
+import com.example.quartz.entity.SysJob;
 
 /**
  * 定时任务工具类

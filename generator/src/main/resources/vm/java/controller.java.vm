@@ -15,7 +15,7 @@ import com.example.common.annotation.Log;
 import com.example.common.core.controller.BaseController;
 import com.example.common.core.domain.AjaxResult;
 import com.example.common.enums.BusinessType;
-import ${packageName}.domain.${ClassName};
+import ${packageName}.entity.${ClassName};
 import ${packageName}.service.I${ClassName}Service;
 import com.example.common.utils.poi.ExcelUtil;
 #if($table.crud)

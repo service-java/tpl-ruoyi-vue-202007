@@ -2,7 +2,7 @@ package com.example.system.mapper;
 
 import java.util.List;
 
-import com.example.system.domain.SysPost;
+import com.example.system.entity.SysPost;
 
 /**
  * 岗位信息 数据层

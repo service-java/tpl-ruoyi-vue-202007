@@ -1,4 +1,4 @@
-package com.example.system.domain;
+package com.example.system.entity;
 
 /**
  * 当前在线会话

@@ -7,7 +7,7 @@ import com.example.common.core.redis.RedisCache;
 import com.example.common.core.text.Convert;
 import com.example.common.enums.DataSourceType;
 import com.example.common.utils.StringUtils;
-import com.example.system.domain.SysConfig;
+import com.example.system.entity.SysConfig;
 import com.example.system.mapper.SysConfigMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

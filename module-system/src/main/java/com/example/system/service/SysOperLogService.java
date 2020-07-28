@@ -1,6 +1,6 @@
 package com.example.system.service;
 
-import com.example.system.domain.SysOperLog;
+import com.example.system.entity.SysOperLog;
 import com.example.system.mapper.SysOperLogMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

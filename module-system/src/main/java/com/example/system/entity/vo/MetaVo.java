@@ -1,4 +1,4 @@
-package com.example.system.domain.vo;
+package com.example.system.entity.vo;
 
 /**
  * 路由显示信息

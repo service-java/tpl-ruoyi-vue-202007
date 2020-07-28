@@ -2,7 +2,7 @@ package com.example.system.mapper;
 
 import java.util.List;
 
-import com.example.system.domain.SysOperLog;
+import com.example.system.entity.SysOperLog;
 
 /**
  * 操作日志 数据层

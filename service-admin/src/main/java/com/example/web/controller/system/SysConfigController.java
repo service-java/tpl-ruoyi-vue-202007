@@ -22,7 +22,7 @@ import com.example.common.core.page.TableDataInfo;
 import com.example.common.enums.BusinessType;
 import com.example.common.utils.SecurityUtils;
 import com.example.common.utils.poi.ExcelUtil;
-import com.example.system.domain.SysConfig;
+import com.example.system.entity.SysConfig;
 import com.example.system.service.SysConfigService;
 
 /**

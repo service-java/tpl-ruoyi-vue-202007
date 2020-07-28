@@ -21,7 +21,7 @@ import com.example.common.core.page.TableDataInfo;
 import com.example.common.core.redis.RedisCache;
 import com.example.common.enums.BusinessType;
 import com.example.common.utils.StringUtils;
-import com.example.system.domain.SysUserOnline;
+import com.example.system.entity.SysUserOnline;
 import com.example.system.service.SysUserOnlineService;
 
 /**

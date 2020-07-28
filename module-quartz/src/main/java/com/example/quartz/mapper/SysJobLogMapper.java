@@ -2,7 +2,7 @@ package com.example.quartz.mapper;
 
 import java.util.List;
 
-import com.example.quartz.domain.SysJobLog;
+import com.example.quartz.entity.SysJobLog;
 
 /**
  * 调度任务日志信息 数据层

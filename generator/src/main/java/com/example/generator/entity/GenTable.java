@@ -1,4 +1,4 @@
-package com.example.generator.domain;
+package com.example.generator.entity;
 
 import java.util.List;
 import javax.validation.Valid;

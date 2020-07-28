@@ -6,7 +6,7 @@ import com.example.common.core.domain.AjaxResult;
 import com.example.common.core.page.TableDataInfo;
 import com.example.common.enums.BusinessType;
 import com.example.common.utils.SecurityUtils;
-import com.example.system.domain.SysNotice;
+import com.example.system.entity.SysNotice;
 import com.example.system.service.SysNoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

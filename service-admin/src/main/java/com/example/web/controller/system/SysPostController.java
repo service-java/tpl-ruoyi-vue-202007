@@ -8,7 +8,7 @@ import com.example.common.core.page.TableDataInfo;
 import com.example.common.enums.BusinessType;
 import com.example.common.utils.SecurityUtils;
 import com.example.common.utils.poi.ExcelUtil;
-import com.example.system.domain.SysPost;
+import com.example.system.entity.SysPost;
 import com.example.system.service.SysPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

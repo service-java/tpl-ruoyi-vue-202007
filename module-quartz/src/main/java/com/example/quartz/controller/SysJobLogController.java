@@ -6,7 +6,7 @@ import com.example.common.core.domain.AjaxResult;
 import com.example.common.core.page.TableDataInfo;
 import com.example.common.enums.BusinessType;
 import com.example.common.utils.poi.ExcelUtil;
-import com.example.quartz.domain.SysJobLog;
+import com.example.quartz.entity.SysJobLog;
 import com.example.quartz.service.SysJobLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

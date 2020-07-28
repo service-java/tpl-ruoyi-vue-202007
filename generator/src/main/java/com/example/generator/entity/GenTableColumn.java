@@ -1,4 +1,4 @@
-package com.example.generator.domain;
+package com.example.generator.entity;
 
 import javax.validation.constraints.NotBlank;
 import com.example.common.core.domain.BaseEntity;

@@ -2,7 +2,7 @@ package com.example.system.mapper;
 
 import java.util.List;
 
-import com.example.system.domain.SysUserPost;
+import com.example.system.entity.SysUserPost;
 
 /**
  * 用户与岗位关联表 数据层

@@ -3,7 +3,7 @@ package com.example.system.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-import com.example.system.domain.SysUserRole;
+import com.example.system.entity.SysUserRole;
 
 /**
  * 用户与角色关联表 数据层

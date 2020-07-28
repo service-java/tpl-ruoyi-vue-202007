@@ -1,6 +1,6 @@
 package com.example.system.service;
 
-import com.example.system.domain.SysLogininfor;
+import com.example.system.entity.SysLogininfor;
 import com.example.system.mapper.SysLogininforMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

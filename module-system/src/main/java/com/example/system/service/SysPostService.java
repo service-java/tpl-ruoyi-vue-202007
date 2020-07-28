@@ -3,7 +3,7 @@ package com.example.system.service;
 import com.example.common.constant.UserConstants;
 import com.example.common.exception.CustomException;
 import com.example.common.utils.StringUtils;
-import com.example.system.domain.SysPost;
+import com.example.system.entity.SysPost;
 import com.example.system.mapper.SysPostMapper;
 import com.example.system.mapper.SysUserPostMapper;
 import org.springframework.beans.factory.annotation.Autowired;

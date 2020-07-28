@@ -3,7 +3,7 @@ package com.example.generator.service;
 import java.util.List;
 import java.util.Map;
 
-import com.example.generator.domain.GenTable;
+import com.example.generator.entity.GenTable;
 
 /**
  * 业务 服务层

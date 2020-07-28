@@ -2,7 +2,7 @@ package com.example.system.mapper;
 
 import java.util.List;
 
-import com.example.system.domain.SysRoleMenu;
+import com.example.system.entity.SysRoleMenu;
 
 /**
  * 角色与菜单关联表 数据层

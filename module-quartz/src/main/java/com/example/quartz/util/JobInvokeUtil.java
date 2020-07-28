@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.example.common.utils.StringUtils;
 import com.example.common.utils.spring.SpringUtils;
-import com.example.quartz.domain.SysJob;
+import com.example.quartz.entity.SysJob;
 
 /**
  * 任务执行工具

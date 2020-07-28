@@ -2,7 +2,7 @@ package com.example.system.mapper;
 
 import java.util.List;
 
-import com.example.system.domain.SysLogininfor;
+import com.example.system.entity.SysLogininfor;
 
 /**
  * 系统访问日志情况信息 数据层

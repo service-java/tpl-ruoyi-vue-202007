@@ -2,7 +2,7 @@ package com.example.system.mapper;
 
 import java.util.List;
 
-import com.example.system.domain.SysConfig;
+import com.example.system.entity.SysConfig;
 
 /**
  * 参数配置 数据层

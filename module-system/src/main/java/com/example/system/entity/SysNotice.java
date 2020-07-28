@@ -1,4 +1,4 @@
-package com.example.system.domain;
+package com.example.system.entity;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;

@@ -29,7 +29,7 @@ import com.example.common.utils.ip.IpUtils;
 import com.example.common.utils.spring.SpringUtils;
 import com.example.framework.manager.AsyncManager;
 import com.example.framework.manager.factory.AsyncFactory;
-import com.example.system.domain.SysOperLog;
+import com.example.system.entity.SysOperLog;
 
 /**
  * 操作日志记录处理

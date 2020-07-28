@@ -1,4 +1,4 @@
-package com.example.quartz.domain;
+package com.example.quartz.entity;
 
 import java.util.Date;
 

@@ -1,6 +1,6 @@
 package com.example.quartz.service;
 
-import com.example.quartz.domain.SysJobLog;
+import com.example.quartz.entity.SysJobLog;
 import com.example.quartz.mapper.SysJobLogMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
