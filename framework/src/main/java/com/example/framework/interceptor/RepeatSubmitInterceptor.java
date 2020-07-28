@@ -8,7 +8,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.alibaba.fastjson.JSONObject;
 import com.example.common.annotation.RepeatSubmit;
-import com.example.common.core.domain.AjaxResult;
+import com.example.common.core.domain.AjaxResultVO;
 import com.example.common.utils.ServletUtils;
 
 /**
@@ -31,7 +31,7 @@ public abstract class RepeatSubmitInterceptor extends HandlerInterceptorAdapter
             {
                 if (this.isRepeatSubmit(request))
                 {
-                    AjaxResult ajaxResult = AjaxResult.error("不允许重复提交，请稍后再试");
+                    AjaxResultVO ajaxResult = AjaxResultVO.error("不允许重复提交，请稍后再试");
                     ServletUtils.renderString(response, JSONObject.toJSONString(ajaxResult));
                     return false;
                 }

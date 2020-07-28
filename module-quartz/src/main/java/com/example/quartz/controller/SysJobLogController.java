@@ -2,7 +2,7 @@ package com.example.quartz.controller;
 
 import com.example.common.annotation.Log;
 import com.example.common.core.controller.BaseController;
-import com.example.common.core.domain.AjaxResult;
+import com.example.common.core.domain.AjaxResultVO;
 import com.example.common.core.page.TableDataInfo;
 import com.example.common.enums.BusinessType;
 import com.example.common.utils.poi.ExcelUtil;
@@ -42,7 +42,7 @@ public class SysJobLogController extends BaseController {
     @PreAuthorize("@ss.hasPermi('monitor:job:export')")
     @Log(title = "任务调度日志", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
-    public AjaxResult export(SysJobLog sysJobLog) {
+    public AjaxResultVO export(SysJobLog sysJobLog) {
         List<SysJobLog> list = jobLogService.selectJobLogList(sysJobLog);
         ExcelUtil<SysJobLog> util = new ExcelUtil<SysJobLog>(SysJobLog.class);
         return util.exportExcel(list, "调度日志");
@@ -53,8 +53,8 @@ public class SysJobLogController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('monitor:job:query')")
     @GetMapping(value = "/{configId}")
-    public AjaxResult getInfo(@PathVariable Long jobLogId) {
-        return AjaxResult.success(jobLogService.selectJobLogById(jobLogId));
+    public AjaxResultVO getInfo(@PathVariable Long jobLogId) {
+        return AjaxResultVO.success(jobLogService.selectJobLogById(jobLogId));
     }
 
 
@@ -64,7 +64,7 @@ public class SysJobLogController extends BaseController {
     @PreAuthorize("@ss.hasPermi('monitor:job:remove')")
     @Log(title = "定时任务调度日志", businessType = BusinessType.DELETE)
     @DeleteMapping("/{jobLogIds}")
-    public AjaxResult remove(@PathVariable Long[] jobLogIds) {
+    public AjaxResultVO remove(@PathVariable Long[] jobLogIds) {
         return toAjax(jobLogService.deleteJobLogByIds(jobLogIds));
     }
 
@@ -74,8 +74,8 @@ public class SysJobLogController extends BaseController {
     @PreAuthorize("@ss.hasPermi('monitor:job:remove')")
     @Log(title = "调度日志", businessType = BusinessType.CLEAN)
     @DeleteMapping("/clean")
-    public AjaxResult clean() {
+    public AjaxResultVO clean() {
         jobLogService.cleanJobLog();
-        return AjaxResult.success();
+        return AjaxResultVO.success();
     }
 }

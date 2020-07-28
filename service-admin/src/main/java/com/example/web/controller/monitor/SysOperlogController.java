@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.common.annotation.Log;
 import com.example.common.core.controller.BaseController;
-import com.example.common.core.domain.AjaxResult;
+import com.example.common.core.domain.AjaxResultVO;
 import com.example.common.core.page.TableDataInfo;
 import com.example.common.enums.BusinessType;
 import com.example.common.utils.poi.ExcelUtil;
@@ -40,7 +40,7 @@ public class SysOperlogController extends BaseController {
     @Log(title = "操作日志", businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('monitor:operlog:export')")
     @GetMapping("/export")
-    public AjaxResult export(SysOperLog operLog) {
+    public AjaxResultVO export(SysOperLog operLog) {
         List<SysOperLog> list = operLogService.selectOperLogList(operLog);
         ExcelUtil<SysOperLog> util = new ExcelUtil<SysOperLog>(SysOperLog.class);
         return util.exportExcel(list, "操作日志");
@@ -48,15 +48,15 @@ public class SysOperlogController extends BaseController {
 
     @PreAuthorize("@ss.hasPermi('monitor:operlog:remove')")
     @DeleteMapping("/{operIds}")
-    public AjaxResult remove(@PathVariable Long[] operIds) {
+    public AjaxResultVO remove(@PathVariable Long[] operIds) {
         return toAjax(operLogService.deleteOperLogByIds(operIds));
     }
 
     @Log(title = "操作日志", businessType = BusinessType.CLEAN)
     @PreAuthorize("@ss.hasPermi('monitor:operlog:remove')")
     @DeleteMapping("/clean")
-    public AjaxResult clean() {
+    public AjaxResultVO clean() {
         operLogService.cleanOperLog();
-        return AjaxResult.success();
+        return AjaxResultVO.success();
     }
 }

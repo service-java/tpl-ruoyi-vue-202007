@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.example.common.constant.HttpStatus;
-import com.example.common.core.domain.AjaxResult;
+import com.example.common.core.domain.AjaxResultVO;
 import com.example.common.core.page.TableSupport;
 import com.example.common.utils.DateUtils;
 import com.example.common.utils.StringUtils;
@@ -80,9 +80,9 @@ public class BaseController
      * @param rows 影响行数
      * @return 操作结果
      */
-    protected AjaxResult toAjax(int rows)
+    protected AjaxResultVO toAjax(int rows)
     {
-        return rows > 0 ? AjaxResult.success() : AjaxResult.error();
+        return rows > 0 ? AjaxResultVO.success() : AjaxResultVO.error();
     }
 
     /**

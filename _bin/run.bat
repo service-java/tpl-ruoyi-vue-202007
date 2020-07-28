@@ -1,6 +1,6 @@
 @echo off
 echo.
-echo [��Ϣ] ����Web���̡�
+echo [信息] 运行
 echo.
 
 cd %~dp0

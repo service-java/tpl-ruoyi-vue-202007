@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.common.core.controller.BaseController;
-import com.example.common.core.domain.AjaxResult;
+import com.example.common.core.domain.AjaxResultVO;
 import com.example.common.utils.StringUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -39,55 +39,55 @@ public class TestController extends BaseController {
 
     @ApiOperation("获取用户列表")
     @GetMapping("/list")
-    public AjaxResult userList() {
+    public AjaxResultVO userList() {
         List<UserEntity> userList = new ArrayList<UserEntity>(users.values());
-        return AjaxResult.success(userList);
+        return AjaxResultVO.success(userList);
     }
 
     @ApiOperation("获取用户详细")
     @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "int", paramType = "path")
     @GetMapping("/{userId}")
-    public AjaxResult getUser(@PathVariable Integer userId) {
+    public AjaxResultVO getUser(@PathVariable Integer userId) {
         if (!users.isEmpty() && users.containsKey(userId)) {
-            return AjaxResult.success(users.get(userId));
+            return AjaxResultVO.success(users.get(userId));
         } else {
-            return AjaxResult.error("用户不存在");
+            return AjaxResultVO.error("用户不存在");
         }
     }
 
     @ApiOperation("新增用户")
     @ApiImplicitParam(name = "userEntity", value = "新增用户信息", dataType = "UserEntity")
     @PostMapping("/save")
-    public AjaxResult save(UserEntity user) {
+    public AjaxResultVO save(UserEntity user) {
         if (StringUtils.isNull(user) || StringUtils.isNull(user.getUserId())) {
-            return AjaxResult.error("用户ID不能为空");
+            return AjaxResultVO.error("用户ID不能为空");
         }
-        return AjaxResult.success(users.put(user.getUserId(), user));
+        return AjaxResultVO.success(users.put(user.getUserId(), user));
     }
 
     @ApiOperation("更新用户")
     @ApiImplicitParam(name = "userEntity", value = "新增用户信息", dataType = "UserEntity")
     @PutMapping("/update")
-    public AjaxResult update(UserEntity user) {
+    public AjaxResultVO update(UserEntity user) {
         if (StringUtils.isNull(user) || StringUtils.isNull(user.getUserId())) {
-            return AjaxResult.error("用户ID不能为空");
+            return AjaxResultVO.error("用户ID不能为空");
         }
         if (users.isEmpty() || !users.containsKey(user.getUserId())) {
-            return AjaxResult.error("用户不存在");
+            return AjaxResultVO.error("用户不存在");
         }
         users.remove(user.getUserId());
-        return AjaxResult.success(users.put(user.getUserId(), user));
+        return AjaxResultVO.success(users.put(user.getUserId(), user));
     }
 
     @ApiOperation("删除用户信息")
     @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "int", paramType = "path")
     @DeleteMapping("/{userId}")
-    public AjaxResult delete(@PathVariable Integer userId) {
+    public AjaxResultVO delete(@PathVariable Integer userId) {
         if (!users.isEmpty() && users.containsKey(userId)) {
             users.remove(userId);
-            return AjaxResult.success();
+            return AjaxResultVO.success();
         } else {
-            return AjaxResult.error("用户不存在");
+            return AjaxResultVO.error("用户不存在");
         }
     }
 }

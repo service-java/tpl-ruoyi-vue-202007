@@ -13,7 +13,7 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 import com.alibaba.fastjson.JSON;
 import com.example.common.constant.Constants;
 import com.example.common.constant.HttpStatus;
-import com.example.common.core.domain.AjaxResult;
+import com.example.common.core.domain.AjaxResultVO;
 import com.example.common.core.domain.model.LoginUser;
 import com.example.common.utils.ServletUtils;
 import com.example.common.utils.StringUtils;
@@ -49,6 +49,6 @@ public class LogoutSuccessHandlerImpl implements LogoutSuccessHandler
             // 记录用户退出日志
             AsyncManager.me().execute(AsyncFactory.recordLogininfor(userName, Constants.LOGOUT, "退出成功"));
         }
-        ServletUtils.renderString(response, JSON.toJSONString(AjaxResult.error(HttpStatus.SUCCESS, "退出成功")));
+        ServletUtils.renderString(response, JSON.toJSONString(AjaxResultVO.error(HttpStatus.SUCCESS, "退出成功")));
     }
 }

@@ -2,7 +2,7 @@ package com.example.quartz.controller;
 
 import com.example.common.annotation.Log;
 import com.example.common.core.controller.BaseController;
-import com.example.common.core.domain.AjaxResult;
+import com.example.common.core.domain.AjaxResultVO;
 import com.example.common.core.page.TableDataInfo;
 import com.example.common.enums.BusinessType;
 import com.example.common.exception.job.TaskException;
@@ -46,7 +46,7 @@ public class SysJobController extends BaseController {
     @PreAuthorize("@ss.hasPermi('monitor:job:export')")
     @Log(title = "定时任务", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
-    public AjaxResult export(SysJob sysJob) {
+    public AjaxResultVO export(SysJob sysJob) {
         List<SysJob> list = jobService.selectJobList(sysJob);
         ExcelUtil<SysJob> util = new ExcelUtil<SysJob>(SysJob.class);
         return util.exportExcel(list, "定时任务");
@@ -57,8 +57,8 @@ public class SysJobController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('monitor:job:query')")
     @GetMapping(value = "/{jobId}")
-    public AjaxResult getInfo(@PathVariable("jobId") Long jobId) {
-        return AjaxResult.success(jobService.selectJobById(jobId));
+    public AjaxResultVO getInfo(@PathVariable("jobId") Long jobId) {
+        return AjaxResultVO.success(jobService.selectJobById(jobId));
     }
 
     /**
@@ -67,9 +67,9 @@ public class SysJobController extends BaseController {
     @PreAuthorize("@ss.hasPermi('monitor:job:add')")
     @Log(title = "定时任务", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody SysJob sysJob) throws SchedulerException, TaskException {
+    public AjaxResultVO add(@RequestBody SysJob sysJob) throws SchedulerException, TaskException {
         if (!CronUtils.isValid(sysJob.getCronExpression())) {
-            return AjaxResult.error("cron表达式不正确");
+            return AjaxResultVO.error("cron表达式不正确");
         }
         sysJob.setCreateBy(SecurityUtils.getUsername());
         return toAjax(jobService.insertJob(sysJob));
@@ -81,9 +81,9 @@ public class SysJobController extends BaseController {
     @PreAuthorize("@ss.hasPermi('monitor:job:edit')")
     @Log(title = "定时任务", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody SysJob sysJob) throws SchedulerException, TaskException {
+    public AjaxResultVO edit(@RequestBody SysJob sysJob) throws SchedulerException, TaskException {
         if (!CronUtils.isValid(sysJob.getCronExpression())) {
-            return AjaxResult.error("cron表达式不正确");
+            return AjaxResultVO.error("cron表达式不正确");
         }
         sysJob.setUpdateBy(SecurityUtils.getUsername());
         return toAjax(jobService.updateJob(sysJob));
@@ -95,7 +95,7 @@ public class SysJobController extends BaseController {
     @PreAuthorize("@ss.hasPermi('monitor:job:changeStatus')")
     @Log(title = "定时任务", businessType = BusinessType.UPDATE)
     @PutMapping("/changeStatus")
-    public AjaxResult changeStatus(@RequestBody SysJob job) throws SchedulerException {
+    public AjaxResultVO changeStatus(@RequestBody SysJob job) throws SchedulerException {
         SysJob newJob = jobService.selectJobById(job.getJobId());
         newJob.setStatus(job.getStatus());
         return toAjax(jobService.changeStatus(newJob));
@@ -107,9 +107,9 @@ public class SysJobController extends BaseController {
     @PreAuthorize("@ss.hasPermi('monitor:job:changeStatus')")
     @Log(title = "定时任务", businessType = BusinessType.UPDATE)
     @PutMapping("/run")
-    public AjaxResult run(@RequestBody SysJob job) throws SchedulerException {
+    public AjaxResultVO run(@RequestBody SysJob job) throws SchedulerException {
         jobService.run(job);
-        return AjaxResult.success();
+        return AjaxResultVO.success();
     }
 
     /**
@@ -118,8 +118,8 @@ public class SysJobController extends BaseController {
     @PreAuthorize("@ss.hasPermi('monitor:job:remove')")
     @Log(title = "定时任务", businessType = BusinessType.DELETE)
     @DeleteMapping("/{jobIds}")
-    public AjaxResult remove(@PathVariable Long[] jobIds) throws SchedulerException, TaskException {
+    public AjaxResultVO remove(@PathVariable Long[] jobIds) throws SchedulerException, TaskException {
         jobService.deleteJobByIds(jobIds);
-        return AjaxResult.success();
+        return AjaxResultVO.success();
     }
 }
