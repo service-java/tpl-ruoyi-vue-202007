@@ -5,15 +5,15 @@
 	<modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>example</artifactId>
+    <artifactId>parent</artifactId>
     <version>3.0.0</version>
 
     <name>parent</name>
-    <url>http://www.ruoyi.vip</url>
-    <description>若依管理系统</description>
+    <url>http://www.example.com</url>
+    <description>后台管理系统</description>
 
     <properties>
-        <ruoyi.version>3.0.0</ruoyi.version>
+        <example.version>3.0.0</example.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -150,35 +150,35 @@
             <dependency>
                 <groupId>com.example</groupId>
                 <artifactId>module-quartz</artifactId>
-                <version>${ruoyi.version}</version>
+                <version>${example.version}</version>
             </dependency>
 
             <!-- 代码生成-->
             <dependency>
                 <groupId>com.example</groupId>
                 <artifactId>generator</artifactId>
-                <version>${ruoyi.version}</version>
+                <version>${example.version}</version>
             </dependency>
 
             <!-- 核心模块-->
             <dependency>
                 <groupId>com.example</groupId>
                 <artifactId>framework</artifactId>
-                <version>${ruoyi.version}</version>
+                <version>${example.version}</version>
             </dependency>
 
             <!-- 系统模块-->
             <dependency>
                 <groupId>com.example</groupId>
                 <artifactId>module-system</artifactId>
-                <version>${ruoyi.version}</version>
+                <version>${example.version}</version>
             </dependency>
 
             <!-- 通用工具-->
             <dependency>
                 <groupId>com.example</groupId>
                 <artifactId>common</artifactId>
-                <version>${ruoyi.version}</version>
+                <version>${example.version}</version>
             </dependency>
 
         </dependencies>
