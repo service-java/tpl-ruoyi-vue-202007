@@ -62,8 +62,9 @@ SqlSessionFactory不要使用原生的，请使用MybatisSqlSessionFactory
 ```java
 @Bean
 public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-    // 自定义SqlSessionFactory后这里需要配置 
-    sessionFactory.setPlugins(paginationInterceptor);
+    // 自定义SqlSessionFactory后这里需要配置, 需要以数组形式
+    Interceptor[] interceptors = { paginationInterceptor };
+    sessionFactory.setPlugins(interceptors);
     
     return sessionFactory.getObject();
 }

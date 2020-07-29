@@ -107,7 +107,8 @@ public class MyBatisPlusConfig {
         // 配置分页插件
         // @fix https://blog.csdn.net/qq_36241003/article/details/100056609
 //        Interceptor[] interceptors = { pageInterceptor, paginationInterceptor };
-//        sessionFactory.setPlugins(interceptors);
+        Interceptor[] interceptors = { paginationInterceptor };
+        sessionFactory.setPlugins(interceptors);
 
         return sessionFactory.getObject();
     }

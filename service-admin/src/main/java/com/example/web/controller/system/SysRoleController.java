@@ -1,7 +1,10 @@
 package com.example.web.controller.system;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.example.common.annotation.Log;
 import com.example.common.base.BaseController;
+import com.example.common.base.PageDataVO;
+import com.example.common.base.PageQueryUtils;
 import com.example.common.constant.UserConstants;
 import com.example.common.enums.BusinessType;
 import com.example.common.model.AjaxResultVO;
@@ -16,6 +19,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -34,6 +38,9 @@ public class SysRoleController extends BaseController {
     public TableDataInfo list(SysRole role) {
         startPage();
         List<SysRole> list = roleService.selectRoleList(role);
+
+        IPage<SysRole> page = roleService.page(new PageQueryUtils<SysRole>().getPage(new HashMap<>()));
+        PageDataVO pageDataVO = new PageDataVO(page);
         return getDataTable(list);
     }
 
