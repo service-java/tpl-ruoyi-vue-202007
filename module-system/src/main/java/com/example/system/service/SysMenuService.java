@@ -7,8 +7,8 @@ import com.example.common.model.entity.SysMenu;
 import com.example.common.model.entity.SysUser;
 import com.example.common.util.SecurityUtils;
 import com.example.common.util.StringUtils;
-import com.example.system.vo.MetaVo;
-import com.example.system.vo.RouterVo;
+import com.example.system.vo.MetaVO;
+import com.example.system.vo.RouterVO;
 import com.example.system.mapper.SysMenuMapper;
 import com.example.system.mapper.SysRoleMenuMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -115,27 +115,27 @@ public class SysMenuService  extends ServiceImpl<SysMenuMapper, SysMenu>  {
      * @return 路由列表
      */
 
-    public List<RouterVo> buildMenus(List<SysMenu> menus) {
-        List<RouterVo> routers = new LinkedList<RouterVo>();
+    public List<RouterVO> buildMenus(List<SysMenu> menus) {
+        List<RouterVO> routers = new LinkedList<RouterVO>();
         for (SysMenu menu : menus) {
-            RouterVo router = new RouterVo();
+            RouterVO router = new RouterVO();
             router.setHidden("1".equals(menu.getVisible()));
             router.setName(getRouteName(menu));
             router.setPath(getRouterPath(menu));
             router.setComponent(getComponent(menu));
-            router.setMeta(new MetaVo(menu.getMenuName(), menu.getIcon()));
+            router.setMeta(new MetaVO(menu.getMenuName(), menu.getIcon()));
             List<SysMenu> cMenus = menu.getChildren();
             if (!cMenus.isEmpty() && cMenus.size() > 0 && UserConstants.TYPE_DIR.equals(menu.getMenuType())) {
                 router.setAlwaysShow(true);
                 router.setRedirect("noRedirect");
                 router.setChildren(buildMenus(cMenus));
             } else if (isMeunFrame(menu)) {
-                List<RouterVo> childrenList = new ArrayList<RouterVo>();
-                RouterVo children = new RouterVo();
+                List<RouterVO> childrenList = new ArrayList<RouterVO>();
+                RouterVO children = new RouterVO();
                 children.setPath(menu.getPath());
                 children.setComponent(menu.getComponent());
                 children.setName(StringUtils.capitalize(menu.getPath()));
-                children.setMeta(new MetaVo(menu.getMenuName(), menu.getIcon()));
+                children.setMeta(new MetaVO(menu.getMenuName(), menu.getIcon()));
                 childrenList.add(children);
                 router.setChildren(childrenList);
             }
