@@ -2,12 +2,12 @@ package com.example.web.controller.system;
 
 import com.example.common.annotation.Log;
 import com.example.common.constant.UserConstants;
-import com.example.common.core.controller.BaseController;
-import com.example.common.core.domain.AjaxResultVO;
-import com.example.common.core.domain.entity.SysDept;
+import com.example.common.base.BaseController;
+import com.example.common.model.AjaxResultVO;
+import com.example.common.model.entity.SysDept;
 import com.example.common.enums.BusinessType;
-import com.example.common.utils.SecurityUtils;
-import com.example.common.utils.StringUtils;
+import com.example.common.util.SecurityUtils;
+import com.example.common.util.StringUtils;
 import com.example.system.service.SysDeptService;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;

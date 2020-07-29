@@ -2,7 +2,7 @@ package com.example.demo.entity;
 
 import com.example.common.annotation.Excel;
 import lombok.Data;
-import com.example.common.core.domain.BaseEntity;
+import com.example.common.base.BaseEntity;
 
 /**
  * 示例模块对象 demo_misc

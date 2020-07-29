@@ -3,10 +3,9 @@ package com.example.system.mapper;
 import java.util.List;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.common.core.domain.entity.SysDept;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import com.example.common.core.domain.entity.SysDictData;
+import com.example.common.model.entity.SysDictData;
 
 /**
  * 字典表 数据层

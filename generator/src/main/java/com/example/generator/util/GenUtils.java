@@ -5,7 +5,7 @@ import java.util.Arrays;
 import com.example.generator.entity.GenTable;
 import org.apache.commons.lang3.RegExUtils;
 import com.example.common.constant.GenConstants;
-import com.example.common.utils.StringUtils;
+import com.example.common.util.StringUtils;
 import com.example.generator.config.GenConfig;
 import com.example.generator.entity.GenTableColumn;
 

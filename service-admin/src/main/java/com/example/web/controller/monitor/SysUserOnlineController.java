@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.common.annotation.Log;
 import com.example.common.constant.Constants;
-import com.example.common.core.controller.BaseController;
-import com.example.common.core.domain.AjaxResultVO;
-import com.example.common.core.domain.model.LoginUser;
-import com.example.common.core.page.TableDataInfo;
-import com.example.common.core.redis.RedisCache;
+import com.example.common.base.BaseController;
+import com.example.common.model.AjaxResultVO;
+import com.example.common.model.LoginUser;
+import com.example.common.model.TableDataInfo;
+import com.example.common.model.RedisCache;
 import com.example.common.enums.BusinessType;
-import com.example.common.utils.StringUtils;
+import com.example.common.util.StringUtils;
 import com.example.system.entity.SysUserOnline;
 import com.example.system.service.SysUserOnlineService;
 
@@ -44,7 +45,13 @@ public class SysUserOnlineController extends BaseController {
         Collection<String> keys = redisCache.keys(Constants.LOGIN_TOKEN_KEY + "*");
         List<SysUserOnline> userOnlineList = new ArrayList<SysUserOnline>();
         for (String key : keys) {
+            // @fix https://gitee.com/y_project/RuoYi-Vue/issues/I1H2JB
             LoginUser user = redisCache.getCacheObject(key);
+//            Object obj = redisCache.getCacheObject(key);
+//            String userValue = JSON.toJSONString(obj);
+//            LoginUser user = JSON.parseObject(userValue, LoginUser.class);
+
+
             if (StringUtils.isNotEmpty(ipaddr) && StringUtils.isNotEmpty(userName)) {
                 if (StringUtils.equals(ipaddr, user.getIpaddr()) && StringUtils.equals(userName, user.getUsername())) {
                     userOnlineList.add(userOnlineService.selectOnlineByInfo(ipaddr, userName, user));

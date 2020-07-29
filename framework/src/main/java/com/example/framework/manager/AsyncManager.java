@@ -3,8 +3,8 @@ package com.example.framework.manager;
 import java.util.TimerTask;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import com.example.common.utils.Threads;
-import com.example.common.utils.spring.SpringUtils;
+import com.example.common.util.Threads;
+import com.example.common.util.spring.SpringUtils;
 
 /**
  * 异步任务管理器

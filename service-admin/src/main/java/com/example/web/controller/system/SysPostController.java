@@ -2,12 +2,12 @@ package com.example.web.controller.system;
 
 import com.example.common.annotation.Log;
 import com.example.common.constant.UserConstants;
-import com.example.common.core.controller.BaseController;
-import com.example.common.core.domain.AjaxResultVO;
-import com.example.common.core.page.TableDataInfo;
+import com.example.common.base.BaseController;
+import com.example.common.model.AjaxResultVO;
+import com.example.common.model.TableDataInfo;
 import com.example.common.enums.BusinessType;
-import com.example.common.utils.SecurityUtils;
-import com.example.common.utils.poi.ExcelUtil;
+import com.example.common.util.SecurityUtils;
+import com.example.common.util.poi.ExcelUtil;
 import com.example.system.entity.SysPost;
 import com.example.system.service.SysPostService;
 import org.springframework.beans.factory.annotation.Autowired;

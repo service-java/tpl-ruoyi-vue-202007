@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.common.constant.Constants;
-import com.example.common.core.domain.AjaxResultVO;
-import com.example.common.core.domain.entity.SysMenu;
-import com.example.common.core.domain.entity.SysUser;
-import com.example.common.core.domain.model.LoginBody;
-import com.example.common.core.domain.model.LoginUser;
-import com.example.common.utils.ServletUtils;
-import com.example.framework.web.service.SysLoginService;
-import com.example.framework.web.service.SysPermissionService;
-import com.example.framework.web.service.TokenService;
+import com.example.common.model.AjaxResultVO;
+import com.example.common.model.entity.SysMenu;
+import com.example.common.model.entity.SysUser;
+import com.example.common.model.LoginBody;
+import com.example.common.model.LoginUser;
+import com.example.common.util.ServletUtils;
+import com.example.framework.service.SysLoginService;
+import com.example.framework.service.SysPermissionService;
+import com.example.framework.service.TokenService;
 import com.example.system.service.SysMenuService;
 
 /**

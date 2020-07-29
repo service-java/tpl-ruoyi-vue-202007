@@ -8,8 +8,8 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.alibaba.fastjson.JSONObject;
 import com.example.common.annotation.RepeatSubmit;
-import com.example.common.core.domain.AjaxResultVO;
-import com.example.common.utils.ServletUtils;
+import com.example.common.model.AjaxResultVO;
+import com.example.common.util.ServletUtils;
 
 /**
  * 防止重复提交拦截器

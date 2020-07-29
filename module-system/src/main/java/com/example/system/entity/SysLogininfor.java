@@ -3,11 +3,10 @@ package com.example.system.entity;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.example.common.annotation.Excel;
 import com.example.common.annotation.Excel.ColumnType;
-import com.example.common.core.domain.BaseEntity;
+import com.example.common.base.BaseEntity;
 
 /**
  * 系统访问记录表 sys_logininfor

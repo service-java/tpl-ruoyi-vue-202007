@@ -1,8 +1,8 @@
 package com.example.system.service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.common.core.domain.entity.SysDictData;
-import com.example.common.utils.DictUtils;
+import com.example.common.model.entity.SysDictData;
+import com.example.common.util.DictUtils;
 import com.example.system.mapper.SysDictDataMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

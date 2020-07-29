@@ -8,8 +8,8 @@ import com.example.generator.entity.GenTable;
 import org.apache.velocity.VelocityContext;
 import com.alibaba.fastjson.JSONObject;
 import com.example.common.constant.GenConstants;
-import com.example.common.utils.DateUtils;
-import com.example.common.utils.StringUtils;
+import com.example.common.util.DateUtils;
+import com.example.common.util.StringUtils;
 import com.example.generator.entity.GenTableColumn;
 
 /**

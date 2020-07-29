@@ -4,9 +4,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.common.core.controller.BaseController;
-import com.example.common.core.domain.AjaxResultVO;
-import com.example.framework.web.domain.Server;
+import com.example.common.base.BaseController;
+import com.example.common.model.AjaxResultVO;
+import com.example.framework.domain.Server;
 
 /**
  * 服务器监控

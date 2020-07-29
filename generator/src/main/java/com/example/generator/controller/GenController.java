@@ -23,10 +23,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.common.annotation.Log;
-import com.example.common.core.controller.BaseController;
-import com.example.common.core.domain.AjaxResultVO;
-import com.example.common.core.page.TableDataInfo;
-import com.example.common.core.text.Convert;
+import com.example.common.base.BaseController;
+import com.example.common.model.AjaxResultVO;
+import com.example.common.model.TableDataInfo;
+import com.example.common.util.text.Convert;
 import com.example.common.enums.BusinessType;
 
 /**

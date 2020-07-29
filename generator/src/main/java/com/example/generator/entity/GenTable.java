@@ -5,8 +5,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import org.apache.commons.lang3.ArrayUtils;
 import com.example.common.constant.GenConstants;
-import com.example.common.core.domain.BaseEntity;
-import com.example.common.utils.StringUtils;
+import com.example.common.base.BaseEntity;
+import com.example.common.util.StringUtils;
 
 /**
  * 业务表 gen_table

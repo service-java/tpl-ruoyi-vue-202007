@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.alibaba.fastjson.JSONObject;
-import com.example.common.core.redis.RedisCache;
+import com.example.common.model.RedisCache;
 import com.example.common.filter.RepeatedlyRequestWrapper;
-import com.example.common.utils.StringUtils;
-import com.example.common.utils.http.HttpHelper;
+import com.example.common.util.StringUtils;
+import com.example.common.util.http.HttpHelper;
 import com.example.framework.interceptor.RepeatSubmitInterceptor;
 
 /**

@@ -30,11 +30,11 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.common.constant.Constants;
 import com.example.common.constant.GenConstants;
-import com.example.common.core.text.CharsetKit;
+import com.example.common.util.text.CharsetKit;
 import com.example.common.exception.CustomException;
-import com.example.common.utils.SecurityUtils;
-import com.example.common.utils.StringUtils;
-import com.example.common.utils.file.FileUtils;
+import com.example.common.util.SecurityUtils;
+import com.example.common.util.StringUtils;
+import com.example.common.util.file.FileUtils;
 
 /**
  * 业务 服务层实现

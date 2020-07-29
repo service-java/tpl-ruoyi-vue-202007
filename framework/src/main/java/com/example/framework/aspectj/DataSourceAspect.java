@@ -14,7 +14,7 @@ import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import com.example.common.annotation.DataSource;
-import com.example.common.utils.StringUtils;
+import com.example.common.util.StringUtils;
 
 /**
  * 多数据源处理

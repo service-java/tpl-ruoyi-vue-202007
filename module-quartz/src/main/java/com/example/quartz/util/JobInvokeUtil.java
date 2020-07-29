@@ -5,8 +5,8 @@ import java.lang.reflect.Method;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.example.common.utils.StringUtils;
-import com.example.common.utils.spring.SpringUtils;
+import com.example.common.util.StringUtils;
+import com.example.common.util.spring.SpringUtils;
 import com.example.quartz.entity.SysJob;
 
 /**

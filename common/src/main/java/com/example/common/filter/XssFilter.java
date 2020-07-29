@@ -13,7 +13,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.example.common.utils.StringUtils;
+import com.example.common.util.StringUtils;
 
 /**
  * 防止XSS攻击的过滤器

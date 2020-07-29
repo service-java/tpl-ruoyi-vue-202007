@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.common.annotation.Log;
 import com.example.common.constant.Constants;
 import com.example.common.constant.UserConstants;
-import com.example.common.core.controller.BaseController;
-import com.example.common.core.domain.AjaxResultVO;
-import com.example.common.core.domain.entity.SysMenu;
-import com.example.common.core.domain.model.LoginUser;
+import com.example.common.base.BaseController;
+import com.example.common.model.AjaxResultVO;
+import com.example.common.model.entity.SysMenu;
+import com.example.common.model.LoginUser;
 import com.example.common.enums.BusinessType;
-import com.example.common.utils.SecurityUtils;
-import com.example.common.utils.ServletUtils;
-import com.example.common.utils.StringUtils;
-import com.example.framework.web.service.TokenService;
+import com.example.common.util.SecurityUtils;
+import com.example.common.util.ServletUtils;
+import com.example.common.util.StringUtils;
+import com.example.framework.service.TokenService;
 import com.example.system.service.SysMenuService;
 
 /**

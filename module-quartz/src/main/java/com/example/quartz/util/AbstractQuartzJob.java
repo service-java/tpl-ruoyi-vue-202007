@@ -2,10 +2,10 @@ package com.example.quartz.util;
 
 import com.example.common.constant.Constants;
 import com.example.common.constant.ScheduleConstants;
-import com.example.common.utils.ExceptionUtil;
-import com.example.common.utils.StringUtils;
-import com.example.common.utils.bean.BeanUtils;
-import com.example.common.utils.spring.SpringUtils;
+import com.example.common.util.ExceptionUtil;
+import com.example.common.util.StringUtils;
+import com.example.common.util.bean.BeanUtils;
+import com.example.common.util.spring.SpringUtils;
 import com.example.quartz.entity.SysJob;
 import com.example.quartz.entity.SysJobLog;
 import com.example.quartz.service.SysJobLogService;

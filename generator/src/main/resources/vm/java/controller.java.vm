@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.common.annotation.Log;
-import com.example.common.core.controller.BaseController;
-import com.example.common.core.domain.AjaxResultVO;
+import com.example.common.base.BaseController;
+import com.example.common.model.AjaxResultVO;
 import com.example.common.enums.BusinessType;
 import ${packageName}.entity.${ClassName};
 import ${packageName}.service.${ClassName}Service;
-import com.example.common.utils.poi.ExcelUtil;
+import com.example.common.util.poi.ExcelUtil;
 #if($table.crud)
-import com.example.common.core.page.TableDataInfo;
+import com.example.common.model.TableDataInfo;
 #elseif($table.tree)
 #end
 

@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.google.code.kaptcha.Producer;
 import com.example.common.constant.Constants;
-import com.example.common.core.domain.AjaxResultVO;
-import com.example.common.core.redis.RedisCache;
-import com.example.common.utils.sign.Base64;
-import com.example.common.utils.uuid.IdUtils;
+import com.example.common.model.AjaxResultVO;
+import com.example.common.model.RedisCache;
+import com.example.common.util.sign.Base64;
+import com.example.common.util.uuid.IdUtils;
 
 /**
  * 验证码操作处理

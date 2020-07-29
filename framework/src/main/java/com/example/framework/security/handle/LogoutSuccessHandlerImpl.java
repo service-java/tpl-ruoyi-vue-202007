@@ -5,7 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.example.framework.web.service.TokenService;
+import com.example.framework.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
@@ -13,10 +13,10 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 import com.alibaba.fastjson.JSON;
 import com.example.common.constant.Constants;
 import com.example.common.constant.HttpStatus;
-import com.example.common.core.domain.AjaxResultVO;
-import com.example.common.core.domain.model.LoginUser;
-import com.example.common.utils.ServletUtils;
-import com.example.common.utils.StringUtils;
+import com.example.common.model.AjaxResultVO;
+import com.example.common.model.LoginUser;
+import com.example.common.util.ServletUtils;
+import com.example.common.util.StringUtils;
 import com.example.framework.manager.AsyncManager;
 import com.example.framework.manager.factory.AsyncFactory;
 

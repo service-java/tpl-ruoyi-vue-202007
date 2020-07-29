@@ -22,7 +22,7 @@ import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import com.alibaba.druid.spring.boot.autoconfigure.properties.DruidStatProperties;
 import com.alibaba.druid.util.Utils;
 import com.example.common.enums.DataSourceType;
-import com.example.common.utils.spring.SpringUtils;
+import com.example.common.util.spring.SpringUtils;
 import com.example.framework.datasource.DynamicDataSource;
 
 /**

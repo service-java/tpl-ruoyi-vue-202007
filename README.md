@@ -5,16 +5,16 @@
 
 # 修改
 
-- 去掉ruoyi相关标志, 方便直接套用
-- 按照个人命名习惯, 调整了模块名称
+- 去掉部分ruoyi的标志, 方便直接套用
+- 按照个人命名习惯, 调整模块名称 @eg 业务模块下的domain改名为entity
+- 将层级扁平化, 模块往下算起最多两层 @eg /common/config/properties/xxx.properties
 - service如果没有必要写接口, 就不要写, 会把Java的臃肿暴露无疑
-- 模块下的domain包改名为entity包, 更加贴合语义
 - 添加lombok及其全局链式支持的配置
-- 部分支持mybatis-plus --> 貌似水土不服??
-- generator模块部分支持mybatis-plus
+- 支持mybatis-plus @eg 代码生成generator模块 --> 貌似水土不服?? @todo
 
 # TODO
 
+- 去掉RestFul风格命名, 改为普通的语义命名
 - BaseEntity调整参数
 - easyexcel示例
 
@@ -26,6 +26,9 @@
 
 ```
 SqlSessionFactory不要使用原生的，请使用MybatisSqlSessionFactory
+
+开发工具没有同步配置!! 
+我重启貌似就不报错了, 灵异事件, 不知道是不是bug
 ```
 
 - 解决mybatis plus 3.x 和pagehelper无法共用、包冲突问题
@@ -46,3 +49,15 @@ SqlSessionFactory不要使用原生的，请使用MybatisSqlSessionFactory
     <version>2.1</version>
 </dependency>
 ```
+
+- 热部署 LoginUser 类型转换失败 @todo
+    - https://gitee.com/y_project/RuoYi-Vue/issues/I1H2JB
+    
+```
+Object obj = redisCache.getCacheObject(userKey);
+String userValue = JSON.toJSONString(obj);
+LoginUser user = JSON.parseObject(userValue, LoginUser.class);
+
+关掉devtools
+直接用jrebel
+```        

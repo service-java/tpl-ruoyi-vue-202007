@@ -3,7 +3,7 @@ package com.example.generator.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.common.core.text.Convert;
+import com.example.common.util.text.Convert;
 import com.example.generator.entity.GenTableColumn;
 import com.example.generator.mapper.GenTableColumnMapper;
 

@@ -12,8 +12,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.example.common.annotation.Excel;
 import com.example.common.annotation.Excel.ColumnType;
 import com.example.common.constant.ScheduleConstants;
-import com.example.common.core.domain.BaseEntity;
-import com.example.common.utils.StringUtils;
+import com.example.common.base.BaseEntity;
+import com.example.common.util.StringUtils;
 
 /**
  * 定时任务调度表 sys_job

@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.common.annotation.Log;
-import com.example.common.core.controller.BaseController;
-import com.example.common.core.domain.AjaxResultVO;
+import com.example.common.base.BaseController;
+import com.example.common.model.AjaxResultVO;
 import com.example.common.enums.BusinessType;
 import com.example.demo.entity.DemoMisc;
 import com.example.demo.service.DemoMiscService;
-import com.example.common.utils.poi.ExcelUtil;
-import com.example.common.core.page.TableDataInfo;
+import com.example.common.util.poi.ExcelUtil;
+import com.example.common.model.TableDataInfo;
 
 /**
  * 示例模块Controller

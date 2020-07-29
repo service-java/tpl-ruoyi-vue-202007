@@ -1,14 +1,12 @@
 package com.example.system.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.common.annotation.DataScope;
 import com.example.common.constant.UserConstants;
-import com.example.common.core.domain.entity.SysRole;
+import com.example.common.model.entity.SysRole;
 import com.example.common.exception.CustomException;
-import com.example.common.utils.StringUtils;
-import com.example.common.utils.spring.SpringUtils;
-import com.example.system.entity.SysConfig;
+import com.example.common.util.StringUtils;
+import com.example.common.util.spring.SpringUtils;
 import com.example.system.entity.SysRoleDept;
 import com.example.system.entity.SysRoleMenu;
 import com.example.system.mapper.*;

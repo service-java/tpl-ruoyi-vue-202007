@@ -9,7 +9,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.MediaType;
-import com.example.common.utils.StringUtils;
+import com.example.common.util.StringUtils;
 
 /**
  * Repeatable 过滤器

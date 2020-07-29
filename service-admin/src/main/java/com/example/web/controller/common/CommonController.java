@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import com.example.common.config.CommonConfig;
+import com.example.common.properties.CommonProperties;
 import com.example.common.constant.Constants;
-import com.example.common.core.domain.AjaxResultVO;
-import com.example.common.utils.StringUtils;
-import com.example.common.utils.file.FileUploadUtils;
-import com.example.common.utils.file.FileUtils;
+import com.example.common.model.AjaxResultVO;
+import com.example.common.util.StringUtils;
+import com.example.common.util.file.FileUploadUtils;
+import com.example.common.util.file.FileUtils;
 import com.example.framework.config.ServerConfig;
 
 /**
@@ -43,7 +43,7 @@ public class CommonController {
                 throw new Exception(StringUtils.format("文件名称({})非法，不允许下载。 ", fileName));
             }
             String realFileName = System.currentTimeMillis() + fileName.substring(fileName.indexOf("_") + 1);
-            String filePath = CommonConfig.getDownloadPath() + fileName;
+            String filePath = CommonProperties.getDownloadPath() + fileName;
 
             response.setCharacterEncoding("utf-8");
             response.setContentType("multipart/form-data");
@@ -65,7 +65,7 @@ public class CommonController {
     public AjaxResultVO uploadFile(MultipartFile file) throws Exception {
         try {
             // 上传文件路径
-            String filePath = CommonConfig.getUploadPath();
+            String filePath = CommonProperties.getUploadPath();
             // 上传并返回新文件名称
             String fileName = FileUploadUtils.upload(filePath, file);
             String url = serverConfig.getUrl() + fileName;
@@ -84,7 +84,7 @@ public class CommonController {
     @GetMapping("/common/download/resource")
     public void resourceDownload(String name, HttpServletRequest request, HttpServletResponse response) throws Exception {
         // 本地资源路径
-        String localPath = CommonConfig.getProfile();
+        String localPath = CommonProperties.getProfile();
         // 数据库资源地址
         String downloadPath = localPath + StringUtils.substringAfter(name, Constants.RESOURCE_PREFIX);
         // 下载名称

@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.example.common.annotation.Log;
-import com.example.common.config.CommonConfig;
-import com.example.common.core.controller.BaseController;
-import com.example.common.core.domain.AjaxResultVO;
-import com.example.common.core.domain.entity.SysUser;
-import com.example.common.core.domain.model.LoginUser;
+import com.example.common.properties.CommonProperties;
+import com.example.common.base.BaseController;
+import com.example.common.model.AjaxResultVO;
+import com.example.common.model.entity.SysUser;
+import com.example.common.model.LoginUser;
 import com.example.common.enums.BusinessType;
-import com.example.common.utils.SecurityUtils;
-import com.example.common.utils.ServletUtils;
-import com.example.common.utils.file.FileUploadUtils;
-import com.example.framework.web.service.TokenService;
+import com.example.common.util.SecurityUtils;
+import com.example.common.util.ServletUtils;
+import com.example.common.util.file.FileUploadUtils;
+import com.example.framework.service.TokenService;
 import com.example.system.service.SysUserService;
 
 /**
@@ -102,7 +102,7 @@ public class SysProfileController extends BaseController {
     public AjaxResultVO avatar(@RequestParam("avatarfile") MultipartFile file) throws IOException {
         if (!file.isEmpty()) {
             LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
-            String avatar = FileUploadUtils.upload(CommonConfig.getAvatarPath(), file);
+            String avatar = FileUploadUtils.upload(CommonProperties.getAvatarPath(), file);
             if (userService.updateUserAvatar(loginUser.getUsername(), avatar)) {
                 AjaxResultVO ajax = AjaxResultVO.success();
                 ajax.put("imgUrl", avatar);

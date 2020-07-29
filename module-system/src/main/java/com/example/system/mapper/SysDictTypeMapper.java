@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import com.example.common.core.domain.entity.SysDictType;
+import com.example.common.model.entity.SysDictType;
 
 /**
  * 字典表 数据层

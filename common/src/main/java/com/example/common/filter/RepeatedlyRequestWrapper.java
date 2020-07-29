@@ -10,7 +10,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
-import com.example.common.utils.http.HttpHelper;
+import com.example.common.util.http.HttpHelper;
 
 /**
  * 构建可重复读取inputStream的request

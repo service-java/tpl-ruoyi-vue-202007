@@ -6,16 +6,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.example.framework.web.service.TokenService;
+import com.example.framework.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import com.example.common.core.domain.model.LoginUser;
-import com.example.common.utils.SecurityUtils;
-import com.example.common.utils.StringUtils;
+import com.example.common.model.LoginUser;
+import com.example.common.util.SecurityUtils;
+import com.example.common.util.StringUtils;
 
 /**
  * token过滤器 验证token有效性

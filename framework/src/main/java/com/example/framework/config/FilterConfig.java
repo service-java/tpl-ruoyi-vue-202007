@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import com.example.common.filter.RepeatableFilter;
 import com.example.common.filter.XssFilter;
-import com.example.common.utils.StringUtils;
+import com.example.common.util.StringUtils;
 
 /**
  * Filter配置

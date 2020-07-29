@@ -2,11 +2,11 @@ package com.example.system.service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.common.constant.UserConstants;
-import com.example.common.core.domain.entity.SysDictData;
-import com.example.common.core.domain.entity.SysDictType;
+import com.example.common.model.entity.SysDictData;
+import com.example.common.model.entity.SysDictType;
 import com.example.common.exception.CustomException;
-import com.example.common.utils.DictUtils;
-import com.example.common.utils.StringUtils;
+import com.example.common.util.DictUtils;
+import com.example.common.util.StringUtils;
 import com.example.system.mapper.SysDictDataMapper;
 import com.example.system.mapper.SysDictTypeMapper;
 import org.springframework.beans.factory.annotation.Autowired;

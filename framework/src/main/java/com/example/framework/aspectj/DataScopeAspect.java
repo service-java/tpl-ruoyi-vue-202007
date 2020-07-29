@@ -2,7 +2,7 @@ package com.example.framework.aspectj;
 
 import java.lang.reflect.Method;
 
-import com.example.framework.web.service.TokenService;
+import com.example.framework.service.TokenService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Aspect;
@@ -11,13 +11,13 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 import com.example.common.annotation.DataScope;
-import com.example.common.core.domain.BaseEntity;
-import com.example.common.core.domain.entity.SysRole;
-import com.example.common.core.domain.entity.SysUser;
-import com.example.common.core.domain.model.LoginUser;
-import com.example.common.utils.ServletUtils;
-import com.example.common.utils.StringUtils;
-import com.example.common.utils.spring.SpringUtils;
+import com.example.common.base.BaseEntity;
+import com.example.common.model.entity.SysRole;
+import com.example.common.model.entity.SysUser;
+import com.example.common.model.LoginUser;
+import com.example.common.util.ServletUtils;
+import com.example.common.util.StringUtils;
+import com.example.common.util.spring.SpringUtils;
 
 /**
  * 数据过滤处理

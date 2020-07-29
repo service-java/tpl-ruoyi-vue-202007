@@ -2,7 +2,7 @@ package com.example.framework.config;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
-import com.example.common.utils.ServletUtils;
+import com.example.common.util.ServletUtils;
 
 /**
  * 服务相关配置

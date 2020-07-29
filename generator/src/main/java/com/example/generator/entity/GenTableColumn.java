@@ -1,8 +1,8 @@
 package com.example.generator.entity;
 
 import javax.validation.constraints.NotBlank;
-import com.example.common.core.domain.BaseEntity;
-import com.example.common.utils.StringUtils;
+import com.example.common.base.BaseEntity;
+import com.example.common.util.StringUtils;
 
 /**
  * 代码生成业务字段表 gen_table_column

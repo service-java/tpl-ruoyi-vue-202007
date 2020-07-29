@@ -1,7 +1,7 @@
 package com.example.common.exception;
 
-import com.example.common.utils.MessageUtils;
-import com.example.common.utils.StringUtils;
+import com.example.common.util.MessageUtils;
+import com.example.common.util.StringUtils;
 
 /**
  * 基础异常

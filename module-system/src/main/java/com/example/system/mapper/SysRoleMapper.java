@@ -3,8 +3,7 @@ package com.example.system.mapper;
 import java.util.List;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.common.core.domain.entity.SysRole;
-import com.example.system.entity.SysConfig;
+import com.example.common.model.entity.SysRole;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

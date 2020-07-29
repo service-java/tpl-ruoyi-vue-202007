@@ -7,11 +7,11 @@ import com.example.system.service.SysOperLogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.example.common.constant.Constants;
-import com.example.common.utils.LogUtils;
-import com.example.common.utils.ServletUtils;
-import com.example.common.utils.ip.AddressUtils;
-import com.example.common.utils.ip.IpUtils;
-import com.example.common.utils.spring.SpringUtils;
+import com.example.common.util.LogUtils;
+import com.example.common.util.ServletUtils;
+import com.example.common.util.ip.AddressUtils;
+import com.example.common.util.ip.IpUtils;
+import com.example.common.util.spring.SpringUtils;
 import com.example.system.entity.SysLogininfor;
 import com.example.system.entity.SysOperLog;
 

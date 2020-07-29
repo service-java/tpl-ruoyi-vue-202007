@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequestWrapper;
 import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import com.example.common.utils.StringUtils;
-import com.example.common.utils.html.EscapeUtil;
+import com.example.common.util.StringUtils;
+import com.example.common.util.html.EscapeUtil;
 
 /**
  * XSS过滤处理

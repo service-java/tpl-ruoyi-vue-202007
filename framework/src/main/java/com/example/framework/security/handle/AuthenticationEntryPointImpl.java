@@ -9,9 +9,9 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 import com.alibaba.fastjson.JSON;
 import com.example.common.constant.HttpStatus;
-import com.example.common.core.domain.AjaxResultVO;
-import com.example.common.utils.ServletUtils;
-import com.example.common.utils.StringUtils;
+import com.example.common.model.AjaxResultVO;
+import com.example.common.util.ServletUtils;
+import com.example.common.util.StringUtils;
 
 /**
  * 认证失败处理类 返回未授权
