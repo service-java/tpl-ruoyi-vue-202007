@@ -31,8 +31,9 @@
 ```
 SqlSessionFactory不要使用原生的，请使用MybatisSqlSessionFactory
 
+最后发现
 开发工具没有同步配置!! 
-我重启貌似就不报错了, 灵异事件, 不知道是不是bug
+我重启貌似就不报错了
 ```
 
 - 解决mybatis plus 3.x 和pagehelper无法共用、包冲突问题
@@ -54,13 +55,32 @@ SqlSessionFactory不要使用原生的，请使用MybatisSqlSessionFactory
 </dependency>
 ```
 
+- mybatis-plus分页插件不生效
+    - https://blog.csdn.net/qq_36241003/article/details/100056609
+    - https://github.com/baomidou/mybatis-plus/issues/2516
+
+```java
+@Bean
+public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+    // 自定义SqlSessionFactory后这里需要配置 
+    sessionFactory.setPlugins(paginationInterceptor);
+    
+    return sessionFactory.getObject();
+}
+
+===
+// 分页查询 @demo
+IPage<SysRole> page = roleService.page(new PageQueryUtils<SysRole>().getPage(new HashMap<>()));
+PageDataVO pageDataVO = new PageDataVO(page);
+```
+
 - 热部署 LoginUser 类型转换失败
     - https://gitee.com/y_project/RuoYi-Vue/issues/I1H2JB
     
 ```
-最后居然证明是
-fastjson的@type是旧的地址 --> redis
-所以文件位置以后还是不要随便调整了
+最后发现
+文件位置因为被调整过
+redis中存储的信息@type是旧的地址 
 
 ===
 Object obj = redisCache.getCacheObject(userKey);

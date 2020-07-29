@@ -1,33 +1,22 @@
 package com.example.web.controller.system;
 
-import java.util.HashMap;
-import java.util.List;
-
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.example.common.base.PageDataVO;
-import com.example.common.base.PageQueryUtils;
+import com.example.common.annotation.Log;
+import com.example.common.base.BaseController;
+import com.example.common.constant.UserConstants;
+import com.example.common.enums.BusinessType;
+import com.example.common.model.AjaxResultVO;
+import com.example.common.model.TableDataInfo;
+import com.example.common.model.entity.SysRole;
+import com.example.common.util.SecurityUtils;
+import com.example.common.util.poi.ExcelUtil;
+import com.example.system.mapper.SysRoleMapper;
+import com.example.system.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import com.example.common.annotation.Log;
-import com.example.common.constant.UserConstants;
-import com.example.common.base.BaseController;
-import com.example.common.model.AjaxResultVO;
-import com.example.common.model.entity.SysRole;
-import com.example.common.model.TableDataInfo;
-import com.example.common.enums.BusinessType;
-import com.example.common.util.SecurityUtils;
-import com.example.common.util.poi.ExcelUtil;
-import com.example.system.service.SysRoleService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 角色信息
@@ -43,16 +32,9 @@ public class SysRoleController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:role:list')")
     @GetMapping("/list")
     public TableDataInfo list(SysRole role) {
-//        startPage();
-//        List<SysRole> list = roleService.selectRoleList(role);
-//        return getDataTable(list);
-
-
-        IPage<SysRole> page = roleService.page(
-                new PageQueryUtils<SysRole>().getPage(new HashMap<>())
-        );
-        PageDataVO pageDataVO = new PageDataVO(page);
-        return null;
+        startPage();
+        List<SysRole> list = roleService.selectRoleList(role);
+        return getDataTable(list);
     }
 
     @Log(title = "角色管理", businessType = BusinessType.EXPORT)
