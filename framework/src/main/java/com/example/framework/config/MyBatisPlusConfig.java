@@ -1,13 +1,19 @@
 package com.example.framework.config;
 
+import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
+import com.baomidou.mybatisplus.core.MybatisConfiguration;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.pagination.optimize.JsqlParserCountOptimize;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
+import com.github.pagehelper.PageInterceptor;
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.type.JdbcType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
@@ -32,8 +38,7 @@ import java.util.List;
  * @author ruoyi
  */
 @Configuration
-public class MyBatisPlusConfig
-{
+public class MyBatisPlusConfig {
     @Autowired
     private Environment env;
 
@@ -42,65 +47,54 @@ public class MyBatisPlusConfig
     @Autowired
     private PaginationInterceptor paginationInterceptor;
 
-    public static String setTypeAliasesPackage(String typeAliasesPackage)
-    {
+//    @Autowired
+//    private PageInterceptor pageInterceptor;
+
+    public static String setTypeAliasesPackage(String typeAliasesPackage) {
         ResourcePatternResolver resolver = (ResourcePatternResolver) new PathMatchingResourcePatternResolver();
         MetadataReaderFactory metadataReaderFactory = new CachingMetadataReaderFactory(resolver);
         List<String> allResult = new ArrayList<String>();
-        try
-        {
-            for (String aliasesPackage : typeAliasesPackage.split(","))
-            {
+        try {
+            for (String aliasesPackage : typeAliasesPackage.split(",")) {
                 List<String> result = new ArrayList<String>();
                 aliasesPackage = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX
                         + ClassUtils.convertClassNameToResourcePath(aliasesPackage.trim()) + "/" + DEFAULT_RESOURCE_PATTERN;
                 Resource[] resources = resolver.getResources(aliasesPackage);
-                if (resources != null && resources.length > 0)
-                {
+                if (resources != null && resources.length > 0) {
                     MetadataReader metadataReader = null;
-                    for (Resource resource : resources)
-                    {
-                        if (resource.isReadable())
-                        {
+                    for (Resource resource : resources) {
+                        if (resource.isReadable()) {
                             metadataReader = metadataReaderFactory.getMetadataReader(resource);
-                            try
-                            {
+                            try {
                                 result.add(Class.forName(metadataReader.getClassMetadata().getClassName()).getPackage().getName());
-                            }
-                            catch (ClassNotFoundException e)
-                            {
+                            } catch (ClassNotFoundException e) {
                                 e.printStackTrace();
                             }
                         }
                     }
                 }
-                if (result.size() > 0)
-                {
+                if (result.size() > 0) {
                     HashSet<String> hashResult = new HashSet<String>(result);
                     allResult.addAll(hashResult);
                 }
             }
-            if (allResult.size() > 0)
-            {
+            if (allResult.size() > 0) {
                 typeAliasesPackage = String.join(",", (String[]) allResult.toArray(new String[0]));
-            }
-            else
-            {
+            } else {
                 throw new RuntimeException("mybatis typeAliasesPackage 路径扫描错误,参数typeAliasesPackage:" + typeAliasesPackage + "未找到任何包");
             }
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return typeAliasesPackage;
     }
 
+/*
     @Bean
-    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception
-    {
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
         String typeAliasesPackage = env.getProperty("mybatis-plus.typeAliasesPackage");
         String mapperLocations = env.getProperty("mybatis-plus.mapper-locations");
+//        String configLocation = env.getProperty("mybatis.configLocation");
         typeAliasesPackage = setTypeAliasesPackage(typeAliasesPackage);
         // VFS.addImplClass(SpringBootVFS.class);
 
@@ -109,13 +103,17 @@ public class MyBatisPlusConfig
         sessionFactory.setDataSource(dataSource);
         sessionFactory.setTypeAliasesPackage(typeAliasesPackage);
         sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(mapperLocations));
+//        sessionFactory.setConfigLocation(new DefaultResourceLoader().getResource(configLocation));
 
         // 配置分页插件
         // @fix https://blog.csdn.net/qq_36241003/article/details/100056609
-        sessionFactory.setPlugins(paginationInterceptor);
+//        Interceptor[] interceptors = { pageInterceptor, paginationInterceptor };
+//        sessionFactory.setPlugins(interceptors);
 
         return sessionFactory.getObject();
     }
+*/
+
 
     /**
      * 分页插件
@@ -132,7 +130,15 @@ public class MyBatisPlusConfig
 
 
         // 开启 count 的 join 优化,只针对部分 left join
-        paginationInterceptor.setCountSqlParser(new JsqlParserCountOptimize(true));
+        // paginationInterceptor.setCountSqlParser(new JsqlParserCountOptimize(true));
         return paginationInterceptor;
     }
+
+/*    @Bean
+    public ConfigurationCustomizer mybatisConfigurationCustomizer() {
+        return configuration -> configuration.addInterceptor(new PageInterceptor());
+    }*/
+
+
+
 }
