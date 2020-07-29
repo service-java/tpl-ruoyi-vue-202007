@@ -3,6 +3,7 @@ package com.example.common.core.domain.entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.example.common.annotation.Excel;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -18,6 +19,7 @@ public class SysDictType extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** 字典主键 */
+    @TableId
     @Excel(name = "字典主键", cellType = Excel.ColumnType.NUMERIC)
     private Long dictId;
 

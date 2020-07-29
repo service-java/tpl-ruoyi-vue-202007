@@ -10,7 +10,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *
  * @author ruoyi
  */
-@TableName
+
 public class SysRoleMenu {
     /**
      * 角色ID

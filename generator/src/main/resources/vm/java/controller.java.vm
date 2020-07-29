@@ -16,7 +16,7 @@ import com.example.common.core.controller.BaseController;
 import com.example.common.core.domain.AjaxResultVO;
 import com.example.common.enums.BusinessType;
 import ${packageName}.entity.${ClassName};
-import ${packageName}.service.I${ClassName}Service;
+import ${packageName}.service.${ClassName}Service;
 import com.example.common.utils.poi.ExcelUtil;
 #if($table.crud)
 import com.example.common.core.page.TableDataInfo;
@@ -34,7 +34,7 @@ import com.example.common.core.page.TableDataInfo;
 public class ${ClassName}Controller extends BaseController
 {
     @Autowired
-    private I${ClassName}Service ${className}Service;
+    private ${ClassName}Service ${className}Service;
 
     /**
      * 查询${functionName}列表

@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  *
  * @author ruoyi
  */
-@TableName
+
 public class SysUserOnline {
     /**
      * 会话编号
