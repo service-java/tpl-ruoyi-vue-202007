@@ -8,10 +8,10 @@
 - 去掉部分ruoyi的标志, 方便直接套用
 - 按照个人命名习惯, 调整模块名称 @eg 业务模块下的domain改名为entity
 - 将层级扁平化, 模块往下算起最多两层 @eg /common/config/properties/xxx.properties
-- service如果没有必要写接口, 就不要写, 会把Java的臃肿暴露无疑
+- service如果没有必要写接口, 就不要写, 会把Java的臃肿暴露无疑的
 - 添加lombok及其全局链式支持的配置(lombok.config)
-- 部分支持mybatis-plus @eg 代码生成generator模块 --> 貌似水土不服?? @todo
-- 添加hutool,apache-common依赖包
+- 部分支持mybatis-plus @eg 代码生成generator模块
+- 添加hutool + apache-common依赖包
 
 # TODO
 

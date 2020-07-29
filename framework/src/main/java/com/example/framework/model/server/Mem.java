@@ -1,4 +1,4 @@
-package com.example.framework.domain.server;
+package com.example.framework.model.server;
 
 import com.example.common.util.Arith;
 

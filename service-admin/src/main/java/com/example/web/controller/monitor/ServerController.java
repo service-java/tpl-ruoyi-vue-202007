@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.common.base.BaseController;
 import com.example.common.model.AjaxResultVO;
-import com.example.framework.domain.Server;
+import com.example.framework.model.Server;
 
 /**
  * 服务器监控

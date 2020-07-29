@@ -1,4 +1,4 @@
-package com.example.framework.domain;
+package com.example.framework.model;
 
 import java.net.UnknownHostException;
 import java.util.LinkedList;
@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Properties;
 import com.example.common.util.Arith;
 import com.example.common.util.ip.IpUtils;
-import com.example.framework.domain.server.Cpu;
-import com.example.framework.domain.server.Jvm;
-import com.example.framework.domain.server.Mem;
-import com.example.framework.domain.server.Sys;
-import com.example.framework.domain.server.SysFile;
+import com.example.framework.model.server.Cpu;
+import com.example.framework.model.server.Jvm;
+import com.example.framework.model.server.Mem;
+import com.example.framework.model.server.Sys;
+import com.example.framework.model.server.SysFile;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
 import oshi.hardware.CentralProcessor.TickType;

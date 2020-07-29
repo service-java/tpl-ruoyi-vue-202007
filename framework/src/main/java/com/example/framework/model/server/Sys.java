@@ -1,4 +1,4 @@
-package com.example.framework.domain.server;
+package com.example.framework.model.server;
 
 /**
  * 系统相关信息

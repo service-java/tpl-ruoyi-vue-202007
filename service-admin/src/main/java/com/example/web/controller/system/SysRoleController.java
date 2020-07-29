@@ -7,8 +7,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.example.common.base.PageDataVO;
 import com.example.common.base.PageQueryUtils;
-import com.example.common.util.StringUtils;
-import com.example.framework.domain.server.Sys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -45,16 +43,16 @@ public class SysRoleController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:role:list')")
     @GetMapping("/list")
     public TableDataInfo list(SysRole role) {
-        startPage();
-        List<SysRole> list = roleService.selectRoleList(role);
+//        startPage();
+//        List<SysRole> list = roleService.selectRoleList(role);
+//        return getDataTable(list);
+
 
         IPage<SysRole> page = roleService.page(
-                new PageQueryUtils<SysRole>().getPage(new HashMap<>()),
-                new QueryWrapper<SysRole>()
+                new PageQueryUtils<SysRole>().getPage(new HashMap<>())
         );
         PageDataVO pageDataVO = new PageDataVO(page);
-
-        return getDataTable(list);
+        return null;
     }
 
     @Log(title = "角色管理", businessType = BusinessType.EXPORT)
