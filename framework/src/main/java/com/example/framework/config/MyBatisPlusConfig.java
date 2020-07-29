@@ -89,7 +89,6 @@ public class MyBatisPlusConfig {
         return typeAliasesPackage;
     }
 
-/*
     @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
         String typeAliasesPackage = env.getProperty("mybatis-plus.typeAliasesPackage");
@@ -112,7 +111,6 @@ public class MyBatisPlusConfig {
 
         return sessionFactory.getObject();
     }
-*/
 
 
     /**
