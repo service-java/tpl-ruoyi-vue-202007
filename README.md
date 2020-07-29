@@ -15,10 +15,10 @@
 
 # TODO
 
-- OSS模块
-- 去掉RestFul风格命名的代码, 改为普通的语义命名
+- 添加OSS模块
+- 去掉RestFul风格代码
 - BaseEntity调整参数
-- easyexcel示例
+- 添加easyexcel示例
 
 # 同步
 
