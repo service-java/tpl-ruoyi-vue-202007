@@ -9,12 +9,12 @@
 - 按照个人命名习惯, 调整模块名称 @eg 业务模块下的domain改名为entity
 - 将层级扁平化, 模块往下算起最多两层 @eg /common/config/properties/xxx.properties
 - service如果没有必要写接口, 就不要写, 会把Java的臃肿暴露无疑
-- 添加lombok及其全局链式支持的配置
-- 支持mybatis-plus @eg 代码生成generator模块 --> 貌似水土不服?? @todo
+- 添加lombok及其全局链式支持的配置(lombok.config)
+- 部分支持mybatis-plus @eg 代码生成generator模块 --> 貌似水土不服?? @todo
 
 # TODO
 
-- 去掉RestFul风格命名, 改为普通的语义命名
+- 去掉RestFul风格命名的代码, 改为普通的语义命名
 - BaseEntity调整参数
 - easyexcel示例
 
@@ -50,10 +50,15 @@ SqlSessionFactory不要使用原生的，请使用MybatisSqlSessionFactory
 </dependency>
 ```
 
-- 热部署 LoginUser 类型转换失败 @todo
+- 热部署 LoginUser 类型转换失败
     - https://gitee.com/y_project/RuoYi-Vue/issues/I1H2JB
     
 ```
+最后居然证明是
+fastjson的@type是旧的地址 --> redis
+所以文件位置以后还是不要随便调整了
+
+===
 Object obj = redisCache.getCacheObject(userKey);
 String userValue = JSON.toJSONString(obj);
 LoginUser user = JSON.parseObject(userValue, LoginUser.class);

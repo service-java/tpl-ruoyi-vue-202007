@@ -97,6 +97,7 @@ token:
 #    # 加载全局的配置文件
 #    configLocation: classpath:mybatis/mybatis-config.xml
 
+# MyBatisPlus配置
 mybatis-plus:
   mapper-locations: classpath*:mapper/**/*Mapper.xml
   #实体扫描，多个package用逗号或者分号分隔

@@ -66,12 +66,8 @@ public class TokenService
             // 解析对应的权限以及用户信息
             String uuid = (String) claims.get(Constants.LOGIN_USER_KEY);
             String userKey = getTokenKey(uuid);
-//            LoginUser user = redisCache.getCacheObject(userKey);
 
-            // @fix https://gitee.com/y_project/RuoYi-Vue/issues/I1H2JB
-            Object obj = redisCache.getCacheObject(userKey);
-            String userValue = JSON.toJSONString(obj);
-            LoginUser user = JSON.parseObject(userValue, LoginUser.class);
+            LoginUser user = redisCache.getCacheObject(userKey);
 
             return user;
         }

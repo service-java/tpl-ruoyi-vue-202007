@@ -45,12 +45,7 @@ public class SysUserOnlineController extends BaseController {
         Collection<String> keys = redisCache.keys(Constants.LOGIN_TOKEN_KEY + "*");
         List<SysUserOnline> userOnlineList = new ArrayList<SysUserOnline>();
         for (String key : keys) {
-            // @fix https://gitee.com/y_project/RuoYi-Vue/issues/I1H2JB
             LoginUser user = redisCache.getCacheObject(key);
-//            Object obj = redisCache.getCacheObject(key);
-//            String userValue = JSON.toJSONString(obj);
-//            LoginUser user = JSON.parseObject(userValue, LoginUser.class);
-
 
             if (StringUtils.isNotEmpty(ipaddr) && StringUtils.isNotEmpty(userName)) {
                 if (StringUtils.equals(ipaddr, user.getIpaddr()) && StringUtils.equals(userName, user.getUsername())) {
