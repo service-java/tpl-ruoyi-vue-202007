@@ -189,12 +189,6 @@
                 </exclusions>
             </dependency>
 
-<!--            <dependency>-->
-<!--                <groupId>com.baomidou</groupId>-->
-<!--                <artifactId>mybatis-plus</artifactId>-->
-<!--                <version>${mybatisplus.version}</version>-->
-<!--            </dependency>-->
-
             <!-- 定时任务-->
             <dependency>
                 <groupId>com.example</groupId>
@@ -223,12 +217,12 @@
                 <version>${example.version}</version>
             </dependency>
 
+            <!-- 示例模块 -->
             <dependency>
                 <groupId>com.example</groupId>
                 <artifactId>module-demo</artifactId>
                 <version>${example.version}</version>
             </dependency>
-
 
             <!-- 通用工具-->
             <dependency>

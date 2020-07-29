@@ -5,6 +5,9 @@ import ${import};
 #end
 import com.example.common.annotation.Excel;
 import lombok.Data;
+import com.example.common.base.BaseEntity;
+import com.baomidou.mybatisplus.annotation.TableId;
+
 #if($table.crud)
 #elseif($table.tree)
 #end
@@ -35,6 +38,7 @@ public class ${ClassName} extends ${Entity}
 #else
 #set($comment=$column.columnComment)
 #end
+
 #if($parentheseIndex != -1)
     @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
 #elseif($column.javaType == 'Date')
@@ -44,6 +48,11 @@ public class ${ClassName} extends ${Entity}
     @Excel(name = "${comment}")
 #end
 #end
+
+
+    #if($column.javaField == 'id')
+    @TableId
+    #end
     private $column.javaType $column.javaField;
 
 #end
