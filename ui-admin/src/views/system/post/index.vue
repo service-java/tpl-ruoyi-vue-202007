@@ -107,7 +107,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -268,7 +268,7 @@ export default {
       });
     },
     /** 提交按钮 */
-    submitForm: function() {
+    submitForm () {
       this.$refs["form"].validate(valid => {
         if (valid) {
           if (this.form.postId != undefined) {

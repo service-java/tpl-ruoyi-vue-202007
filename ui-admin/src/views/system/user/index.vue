@@ -586,7 +586,7 @@ export default {
         }).catch(() => {});
     },
     /** 提交按钮 */
-    submitForm: function() {
+    submitForm () {
       this.$refs["form"].validate(valid => {
         if (valid) {
           if (this.form.userId != undefined) {
