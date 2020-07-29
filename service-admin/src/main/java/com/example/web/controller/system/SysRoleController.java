@@ -1,7 +1,14 @@
 package com.example.web.controller.system;
 
+import java.util.HashMap;
 import java.util.List;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.example.common.base.PageDataVO;
+import com.example.common.base.PageQueryUtils;
+import com.example.common.util.StringUtils;
+import com.example.framework.domain.server.Sys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -40,6 +47,13 @@ public class SysRoleController extends BaseController {
     public TableDataInfo list(SysRole role) {
         startPage();
         List<SysRole> list = roleService.selectRoleList(role);
+
+        IPage<SysRole> page = roleService.page(
+                new PageQueryUtils<SysRole>().getPage(new HashMap<>()),
+                new QueryWrapper<SysRole>()
+        );
+        PageDataVO pageDataVO = new PageDataVO(page);
+
         return getDataTable(list);
     }
 

@@ -80,6 +80,12 @@
             <artifactId>commons-io</artifactId>
         </dependency>
 
+        <!--lang常用工具类 -->
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+        </dependency>
+
         <!-- 文件上传工具类 -->
         <dependency>
             <groupId>commons-fileupload</groupId>

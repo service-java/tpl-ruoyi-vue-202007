@@ -11,12 +11,16 @@
 - service如果没有必要写接口, 就不要写, 会把Java的臃肿暴露无疑
 - 添加lombok及其全局链式支持的配置(lombok.config)
 - 部分支持mybatis-plus @eg 代码生成generator模块 --> 貌似水土不服?? @todo
+- 添加hutool,apache-common依赖包
 
 # TODO
 
+- OSS模块
 - 去掉RestFul风格命名的代码, 改为普通的语义命名
 - BaseEntity调整参数
 - easyexcel示例
+
+# 同步
 
 # 常见问题 @faq
 

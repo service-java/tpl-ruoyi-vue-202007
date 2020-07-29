@@ -1,4 +1,4 @@
-package com.example.common.filter;
+package com.example.common.xss;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
