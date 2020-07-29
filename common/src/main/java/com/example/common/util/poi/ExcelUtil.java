@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 import com.example.common.annotation.Excel;
 import com.example.common.annotation.Excels;
 import com.example.common.properties.CommonProperties;
-import com.example.common.model.AjaxResultVO;
+import com.example.common.model.vo.ResponseVO;
 import com.example.common.util.text.Convert;
 import com.example.common.exception.CustomException;
 import com.example.common.util.reflect.ReflectUtils;
@@ -294,7 +294,7 @@ public class ExcelUtil<T>
      * @param sheetName 工作表的名称
      * @return 结果
      */
-    public AjaxResultVO exportExcel(List<T> list, String sheetName)
+    public ResponseVO exportExcel(List<T> list, String sheetName)
     {
         this.init(list, sheetName, Excel.Type.EXPORT);
         return exportExcel();
@@ -306,7 +306,7 @@ public class ExcelUtil<T>
      * @param sheetName 工作表的名称
      * @return 结果
      */
-    public AjaxResultVO importTemplateExcel(String sheetName)
+    public ResponseVO importTemplateExcel(String sheetName)
     {
         this.init(null, sheetName, Excel.Type.IMPORT);
         return exportExcel();
@@ -317,7 +317,7 @@ public class ExcelUtil<T>
      *
      * @return 结果
      */
-    public AjaxResultVO exportExcel()
+    public ResponseVO exportExcel()
     {
         OutputStream out = null;
         try
@@ -345,7 +345,7 @@ public class ExcelUtil<T>
             String filename = encodingFilename(sheetName);
             out = new FileOutputStream(getAbsoluteFile(filename));
             wb.write(out);
-            return AjaxResultVO.success(filename);
+            return ResponseVO.success(filename);
         }
         catch (Exception e)
         {

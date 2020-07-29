@@ -72,7 +72,7 @@ public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Excepti
 ===
 // 分页查询 @demo
 IPage<SysRole> page = roleService.page(new PageQueryUtils<SysRole>().getPage(new HashMap<>()));
-PageDataVO pageDataVO = new PageDataVO(page);
+PageVO dataTable = getDataTable(page);
 ```
 
 - 热部署 LoginUser 类型转换失败

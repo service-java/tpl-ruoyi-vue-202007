@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.google.code.kaptcha.Producer;
 import com.example.common.constant.Constants;
-import com.example.common.model.AjaxResultVO;
+import com.example.common.model.vo.ResponseVO;
 import com.example.common.model.RedisCache;
 import com.example.common.util.sign.Base64;
 import com.example.common.util.uuid.IdUtils;
@@ -43,7 +43,7 @@ public class CaptchaController {
      * 生成验证码
      */
     @GetMapping("/captchaImage")
-    public AjaxResultVO getCode(HttpServletResponse response) throws IOException {
+    public ResponseVO getCode(HttpServletResponse response) throws IOException {
         // 保存验证码信息
         String uuid = IdUtils.simpleUUID();
         String verifyKey = Constants.CAPTCHA_CODE_KEY + uuid;
@@ -68,10 +68,10 @@ public class CaptchaController {
         try {
             ImageIO.write(image, "jpg", os);
         } catch (IOException e) {
-            return AjaxResultVO.error(e.getMessage());
+            return ResponseVO.error(e.getMessage());
         }
 
-        AjaxResultVO ajax = AjaxResultVO.success();
+        ResponseVO ajax = ResponseVO.success();
         ajax.put("uuid", uuid);
         ajax.put("img", Base64.encode(os.toByteArray()));
         return ajax;

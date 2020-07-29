@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.common.constant.Constants;
-import com.example.common.model.AjaxResultVO;
+import com.example.common.model.vo.ResponseVO;
 import com.example.common.model.entity.SysMenu;
 import com.example.common.model.entity.SysUser;
 import com.example.common.model.LoginBody;
@@ -46,8 +46,8 @@ public class SysLoginController {
      * @return 结果
      */
     @PostMapping("/login")
-    public AjaxResultVO login(@RequestBody LoginBody loginBody) {
-        AjaxResultVO ajax = AjaxResultVO.success();
+    public ResponseVO login(@RequestBody LoginBody loginBody) {
+        ResponseVO ajax = ResponseVO.success();
         // 生成令牌
         String token = loginService.login(loginBody.getUsername(), loginBody.getPassword(), loginBody.getCode(),
                 loginBody.getUuid());
@@ -61,14 +61,14 @@ public class SysLoginController {
      * @return 用户信息
      */
     @GetMapping("getInfo")
-    public AjaxResultVO getInfo() {
+    public ResponseVO getInfo() {
         LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
         SysUser user = loginUser.getUser();
         // 角色集合
         Set<String> roles = permissionService.getRolePermission(user);
         // 权限集合
         Set<String> permissions = permissionService.getMenuPermission(user);
-        AjaxResultVO ajax = AjaxResultVO.success();
+        ResponseVO ajax = ResponseVO.success();
         ajax.put("user", user);
         ajax.put("roles", roles);
         ajax.put("permissions", permissions);
@@ -81,11 +81,11 @@ public class SysLoginController {
      * @return 路由信息
      */
     @GetMapping("getRouters")
-    public AjaxResultVO getRouters() {
+    public ResponseVO getRouters() {
         LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
         // 用户信息
         SysUser user = loginUser.getUser();
         List<SysMenu> menus = menuService.selectMenuTreeByUserId(user.getUserId());
-        return AjaxResultVO.success(menuService.buildMenus(menus));
+        return ResponseVO.success(menuService.buildMenus(menus));
     }
 }

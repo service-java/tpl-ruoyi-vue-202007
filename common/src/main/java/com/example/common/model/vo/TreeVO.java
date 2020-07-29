@@ -1,4 +1,4 @@
-package com.example.common.model;
+package com.example.common.model.vo;
 
 import com.example.common.base.BaseEntity;
 

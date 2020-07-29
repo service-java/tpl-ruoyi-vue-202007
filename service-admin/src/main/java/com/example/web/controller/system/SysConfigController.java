@@ -17,8 +17,8 @@ import com.example.common.annotation.Log;
 import com.example.common.annotation.RepeatSubmit;
 import com.example.common.constant.UserConstants;
 import com.example.common.base.BaseController;
-import com.example.common.model.AjaxResultVO;
-import com.example.common.model.TableDataInfo;
+import com.example.common.model.vo.ResponseVO;
+import com.example.common.model.vo.PageVO;
 import com.example.common.enums.BusinessType;
 import com.example.common.util.SecurityUtils;
 import com.example.common.util.poi.ExcelUtil;
@@ -41,7 +41,7 @@ public class SysConfigController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('system:config:list')")
     @GetMapping("/list")
-    public TableDataInfo list(SysConfig config) {
+    public PageVO list(SysConfig config) {
         startPage();
         List<SysConfig> list = configService.selectConfigList(config);
         return getDataTable(list);
@@ -50,7 +50,7 @@ public class SysConfigController extends BaseController {
     @Log(title = "参数管理", businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:config:export')")
     @GetMapping("/export")
-    public AjaxResultVO export(SysConfig config) {
+    public ResponseVO export(SysConfig config) {
         List<SysConfig> list = configService.selectConfigList(config);
         ExcelUtil<SysConfig> util = new ExcelUtil<SysConfig>(SysConfig.class);
         return util.exportExcel(list, "参数数据");
@@ -61,16 +61,16 @@ public class SysConfigController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('system:config:query')")
     @GetMapping(value = "/{configId}")
-    public AjaxResultVO getInfo(@PathVariable Long configId) {
-        return AjaxResultVO.success(configService.selectConfigById(configId));
+    public ResponseVO getInfo(@PathVariable Long configId) {
+        return ResponseVO.success(configService.selectConfigById(configId));
     }
 
     /**
      * 根据参数键名查询参数值
      */
     @GetMapping(value = "/configKey/{configKey}")
-    public AjaxResultVO getConfigKey(@PathVariable String configKey) {
-        return AjaxResultVO.success(configService.selectConfigByKey(configKey));
+    public ResponseVO getConfigKey(@PathVariable String configKey) {
+        return ResponseVO.success(configService.selectConfigByKey(configKey));
     }
 
     /**
@@ -80,9 +80,9 @@ public class SysConfigController extends BaseController {
     @Log(title = "参数管理", businessType = BusinessType.INSERT)
     @PostMapping
     @RepeatSubmit
-    public AjaxResultVO add(@Validated @RequestBody SysConfig config) {
+    public ResponseVO add(@Validated @RequestBody SysConfig config) {
         if (UserConstants.NOT_UNIQUE.equals(configService.checkConfigKeyUnique(config))) {
-            return AjaxResultVO.error("新增参数'" + config.getConfigName() + "'失败，参数键名已存在");
+            return ResponseVO.error("新增参数'" + config.getConfigName() + "'失败，参数键名已存在");
         }
         config.setCreateBy(SecurityUtils.getUsername());
         return toAjax(configService.insertConfig(config));
@@ -94,9 +94,9 @@ public class SysConfigController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:config:edit')")
     @Log(title = "参数管理", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResultVO edit(@Validated @RequestBody SysConfig config) {
+    public ResponseVO edit(@Validated @RequestBody SysConfig config) {
         if (UserConstants.NOT_UNIQUE.equals(configService.checkConfigKeyUnique(config))) {
-            return AjaxResultVO.error("修改参数'" + config.getConfigName() + "'失败，参数键名已存在");
+            return ResponseVO.error("修改参数'" + config.getConfigName() + "'失败，参数键名已存在");
         }
         config.setUpdateBy(SecurityUtils.getUsername());
         return toAjax(configService.updateConfig(config));
@@ -108,7 +108,7 @@ public class SysConfigController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:config:remove')")
     @Log(title = "参数管理", businessType = BusinessType.DELETE)
     @DeleteMapping("/{configIds}")
-    public AjaxResultVO remove(@PathVariable Long[] configIds) {
+    public ResponseVO remove(@PathVariable Long[] configIds) {
         return toAjax(configService.deleteConfigByIds(configIds));
     }
 
@@ -118,8 +118,8 @@ public class SysConfigController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:config:remove')")
     @Log(title = "参数管理", businessType = BusinessType.CLEAN)
     @DeleteMapping("/clearCache")
-    public AjaxResultVO clearCache() {
+    public ResponseVO clearCache() {
         configService.clearCache();
-        return AjaxResultVO.success();
+        return ResponseVO.success();
     }
 }

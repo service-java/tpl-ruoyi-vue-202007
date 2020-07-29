@@ -3,8 +3,8 @@ package com.example.web.controller.system;
 import com.example.common.annotation.Log;
 import com.example.common.constant.UserConstants;
 import com.example.common.base.BaseController;
-import com.example.common.model.AjaxResultVO;
-import com.example.common.model.TableDataInfo;
+import com.example.common.model.vo.ResponseVO;
+import com.example.common.model.vo.PageVO;
 import com.example.common.enums.BusinessType;
 import com.example.common.util.SecurityUtils;
 import com.example.common.util.poi.ExcelUtil;
@@ -33,7 +33,7 @@ public class SysPostController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('system:post:list')")
     @GetMapping("/list")
-    public TableDataInfo list(SysPost post) {
+    public PageVO list(SysPost post) {
         startPage();
         List<SysPost> list = postService.selectPostList(post);
         return getDataTable(list);
@@ -42,7 +42,7 @@ public class SysPostController extends BaseController {
     @Log(title = "岗位管理", businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:post:export')")
     @GetMapping("/export")
-    public AjaxResultVO export(SysPost post) {
+    public ResponseVO export(SysPost post) {
         List<SysPost> list = postService.selectPostList(post);
         ExcelUtil<SysPost> util = new ExcelUtil<SysPost>(SysPost.class);
         return util.exportExcel(list, "岗位数据");
@@ -53,8 +53,8 @@ public class SysPostController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('system:post:query')")
     @GetMapping(value = "/{postId}")
-    public AjaxResultVO getInfo(@PathVariable Long postId) {
-        return AjaxResultVO.success(postService.selectPostById(postId));
+    public ResponseVO getInfo(@PathVariable Long postId) {
+        return ResponseVO.success(postService.selectPostById(postId));
     }
 
     /**
@@ -63,11 +63,11 @@ public class SysPostController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:post:add')")
     @Log(title = "岗位管理", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResultVO add(@Validated @RequestBody SysPost post) {
+    public ResponseVO add(@Validated @RequestBody SysPost post) {
         if (UserConstants.NOT_UNIQUE.equals(postService.checkPostNameUnique(post))) {
-            return AjaxResultVO.error("新增岗位'" + post.getPostName() + "'失败，岗位名称已存在");
+            return ResponseVO.error("新增岗位'" + post.getPostName() + "'失败，岗位名称已存在");
         } else if (UserConstants.NOT_UNIQUE.equals(postService.checkPostCodeUnique(post))) {
-            return AjaxResultVO.error("新增岗位'" + post.getPostName() + "'失败，岗位编码已存在");
+            return ResponseVO.error("新增岗位'" + post.getPostName() + "'失败，岗位编码已存在");
         }
         post.setCreateBy(SecurityUtils.getUsername());
         return toAjax(postService.insertPost(post));
@@ -79,11 +79,11 @@ public class SysPostController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:post:edit')")
     @Log(title = "岗位管理", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResultVO edit(@Validated @RequestBody SysPost post) {
+    public ResponseVO edit(@Validated @RequestBody SysPost post) {
         if (UserConstants.NOT_UNIQUE.equals(postService.checkPostNameUnique(post))) {
-            return AjaxResultVO.error("修改岗位'" + post.getPostName() + "'失败，岗位名称已存在");
+            return ResponseVO.error("修改岗位'" + post.getPostName() + "'失败，岗位名称已存在");
         } else if (UserConstants.NOT_UNIQUE.equals(postService.checkPostCodeUnique(post))) {
-            return AjaxResultVO.error("修改岗位'" + post.getPostName() + "'失败，岗位编码已存在");
+            return ResponseVO.error("修改岗位'" + post.getPostName() + "'失败，岗位编码已存在");
         }
         post.setUpdateBy(SecurityUtils.getUsername());
         return toAjax(postService.updatePost(post));
@@ -95,7 +95,7 @@ public class SysPostController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:post:remove')")
     @Log(title = "岗位管理", businessType = BusinessType.DELETE)
     @DeleteMapping("/{postIds}")
-    public AjaxResultVO remove(@PathVariable Long[] postIds) {
+    public ResponseVO remove(@PathVariable Long[] postIds) {
         return toAjax(postService.deletePostByIds(postIds));
     }
 
@@ -103,8 +103,8 @@ public class SysPostController extends BaseController {
      * 获取岗位选择框列表
      */
     @GetMapping("/optionselect")
-    public AjaxResultVO optionselect() {
+    public ResponseVO optionselect() {
         List<SysPost> posts = postService.selectPostAll();
-        return AjaxResultVO.success(posts);
+        return ResponseVO.success(posts);
     }
 }

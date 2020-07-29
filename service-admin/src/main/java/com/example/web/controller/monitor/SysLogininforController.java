@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.common.annotation.Log;
 import com.example.common.base.BaseController;
-import com.example.common.model.AjaxResultVO;
-import com.example.common.model.TableDataInfo;
+import com.example.common.model.vo.ResponseVO;
+import com.example.common.model.vo.PageVO;
 import com.example.common.enums.BusinessType;
 import com.example.common.util.poi.ExcelUtil;
 import com.example.system.entity.SysLogininfor;
@@ -31,7 +31,7 @@ public class SysLogininforController extends BaseController {
 
     @PreAuthorize("@ss.hasPermi('monitor:logininfor:list')")
     @GetMapping("/list")
-    public TableDataInfo list(SysLogininfor logininfor) {
+    public PageVO list(SysLogininfor logininfor) {
         startPage();
         List<SysLogininfor> list = logininforService.selectLogininforList(logininfor);
         return getDataTable(list);
@@ -40,7 +40,7 @@ public class SysLogininforController extends BaseController {
     @Log(title = "登陆日志", businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('monitor:logininfor:export')")
     @GetMapping("/export")
-    public AjaxResultVO export(SysLogininfor logininfor) {
+    public ResponseVO export(SysLogininfor logininfor) {
         List<SysLogininfor> list = logininforService.selectLogininforList(logininfor);
         ExcelUtil<SysLogininfor> util = new ExcelUtil<SysLogininfor>(SysLogininfor.class);
         return util.exportExcel(list, "登陆日志");
@@ -49,15 +49,15 @@ public class SysLogininforController extends BaseController {
     @PreAuthorize("@ss.hasPermi('monitor:logininfor:remove')")
     @Log(title = "登陆日志", businessType = BusinessType.DELETE)
     @DeleteMapping("/{infoIds}")
-    public AjaxResultVO remove(@PathVariable Long[] infoIds) {
+    public ResponseVO remove(@PathVariable Long[] infoIds) {
         return toAjax(logininforService.deleteLogininforByIds(infoIds));
     }
 
     @PreAuthorize("@ss.hasPermi('monitor:logininfor:remove')")
     @Log(title = "登陆日志", businessType = BusinessType.CLEAN)
     @DeleteMapping("/clean")
-    public AjaxResultVO clean() {
+    public ResponseVO clean() {
         logininforService.cleanLogininfor();
-        return AjaxResultVO.success();
+        return ResponseVO.success();
     }
 }

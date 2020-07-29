@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.example.common.properties.CommonProperties;
 import com.example.common.constant.Constants;
-import com.example.common.model.AjaxResultVO;
+import com.example.common.model.vo.ResponseVO;
 import com.example.common.util.StringUtils;
 import com.example.common.util.file.FileUploadUtils;
 import com.example.common.util.file.FileUtils;
@@ -62,19 +62,19 @@ public class CommonController {
      * 通用上传请求
      */
     @PostMapping("/common/upload")
-    public AjaxResultVO uploadFile(MultipartFile file) throws Exception {
+    public ResponseVO uploadFile(MultipartFile file) throws Exception {
         try {
             // 上传文件路径
             String filePath = CommonProperties.getUploadPath();
             // 上传并返回新文件名称
             String fileName = FileUploadUtils.upload(filePath, file);
             String url = serverConfig.getUrl() + fileName;
-            AjaxResultVO ajax = AjaxResultVO.success();
+            ResponseVO ajax = ResponseVO.success();
             ajax.put("fileName", fileName);
             ajax.put("url", url);
             return ajax;
         } catch (Exception e) {
-            return AjaxResultVO.error(e.getMessage());
+            return ResponseVO.error(e.getMessage());
         }
     }
 

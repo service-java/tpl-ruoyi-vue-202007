@@ -24,8 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.common.annotation.Log;
 import com.example.common.base.BaseController;
-import com.example.common.model.AjaxResultVO;
-import com.example.common.model.TableDataInfo;
+import com.example.common.model.vo.ResponseVO;
+import com.example.common.model.vo.PageVO;
 import com.example.common.util.text.Convert;
 import com.example.common.enums.BusinessType;
 
@@ -49,7 +49,7 @@ public class GenController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('tool:gen:list')")
     @GetMapping("/list")
-    public TableDataInfo genList(GenTable genTable)
+    public PageVO genList(GenTable genTable)
     {
         startPage();
         List<GenTable> list = genTableService.selectGenTableList(genTable);
@@ -61,14 +61,14 @@ public class GenController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('tool:gen:query')")
     @GetMapping(value = "/{talbleId}")
-    public AjaxResultVO getInfo(@PathVariable Long talbleId)
+    public ResponseVO getInfo(@PathVariable Long talbleId)
     {
         GenTable table = genTableService.selectGenTableById(talbleId);
         List<GenTableColumn> list = genTableColumnService.selectGenTableColumnListByTableId(talbleId);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("info", table);
         map.put("rows", list);
-        return AjaxResultVO.success(map);
+        return ResponseVO.success(map);
     }
 
     /**
@@ -76,7 +76,7 @@ public class GenController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('tool:gen:list')")
     @GetMapping("/db/list")
-    public TableDataInfo dataList(GenTable genTable)
+    public PageVO dataList(GenTable genTable)
     {
         startPage();
         List<GenTable> list = genTableService.selectDbTableList(genTable);
@@ -88,9 +88,9 @@ public class GenController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('tool:gen:list')")
     @GetMapping(value = "/column/{talbleId}")
-    public TableDataInfo columnList(Long tableId)
+    public PageVO columnList(Long tableId)
     {
-        TableDataInfo dataInfo = new TableDataInfo();
+        PageVO dataInfo = new PageVO();
         List<GenTableColumn> list = genTableColumnService.selectGenTableColumnListByTableId(tableId);
         dataInfo.setRows(list);
         dataInfo.setTotal(list.size());
@@ -103,13 +103,13 @@ public class GenController extends BaseController
     @PreAuthorize("@ss.hasPermi('tool:gen:list')")
     @Log(title = "代码生成", businessType = BusinessType.IMPORT)
     @PostMapping("/importTable")
-    public AjaxResultVO importTableSave(String tables)
+    public ResponseVO importTableSave(String tables)
     {
         String[] tableNames = Convert.toStrArray(tables);
         // 查询表信息
         List<GenTable> tableList = genTableService.selectDbTableListByNames(tableNames);
         genTableService.importGenTable(tableList);
-        return AjaxResultVO.success();
+        return ResponseVO.success();
     }
 
     /**
@@ -118,11 +118,11 @@ public class GenController extends BaseController
     @PreAuthorize("@ss.hasPermi('tool:gen:edit')")
     @Log(title = "代码生成", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResultVO editSave(@Validated @RequestBody GenTable genTable)
+    public ResponseVO editSave(@Validated @RequestBody GenTable genTable)
     {
         genTableService.validateEdit(genTable);
         genTableService.updateGenTable(genTable);
-        return AjaxResultVO.success();
+        return ResponseVO.success();
     }
 
     /**
@@ -131,10 +131,10 @@ public class GenController extends BaseController
     @PreAuthorize("@ss.hasPermi('tool:gen:remove')")
     @Log(title = "代码生成", businessType = BusinessType.DELETE)
     @DeleteMapping("/{tableIds}")
-    public AjaxResultVO remove(@PathVariable Long[] tableIds)
+    public ResponseVO remove(@PathVariable Long[] tableIds)
     {
         genTableService.deleteGenTableByIds(tableIds);
-        return AjaxResultVO.success();
+        return ResponseVO.success();
     }
 
     /**
@@ -142,10 +142,10 @@ public class GenController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('tool:gen:preview')")
     @GetMapping("/preview/{tableId}")
-    public AjaxResultVO preview(@PathVariable("tableId") Long tableId) throws IOException
+    public ResponseVO preview(@PathVariable("tableId") Long tableId) throws IOException
     {
         Map<String, String> dataMap = genTableService.previewCode(tableId);
-        return AjaxResultVO.success(dataMap);
+        return ResponseVO.success(dataMap);
     }
 
     /**
@@ -166,10 +166,10 @@ public class GenController extends BaseController
     @PreAuthorize("@ss.hasPermi('tool:gen:code')")
     @Log(title = "代码生成", businessType = BusinessType.GENCODE)
     @GetMapping("/genCode/{tableName}")
-    public AjaxResultVO genCode(HttpServletResponse response, @PathVariable("tableName") String tableName)
+    public ResponseVO genCode(HttpServletResponse response, @PathVariable("tableName") String tableName)
     {
         genTableService.generatorCode(tableName);
-        return AjaxResultVO.success();
+        return ResponseVO.success();
     }
 
     /**

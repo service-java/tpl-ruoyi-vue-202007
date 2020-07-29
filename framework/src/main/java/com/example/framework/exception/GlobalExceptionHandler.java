@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import com.example.common.constant.HttpStatus;
-import com.example.common.model.AjaxResultVO;
+import com.example.common.model.vo.ResponseVO;
 import com.example.common.exception.BaseException;
 import com.example.common.exception.CustomException;
 import com.example.common.exception.DemoModeException;
@@ -31,68 +31,68 @@ public class GlobalExceptionHandler
      * 基础异常
      */
     @ExceptionHandler(BaseException.class)
-    public AjaxResultVO baseException(BaseException e)
+    public ResponseVO baseException(BaseException e)
     {
-        return AjaxResultVO.error(e.getMessage());
+        return ResponseVO.error(e.getMessage());
     }
 
     /**
      * 业务异常
      */
     @ExceptionHandler(CustomException.class)
-    public AjaxResultVO businessException(CustomException e)
+    public ResponseVO businessException(CustomException e)
     {
         if (StringUtils.isNull(e.getCode()))
         {
-            return AjaxResultVO.error(e.getMessage());
+            return ResponseVO.error(e.getMessage());
         }
-        return AjaxResultVO.error(e.getCode(), e.getMessage());
+        return ResponseVO.error(e.getCode(), e.getMessage());
     }
 
     @ExceptionHandler(NoHandlerFoundException.class)
-    public AjaxResultVO handlerNoFoundException(Exception e)
+    public ResponseVO handlerNoFoundException(Exception e)
     {
         log.error(e.getMessage(), e);
-        return AjaxResultVO.error(HttpStatus.NOT_FOUND, "路径不存在，请检查路径是否正确");
+        return ResponseVO.error(HttpStatus.NOT_FOUND, "路径不存在，请检查路径是否正确");
     }
 
     @ExceptionHandler(AccessDeniedException.class)
-    public AjaxResultVO handleAuthorizationException(AccessDeniedException e)
+    public ResponseVO handleAuthorizationException(AccessDeniedException e)
     {
         log.error(e.getMessage());
-        return AjaxResultVO.error(HttpStatus.FORBIDDEN, "没有权限，请联系管理员授权");
+        return ResponseVO.error(HttpStatus.FORBIDDEN, "没有权限，请联系管理员授权");
     }
 
     @ExceptionHandler(AccountExpiredException.class)
-    public AjaxResultVO handleAccountExpiredException(AccountExpiredException e)
+    public ResponseVO handleAccountExpiredException(AccountExpiredException e)
     {
         log.error(e.getMessage(), e);
-        return AjaxResultVO.error(e.getMessage());
+        return ResponseVO.error(e.getMessage());
     }
 
     @ExceptionHandler(UsernameNotFoundException.class)
-    public AjaxResultVO handleUsernameNotFoundException(UsernameNotFoundException e)
+    public ResponseVO handleUsernameNotFoundException(UsernameNotFoundException e)
     {
         log.error(e.getMessage(), e);
-        return AjaxResultVO.error(e.getMessage());
+        return ResponseVO.error(e.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
-    public AjaxResultVO handleException(Exception e)
+    public ResponseVO handleException(Exception e)
     {
         log.error(e.getMessage(), e);
-        return AjaxResultVO.error(e.getMessage());
+        return ResponseVO.error(e.getMessage());
     }
 
     /**
      * 自定义验证异常
      */
     @ExceptionHandler(BindException.class)
-    public AjaxResultVO validatedBindException(BindException e)
+    public ResponseVO validatedBindException(BindException e)
     {
         log.error(e.getMessage(), e);
         String message = e.getAllErrors().get(0).getDefaultMessage();
-        return AjaxResultVO.error(message);
+        return ResponseVO.error(message);
     }
 
     /**
@@ -103,15 +103,15 @@ public class GlobalExceptionHandler
     {
         log.error(e.getMessage(), e);
         String message = e.getBindingResult().getFieldError().getDefaultMessage();
-        return AjaxResultVO.error(message);
+        return ResponseVO.error(message);
     }
 
     /**
      * 演示模式异常
      */
     @ExceptionHandler(DemoModeException.class)
-    public AjaxResultVO demoModeException(DemoModeException e)
+    public ResponseVO demoModeException(DemoModeException e)
     {
-        return AjaxResultVO.error("演示模式，不允许操作");
+        return ResponseVO.error("演示模式，不允许操作");
     }
 }

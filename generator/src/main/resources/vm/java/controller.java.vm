@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.common.annotation.Log;
 import com.example.common.base.BaseController;
-import com.example.common.model.AjaxResultVO;
+import com.example.common.model.vo.ResponseVO;
 import com.example.common.enums.BusinessType;
 import ${packageName}.entity.${ClassName};
 import ${packageName}.service.${ClassName}Service;
 import com.example.common.util.poi.ExcelUtil;
 #if($table.crud)
-import com.example.common.model.TableDataInfo;
+import com.example.common.model.vo.PageVO;
 #elseif($table.tree)
 #end
 
@@ -42,17 +42,17 @@ public class ${ClassName}Controller extends BaseController
     @PreAuthorize("@ss.hasPermi('${permissionPrefix}:list')")
     @GetMapping("/list")
 #if($table.crud)
-    public TableDataInfo list(${ClassName} ${className})
+    public PageVO list(${ClassName} ${className})
     {
         startPage();
         List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
         return getDataTable(list);
     }
 #elseif($table.tree)
-    public AjaxResultVO list(${ClassName} ${className})
+    public ResponseVO list(${ClassName} ${className})
     {
         List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
-        return AjaxResultVO.success(list);
+        return ResponseVO.success(list);
     }
 #end
 
@@ -62,7 +62,7 @@ public class ${ClassName}Controller extends BaseController
     @PreAuthorize("@ss.hasPermi('${permissionPrefix}:export')")
     @Log(title = "${functionName}", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
-    public AjaxResultVO export(${ClassName} ${className})
+    public ResponseVO export(${ClassName} ${className})
     {
         List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
         ExcelUtil<${ClassName}> util = new ExcelUtil<${ClassName}>(${ClassName}.class);
@@ -74,9 +74,9 @@ public class ${ClassName}Controller extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('${permissionPrefix}:query')")
     @GetMapping(value = "/{${pkColumn.javaField}}")
-    public AjaxResultVO getInfo(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField})
+    public ResponseVO getInfo(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField})
     {
-        return AjaxResultVO.success(${className}Service.select${ClassName}ById(${pkColumn.javaField}));
+        return ResponseVO.success(${className}Service.select${ClassName}ById(${pkColumn.javaField}));
     }
 
     /**
@@ -85,7 +85,7 @@ public class ${ClassName}Controller extends BaseController
     @PreAuthorize("@ss.hasPermi('${permissionPrefix}:add')")
     @Log(title = "${functionName}", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResultVO add(@RequestBody ${ClassName} ${className})
+    public ResponseVO add(@RequestBody ${ClassName} ${className})
     {
         return toAjax(${className}Service.insert${ClassName}(${className}));
     }
@@ -96,7 +96,7 @@ public class ${ClassName}Controller extends BaseController
     @PreAuthorize("@ss.hasPermi('${permissionPrefix}:edit')")
     @Log(title = "${functionName}", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResultVO edit(@RequestBody ${ClassName} ${className})
+    public ResponseVO edit(@RequestBody ${ClassName} ${className})
     {
         return toAjax(${className}Service.update${ClassName}(${className}));
     }
@@ -107,7 +107,7 @@ public class ${ClassName}Controller extends BaseController
     @PreAuthorize("@ss.hasPermi('${permissionPrefix}:remove')")
     @Log(title = "${functionName}", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{${pkColumn.javaField}s}")
-    public AjaxResultVO remove(@PathVariable ${pkColumn.javaType}[] ${pkColumn.javaField}s)
+    public ResponseVO remove(@PathVariable ${pkColumn.javaType}[] ${pkColumn.javaField}s)
     {
         return toAjax(${className}Service.delete${ClassName}ByIds(${pkColumn.javaField}s));
     }

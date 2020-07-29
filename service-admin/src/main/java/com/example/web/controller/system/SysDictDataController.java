@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.common.annotation.Log;
 import com.example.common.base.BaseController;
-import com.example.common.model.AjaxResultVO;
+import com.example.common.model.vo.ResponseVO;
 import com.example.common.model.entity.SysDictData;
-import com.example.common.model.TableDataInfo;
+import com.example.common.model.vo.PageVO;
 import com.example.common.enums.BusinessType;
 import com.example.common.util.SecurityUtils;
 import com.example.common.util.poi.ExcelUtil;
@@ -41,7 +41,7 @@ public class SysDictDataController extends BaseController {
 
     @PreAuthorize("@ss.hasPermi('system:dict:list')")
     @GetMapping("/list")
-    public TableDataInfo list(SysDictData dictData) {
+    public PageVO list(SysDictData dictData) {
         startPage();
         List<SysDictData> list = dictDataService.selectDictDataList(dictData);
         return getDataTable(list);
@@ -50,7 +50,7 @@ public class SysDictDataController extends BaseController {
     @Log(title = "字典数据", businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:dict:export')")
     @GetMapping("/export")
-    public AjaxResultVO export(SysDictData dictData) {
+    public ResponseVO export(SysDictData dictData) {
         List<SysDictData> list = dictDataService.selectDictDataList(dictData);
         ExcelUtil<SysDictData> util = new ExcelUtil<SysDictData>(SysDictData.class);
         return util.exportExcel(list, "字典数据");
@@ -61,16 +61,16 @@ public class SysDictDataController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('system:dict:query')")
     @GetMapping(value = "/{dictCode}")
-    public AjaxResultVO getInfo(@PathVariable Long dictCode) {
-        return AjaxResultVO.success(dictDataService.selectDictDataById(dictCode));
+    public ResponseVO getInfo(@PathVariable Long dictCode) {
+        return ResponseVO.success(dictDataService.selectDictDataById(dictCode));
     }
 
     /**
      * 根据字典类型查询字典数据信息
      */
     @GetMapping(value = "/type/{dictType}")
-    public AjaxResultVO dictType(@PathVariable String dictType) {
-        return AjaxResultVO.success(dictTypeService.selectDictDataByType(dictType));
+    public ResponseVO dictType(@PathVariable String dictType) {
+        return ResponseVO.success(dictTypeService.selectDictDataByType(dictType));
     }
 
     /**
@@ -79,7 +79,7 @@ public class SysDictDataController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:dict:add')")
     @Log(title = "字典数据", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResultVO add(@Validated @RequestBody SysDictData dict) {
+    public ResponseVO add(@Validated @RequestBody SysDictData dict) {
         dict.setCreateBy(SecurityUtils.getUsername());
         return toAjax(dictDataService.insertDictData(dict));
     }
@@ -90,7 +90,7 @@ public class SysDictDataController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:dict:edit')")
     @Log(title = "字典数据", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResultVO edit(@Validated @RequestBody SysDictData dict) {
+    public ResponseVO edit(@Validated @RequestBody SysDictData dict) {
         dict.setUpdateBy(SecurityUtils.getUsername());
         return toAjax(dictDataService.updateDictData(dict));
     }
@@ -101,7 +101,7 @@ public class SysDictDataController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:dict:remove')")
     @Log(title = "字典类型", businessType = BusinessType.DELETE)
     @DeleteMapping("/{dictCodes}")
-    public AjaxResultVO remove(@PathVariable Long[] dictCodes) {
+    public ResponseVO remove(@PathVariable Long[] dictCodes) {
         return toAjax(dictDataService.deleteDictDataByIds(dictCodes));
     }
 }

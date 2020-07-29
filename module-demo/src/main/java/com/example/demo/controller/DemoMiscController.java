@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.common.annotation.Log;
 import com.example.common.base.BaseController;
-import com.example.common.model.AjaxResultVO;
+import com.example.common.model.vo.ResponseVO;
 import com.example.common.enums.BusinessType;
 import com.example.demo.entity.DemoMisc;
 import com.example.demo.service.DemoMiscService;
 import com.example.common.util.poi.ExcelUtil;
-import com.example.common.model.TableDataInfo;
+import com.example.common.model.vo.PageVO;
 
 /**
  * 示例模块Controller
@@ -38,7 +38,7 @@ public class DemoMiscController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('demo:misc:list')")
     @GetMapping("/list")
-    public TableDataInfo list(DemoMisc demoMisc)
+    public PageVO list(DemoMisc demoMisc)
     {
         startPage();
         List<DemoMisc> list = demoMiscService.selectDemoMiscList(demoMisc);
@@ -51,7 +51,7 @@ public class DemoMiscController extends BaseController
     @PreAuthorize("@ss.hasPermi('demo:misc:export')")
     @Log(title = "示例模块", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
-    public AjaxResultVO export(DemoMisc demoMisc)
+    public ResponseVO export(DemoMisc demoMisc)
     {
         List<DemoMisc> list = demoMiscService.selectDemoMiscList(demoMisc);
         ExcelUtil<DemoMisc> util = new ExcelUtil<DemoMisc>(DemoMisc.class);
@@ -63,9 +63,9 @@ public class DemoMiscController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('demo:misc:query')")
     @GetMapping(value = "/{id}")
-    public AjaxResultVO getInfo(@PathVariable("id") Long id)
+    public ResponseVO getInfo(@PathVariable("id") Long id)
     {
-        return AjaxResultVO.success(demoMiscService.selectDemoMiscById(id));
+        return ResponseVO.success(demoMiscService.selectDemoMiscById(id));
     }
 
     /**
@@ -74,7 +74,7 @@ public class DemoMiscController extends BaseController
     @PreAuthorize("@ss.hasPermi('demo:misc:add')")
     @Log(title = "示例模块", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResultVO add(@RequestBody DemoMisc demoMisc)
+    public ResponseVO add(@RequestBody DemoMisc demoMisc)
     {
         return toAjax(demoMiscService.insertDemoMisc(demoMisc));
     }
@@ -85,7 +85,7 @@ public class DemoMiscController extends BaseController
     @PreAuthorize("@ss.hasPermi('demo:misc:edit')")
     @Log(title = "示例模块", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResultVO edit(@RequestBody DemoMisc demoMisc)
+    public ResponseVO edit(@RequestBody DemoMisc demoMisc)
     {
         return toAjax(demoMiscService.updateDemoMisc(demoMisc));
     }
@@ -96,7 +96,7 @@ public class DemoMiscController extends BaseController
     @PreAuthorize("@ss.hasPermi('demo:misc:remove')")
     @Log(title = "示例模块", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
-    public AjaxResultVO remove(@PathVariable Long[] ids)
+    public ResponseVO remove(@PathVariable Long[] ids)
     {
         return toAjax(demoMiscService.deleteDemoMiscByIds(ids));
     }

@@ -3,9 +3,9 @@ package com.example.web.controller.system;
 import com.example.common.annotation.Log;
 import com.example.common.constant.UserConstants;
 import com.example.common.base.BaseController;
-import com.example.common.model.AjaxResultVO;
+import com.example.common.model.vo.ResponseVO;
 import com.example.common.model.entity.SysDictType;
-import com.example.common.model.TableDataInfo;
+import com.example.common.model.vo.PageVO;
 import com.example.common.enums.BusinessType;
 import com.example.common.util.SecurityUtils;
 import com.example.common.util.poi.ExcelUtil;
@@ -30,7 +30,7 @@ public class SysDictTypeController extends BaseController {
 
     @PreAuthorize("@ss.hasPermi('system:dict:list')")
     @GetMapping("/list")
-    public TableDataInfo list(SysDictType dictType) {
+    public PageVO list(SysDictType dictType) {
         startPage();
         List<SysDictType> list = dictTypeService.selectDictTypeList(dictType);
         return getDataTable(list);
@@ -39,7 +39,7 @@ public class SysDictTypeController extends BaseController {
     @Log(title = "字典类型", businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:dict:export')")
     @GetMapping("/export")
-    public AjaxResultVO export(SysDictType dictType) {
+    public ResponseVO export(SysDictType dictType) {
         List<SysDictType> list = dictTypeService.selectDictTypeList(dictType);
         ExcelUtil<SysDictType> util = new ExcelUtil<SysDictType>(SysDictType.class);
         return util.exportExcel(list, "字典类型");
@@ -50,8 +50,8 @@ public class SysDictTypeController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('system:dict:query')")
     @GetMapping(value = "/{dictId}")
-    public AjaxResultVO getInfo(@PathVariable Long dictId) {
-        return AjaxResultVO.success(dictTypeService.selectDictTypeById(dictId));
+    public ResponseVO getInfo(@PathVariable Long dictId) {
+        return ResponseVO.success(dictTypeService.selectDictTypeById(dictId));
     }
 
     /**
@@ -60,9 +60,9 @@ public class SysDictTypeController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:dict:add')")
     @Log(title = "字典类型", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResultVO add(@Validated @RequestBody SysDictType dict) {
+    public ResponseVO add(@Validated @RequestBody SysDictType dict) {
         if (UserConstants.NOT_UNIQUE.equals(dictTypeService.checkDictTypeUnique(dict))) {
-            return AjaxResultVO.error("新增字典'" + dict.getDictName() + "'失败，字典类型已存在");
+            return ResponseVO.error("新增字典'" + dict.getDictName() + "'失败，字典类型已存在");
         }
         dict.setCreateBy(SecurityUtils.getUsername());
         return toAjax(dictTypeService.insertDictType(dict));
@@ -74,9 +74,9 @@ public class SysDictTypeController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:dict:edit')")
     @Log(title = "字典类型", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResultVO edit(@Validated @RequestBody SysDictType dict) {
+    public ResponseVO edit(@Validated @RequestBody SysDictType dict) {
         if (UserConstants.NOT_UNIQUE.equals(dictTypeService.checkDictTypeUnique(dict))) {
-            return AjaxResultVO.error("修改字典'" + dict.getDictName() + "'失败，字典类型已存在");
+            return ResponseVO.error("修改字典'" + dict.getDictName() + "'失败，字典类型已存在");
         }
         dict.setUpdateBy(SecurityUtils.getUsername());
         return toAjax(dictTypeService.updateDictType(dict));
@@ -88,7 +88,7 @@ public class SysDictTypeController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:dict:remove')")
     @Log(title = "字典类型", businessType = BusinessType.DELETE)
     @DeleteMapping("/{dictIds}")
-    public AjaxResultVO remove(@PathVariable Long[] dictIds) {
+    public ResponseVO remove(@PathVariable Long[] dictIds) {
         return toAjax(dictTypeService.deleteDictTypeByIds(dictIds));
     }
 
@@ -98,17 +98,17 @@ public class SysDictTypeController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:dict:remove')")
     @Log(title = "字典类型", businessType = BusinessType.CLEAN)
     @DeleteMapping("/clearCache")
-    public AjaxResultVO clearCache() {
+    public ResponseVO clearCache() {
         dictTypeService.clearCache();
-        return AjaxResultVO.success();
+        return ResponseVO.success();
     }
 
     /**
      * 获取字典选择框列表
      */
     @GetMapping("/optionselect")
-    public AjaxResultVO optionselect() {
+    public ResponseVO optionselect() {
         List<SysDictType> dictTypes = dictTypeService.selectDictTypeAll();
-        return AjaxResultVO.success(dictTypes);
+        return ResponseVO.success(dictTypes);
     }
 }

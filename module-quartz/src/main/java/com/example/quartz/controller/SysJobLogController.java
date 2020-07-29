@@ -2,8 +2,8 @@ package com.example.quartz.controller;
 
 import com.example.common.annotation.Log;
 import com.example.common.base.BaseController;
-import com.example.common.model.AjaxResultVO;
-import com.example.common.model.TableDataInfo;
+import com.example.common.model.vo.ResponseVO;
+import com.example.common.model.vo.PageVO;
 import com.example.common.enums.BusinessType;
 import com.example.common.util.poi.ExcelUtil;
 import com.example.quartz.entity.SysJobLog;
@@ -30,7 +30,7 @@ public class SysJobLogController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('monitor:job:list')")
     @GetMapping("/list")
-    public TableDataInfo list(SysJobLog sysJobLog) {
+    public PageVO list(SysJobLog sysJobLog) {
         startPage();
         List<SysJobLog> list = jobLogService.selectJobLogList(sysJobLog);
         return getDataTable(list);
@@ -42,7 +42,7 @@ public class SysJobLogController extends BaseController {
     @PreAuthorize("@ss.hasPermi('monitor:job:export')")
     @Log(title = "任务调度日志", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
-    public AjaxResultVO export(SysJobLog sysJobLog) {
+    public ResponseVO export(SysJobLog sysJobLog) {
         List<SysJobLog> list = jobLogService.selectJobLogList(sysJobLog);
         ExcelUtil<SysJobLog> util = new ExcelUtil<SysJobLog>(SysJobLog.class);
         return util.exportExcel(list, "调度日志");
@@ -53,8 +53,8 @@ public class SysJobLogController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('monitor:job:query')")
     @GetMapping(value = "/{configId}")
-    public AjaxResultVO getInfo(@PathVariable Long jobLogId) {
-        return AjaxResultVO.success(jobLogService.selectJobLogById(jobLogId));
+    public ResponseVO getInfo(@PathVariable Long jobLogId) {
+        return ResponseVO.success(jobLogService.selectJobLogById(jobLogId));
     }
 
 
@@ -64,7 +64,7 @@ public class SysJobLogController extends BaseController {
     @PreAuthorize("@ss.hasPermi('monitor:job:remove')")
     @Log(title = "定时任务调度日志", businessType = BusinessType.DELETE)
     @DeleteMapping("/{jobLogIds}")
-    public AjaxResultVO remove(@PathVariable Long[] jobLogIds) {
+    public ResponseVO remove(@PathVariable Long[] jobLogIds) {
         return toAjax(jobLogService.deleteJobLogByIds(jobLogIds));
     }
 
@@ -74,8 +74,8 @@ public class SysJobLogController extends BaseController {
     @PreAuthorize("@ss.hasPermi('monitor:job:remove')")
     @Log(title = "调度日志", businessType = BusinessType.CLEAN)
     @DeleteMapping("/clean")
-    public AjaxResultVO clean() {
+    public ResponseVO clean() {
         jobLogService.cleanJobLog();
-        return AjaxResultVO.success();
+        return ResponseVO.success();
     }
 }

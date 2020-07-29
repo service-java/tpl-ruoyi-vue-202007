@@ -7,7 +7,7 @@ import com.example.common.util.StringUtils;
  *
  * @author ruoyi
  */
-public class PageDomain
+public class PageQuery
 {
     /** 当前记录起始索引 */
     private Integer pageNum;

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.common.base.BaseController;
-import com.example.common.model.AjaxResultVO;
+import com.example.common.model.vo.ResponseVO;
 import com.example.framework.model.Server;
 
 /**
@@ -18,9 +18,9 @@ import com.example.framework.model.Server;
 public class ServerController extends BaseController {
     @PreAuthorize("@ss.hasPermi('monitor:server:list')")
     @GetMapping()
-    public AjaxResultVO getInfo() throws Exception {
+    public ResponseVO getInfo() throws Exception {
         Server server = new Server();
         server.copyTo();
-        return AjaxResultVO.success(server);
+        return ResponseVO.success(server);
     }
 }

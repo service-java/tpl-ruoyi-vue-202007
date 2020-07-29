@@ -1,4 +1,6 @@
-package com.example.common.model;
+package com.example.common.model.vo;
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
 
 import java.io.Serializable;
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.List;
  *
  * @author ruoyi
  */
-public class TableDataInfo implements Serializable
+public class PageVO implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
@@ -27,7 +29,7 @@ public class TableDataInfo implements Serializable
     /**
      * 表格数据对象
      */
-    public TableDataInfo()
+    public PageVO()
     {
     }
 
@@ -37,10 +39,15 @@ public class TableDataInfo implements Serializable
      * @param list 列表数据
      * @param total 总记录数
      */
-    public TableDataInfo(List<?> list, int total)
+    public PageVO(List<?> list, int total)
     {
         this.rows = list;
         this.total = total;
+    }
+
+    public PageVO(IPage<?> page) {
+        this.rows = page.getRecords();
+        this.total = page.getTotal();
     }
 
     public long getTotal()
