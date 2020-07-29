@@ -243,11 +243,11 @@
             </dependency>
 
             <!-- 特征标记模块 -->
-            <dependency>
-                <groupId>com.example</groupId>
-                <artifactId>module-ctag</artifactId>
-                <version>${example.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>com.example</groupId>-->
+<!--                <artifactId>module-ctag</artifactId>-->
+<!--                <version>${example.version}</version>-->
+<!--            </dependency>-->
 
 
             <!-- 通用工具-->
@@ -268,7 +268,7 @@
         <module>module-system</module>
         <module>module-quartz</module>
         <module>module-demo</module>
-        <module>module-ctag</module>
+<!--        <module>module-ctag</module>-->
         <module>service-admin</module>
     </modules>
     <packaging>pom</packaging>
