@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ctag.mapper.CtagSysItemEnumMapper">
+
+    <resultMap type="CtagSysItemEnum" id="CtagSysItemEnumResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="sysItemId"    column="sys_item_id"    />
+    </resultMap>
+
+    <sql id="selectCtagSysItemEnumVo">
+        select id, name, sys_item_id from ctag_sys_item_enum
+    </sql>
+
+    <select id="selectCtagSysItemEnumList" parameterType="CtagSysItemEnum" resultMap="CtagSysItemEnumResult">
+        <include refid="selectCtagSysItemEnumVo"/>
+        <where>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="sysItemId != null "> and sys_item_id = #{sysItemId}</if>
+        </where>
+    </select>
+
+    <select id="selectCtagSysItemEnumById" parameterType="Long" resultMap="CtagSysItemEnumResult">
+        <include refid="selectCtagSysItemEnumVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertCtagSysItemEnum" parameterType="CtagSysItemEnum" useGeneratedKeys="true" keyProperty="id">
+        insert into ctag_sys_item_enum
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">name,</if>
+            <if test="sysItemId != null">sys_item_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">#{name},</if>
+            <if test="sysItemId != null">#{sysItemId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateCtagSysItemEnum" parameterType="CtagSysItemEnum">
+        update ctag_sys_item_enum
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+            <if test="sysItemId != null">sys_item_id = #{sysItemId},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteCtagSysItemEnumById" parameterType="Long">
+        delete from ctag_sys_item_enum where id = #{id}
+    </delete>
+
+    <delete id="deleteCtagSysItemEnumByIds" parameterType="String">
+        delete from ctag_sys_item_enum where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

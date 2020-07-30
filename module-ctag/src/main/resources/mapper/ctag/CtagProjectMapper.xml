@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ctag.mapper.CtagProjectMapper">
+
+    <resultMap type="CtagProject" id="CtagProjectResult">
+        <result property="id"    column="id"    />
+        <result property="guid"    column="guid"    />
+        <result property="name"    column="name"    />
+        <result property="city"    column="city"    />
+        <result property="year"    column="year"    />
+        <result property="pricingBasis"    column="pricing_basis"    />
+        <result property="localSysId"    column="local_sys_id"    />
+        <result property="status"    column="status"    />
+        <result property="gmtCreate"    column="gmt_create"    />
+        <result property="gmtModified"    column="gmt_modified"    />
+        <result property="gmtDataUploaded"    column="gmt_data_uploaded"    />
+    </resultMap>
+
+    <sql id="selectCtagProjectVo">
+        select id, guid, name, city, year, pricing_basis, local_sys_id, status, gmt_create, gmt_modified, gmt_data_uploaded from ctag_project
+    </sql>
+
+    <select id="selectCtagProjectList" parameterType="CtagProject" resultMap="CtagProjectResult">
+        <include refid="selectCtagProjectVo"/>
+        <where>
+            <if test="guid != null  and guid != ''"> and guid = #{guid}</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="city != null  and city != ''"> and city = #{city}</if>
+            <if test="year != null "> and year = #{year}</if>
+            <if test="pricingBasis != null  and pricingBasis != ''"> and pricing_basis = #{pricingBasis}</if>
+            <if test="localSysId != null "> and local_sys_id = #{localSysId}</if>
+            <if test="status != null "> and status = #{status}</if>
+            <if test="gmtCreate != null "> and gmt_create = #{gmtCreate}</if>
+            <if test="gmtModified != null "> and gmt_modified = #{gmtModified}</if>
+            <if test="gmtDataUploaded != null "> and gmt_data_uploaded = #{gmtDataUploaded}</if>
+        </where>
+    </select>
+
+    <select id="selectCtagProjectById" parameterType="Long" resultMap="CtagProjectResult">
+        <include refid="selectCtagProjectVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertCtagProject" parameterType="CtagProject" useGeneratedKeys="true" keyProperty="id">
+        insert into ctag_project
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="guid != null">guid,</if>
+            <if test="name != null">name,</if>
+            <if test="city != null">city,</if>
+            <if test="year != null">year,</if>
+            <if test="pricingBasis != null">pricing_basis,</if>
+            <if test="localSysId != null">local_sys_id,</if>
+            <if test="status != null">status,</if>
+            <if test="gmtCreate != null">gmt_create,</if>
+            <if test="gmtModified != null">gmt_modified,</if>
+            <if test="gmtDataUploaded != null">gmt_data_uploaded,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="guid != null">#{guid},</if>
+            <if test="name != null">#{name},</if>
+            <if test="city != null">#{city},</if>
+            <if test="year != null">#{year},</if>
+            <if test="pricingBasis != null">#{pricingBasis},</if>
+            <if test="localSysId != null">#{localSysId},</if>
+            <if test="status != null">#{status},</if>
+            <if test="gmtCreate != null">#{gmtCreate},</if>
+            <if test="gmtModified != null">#{gmtModified},</if>
+            <if test="gmtDataUploaded != null">#{gmtDataUploaded},</if>
+         </trim>
+    </insert>
+
+    <update id="updateCtagProject" parameterType="CtagProject">
+        update ctag_project
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="guid != null">guid = #{guid},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="city != null">city = #{city},</if>
+            <if test="year != null">year = #{year},</if>
+            <if test="pricingBasis != null">pricing_basis = #{pricingBasis},</if>
+            <if test="localSysId != null">local_sys_id = #{localSysId},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="gmtCreate != null">gmt_create = #{gmtCreate},</if>
+            <if test="gmtModified != null">gmt_modified = #{gmtModified},</if>
+            <if test="gmtDataUploaded != null">gmt_data_uploaded = #{gmtDataUploaded},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteCtagProjectById" parameterType="Long">
+        delete from ctag_project where id = #{id}
+    </delete>
+
+    <delete id="deleteCtagProjectByIds" parameterType="String">
+        delete from ctag_project where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

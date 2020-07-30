@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ctag.mapper.CtagSysMapper">
+
+    <resultMap type="CtagSys" id="CtagSysResult">
+        <result property="id"    column="id"    />
+        <result property="type"    column="type"    />
+        <result property="provinceId"    column="province_id"    />
+        <result property="provinceName"    column="province_name"    />
+        <result property="sysName"    column="sys_name"    />
+        <result property="sysCode"    column="sys_code"    />
+        <result property="isDeleted"    column="is_deleted"    />
+        <result property="gmtCreate"    column="gmt_create"    />
+        <result property="gmtModified"    column="gmt_modified"    />
+    </resultMap>
+
+    <sql id="selectCtagSysVo">
+        select id, type, province_id, province_name, sys_name, sys_code, is_deleted, gmt_create, gmt_modified from ctag_sys
+    </sql>
+
+    <select id="selectCtagSysList" parameterType="CtagSys" resultMap="CtagSysResult">
+        <include refid="selectCtagSysVo"/>
+        <where>
+            <if test="type != null "> and type = #{type}</if>
+            <if test="provinceId != null "> and province_id = #{provinceId}</if>
+            <if test="provinceName != null  and provinceName != ''"> and province_name like concat('%', #{provinceName}, '%')</if>
+            <if test="sysName != null  and sysName != ''"> and sys_name like concat('%', #{sysName}, '%')</if>
+            <if test="sysCode != null  and sysCode != ''"> and sys_code = #{sysCode}</if>
+            <if test="isDeleted != null "> and is_deleted = #{isDeleted}</if>
+            <if test="gmtCreate != null "> and gmt_create = #{gmtCreate}</if>
+            <if test="gmtModified != null "> and gmt_modified = #{gmtModified}</if>
+        </where>
+    </select>
+
+    <select id="selectCtagSysById" parameterType="Long" resultMap="CtagSysResult">
+        <include refid="selectCtagSysVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertCtagSys" parameterType="CtagSys" useGeneratedKeys="true" keyProperty="id">
+        insert into ctag_sys
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="type != null">type,</if>
+            <if test="provinceId != null">province_id,</if>
+            <if test="provinceName != null">province_name,</if>
+            <if test="sysName != null">sys_name,</if>
+            <if test="sysCode != null">sys_code,</if>
+            <if test="isDeleted != null">is_deleted,</if>
+            <if test="gmtCreate != null">gmt_create,</if>
+            <if test="gmtModified != null">gmt_modified,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="type != null">#{type},</if>
+            <if test="provinceId != null">#{provinceId},</if>
+            <if test="provinceName != null">#{provinceName},</if>
+            <if test="sysName != null">#{sysName},</if>
+            <if test="sysCode != null">#{sysCode},</if>
+            <if test="isDeleted != null">#{isDeleted},</if>
+            <if test="gmtCreate != null">#{gmtCreate},</if>
+            <if test="gmtModified != null">#{gmtModified},</if>
+         </trim>
+    </insert>
+
+    <update id="updateCtagSys" parameterType="CtagSys">
+        update ctag_sys
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="type != null">type = #{type},</if>
+            <if test="provinceId != null">province_id = #{provinceId},</if>
+            <if test="provinceName != null">province_name = #{provinceName},</if>
+            <if test="sysName != null">sys_name = #{sysName},</if>
+            <if test="sysCode != null">sys_code = #{sysCode},</if>
+            <if test="isDeleted != null">is_deleted = #{isDeleted},</if>
+            <if test="gmtCreate != null">gmt_create = #{gmtCreate},</if>
+            <if test="gmtModified != null">gmt_modified = #{gmtModified},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteCtagSysById" parameterType="Long">
+        delete from ctag_sys where id = #{id}
+    </delete>
+
+    <delete id="deleteCtagSysByIds" parameterType="String">
+        delete from ctag_sys where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="getMaxSysCode" resultType="java.lang.String" parameterType="java.lang.Integer">
+        select MAX(sys_code) from ctag_sys where `type` = ${type}
+    </select>
+
+</mapper>

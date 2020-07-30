@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ctag.mapper.CtagProvinceMapper">
+
+    <resultMap type="CtagProvince" id="CtagProvinceResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="type"    column="type"    />
+        <result property="pid"    column="pid"    />
+        <result property="level"    column="level"    />
+    </resultMap>
+
+    <sql id="selectCtagProvinceVo">
+        select id, name, type, pid, level from ctag_province
+    </sql>
+
+    <select id="selectCtagProvinceList" parameterType="CtagProvince" resultMap="CtagProvinceResult">
+        <include refid="selectCtagProvinceVo"/>
+        <where>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="type != null "> and type = #{type}</if>
+            <if test="pid != null "> and pid = #{pid}</if>
+            <if test="level != null "> and level = #{level}</if>
+        </where>
+    </select>
+
+    <select id="selectCtagProvinceById" parameterType="Long" resultMap="CtagProvinceResult">
+        <include refid="selectCtagProvinceVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertCtagProvince" parameterType="CtagProvince" useGeneratedKeys="true" keyProperty="id">
+        insert into ctag_province
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">name,</if>
+            <if test="type != null">type,</if>
+            <if test="pid != null">pid,</if>
+            <if test="level != null">level,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">#{name},</if>
+            <if test="type != null">#{type},</if>
+            <if test="pid != null">#{pid},</if>
+            <if test="level != null">#{level},</if>
+         </trim>
+    </insert>
+
+    <update id="updateCtagProvince" parameterType="CtagProvince">
+        update ctag_province
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="pid != null">pid = #{pid},</if>
+            <if test="level != null">level = #{level},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteCtagProvinceById" parameterType="Long">
+        delete from ctag_province where id = #{id}
+    </delete>
+
+    <delete id="deleteCtagProvinceByIds" parameterType="String">
+        delete from ctag_province where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>
