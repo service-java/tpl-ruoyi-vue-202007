@@ -32,11 +32,12 @@ public class RedisConfig extends CachingConfigurerSupport
         mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         mapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
 
- /*       FastJson2JsonRedisSerializer serializer = new FastJson2JsonRedisSerializer(Object.class);
+        FastJson2JsonRedisSerializer serializer = new FastJson2JsonRedisSerializer(Object.class);
         serializer.setObjectMapper(mapper);
-        template.setValueSerializer(serializer);*/
+        template.setValueSerializer(serializer);
 
-        template.setValueSerializer(new KryoRedisSerializer<>(Object.class));
+        // 或者可以用 kryo序列化
+//        template.setValueSerializer(new KryoRedisSerializer<>(Object.class));
 
         // 使用StringRedisSerializer来序列化和反序列化redis的key值
         template.setKeySerializer(new StringRedisSerializer());
