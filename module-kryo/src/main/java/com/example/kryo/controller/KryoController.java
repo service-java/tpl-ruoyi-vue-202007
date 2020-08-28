@@ -31,8 +31,8 @@ public class KryoController extends BaseController {
     @Autowired
     KryoRedisService redisClient;
 
-    @GetMapping("/get")
-    public Object get() {
+    @GetMapping("/fakeRemote")
+    public Object remote() {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.setMessageConverters(Arrays.asList(new KryoHttpMessageConverter()));
 
@@ -40,7 +40,7 @@ public class KryoController extends BaseController {
         headers.setAccept(Arrays.asList(KryoHttpMessageConverter.KRYO));
         HttpEntity<String> entity = new HttpEntity<String>(headers);
 
-        ResponseEntity<Person> response = restTemplate.exchange("http://localhost:8080/kryo/getKryo",
+        ResponseEntity<Person> response = restTemplate.exchange("http://localhost:8080/kryo/get",
                 HttpMethod.GET, entity, Person.class);
         Person resource = response.getBody();
         Console.log(resource);
@@ -50,21 +50,22 @@ public class KryoController extends BaseController {
     }
 
     @GetMapping(
-            value = "/getKryo"
+            value = "/get"
 //            , produces = {"application/x-kryo"}
             )
     @ResponseBody
-    public Person getKryo() {
+    public Person get() {
         Person person = new Person();
         person.setAge(11).setId(1).setName("hhaha");
         return person;
     }
 
-    @GetMapping("/add")
-    public void add() {
+    @GetMapping("/set")
+    public String set() {
         Person person = new Person();
         person.setAge(11).setId(1).setName("hhaha");
         redisClient.set("person_1", person);
+        return "ok";
     }
 
 
