@@ -193,7 +193,7 @@
         <dependency>
             <groupId>com.esotericsoftware</groupId>
             <artifactId>kryo</artifactId>
-            <version>${kyro.version}</version>
+            <version>${kryo.version}</version>
         </dependency>
 
         <dependency>

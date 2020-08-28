@@ -39,7 +39,7 @@
         <hutool.version>5.4.0</hutool.version>
         <guava.version>29.0-jre</guava.version>
         <aliyun-sdk-oss.version>3.8.0</aliyun-sdk-oss.version>
-        <kyro.version>4.0.0</kyro.version>
+        <kryo.version>4.0.0</kryo.version>
         <kryo-serializers.version>0.41</kryo-serializers.version>
     </properties>
 

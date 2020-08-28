@@ -1,4 +1,4 @@
-package com.example.kyro.service;
+package com.example.kryo.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

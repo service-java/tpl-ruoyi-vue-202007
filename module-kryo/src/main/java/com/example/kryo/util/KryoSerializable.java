@@ -1,10 +1,10 @@
-package com.example.kyro.util;
+package com.example.kryo.util;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoException;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
-import com.example.kyro.entity.Person;
+import com.example.kryo.entity.Person;
 import org.objenesis.strategy.StdInstantiatorStrategy;
 
 import java.io.FileInputStream;

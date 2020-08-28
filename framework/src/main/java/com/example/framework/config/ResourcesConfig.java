@@ -1,17 +1,20 @@
 package com.example.framework.config;
 
+import com.example.common.constant.CommonConstants;
+import com.example.common.properties.CommonProperties;
+import com.example.framework.interceptor.RepeatSubmitInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import com.example.common.properties.CommonProperties;
-import com.example.common.constant.CommonConstants;
-import com.example.framework.interceptor.RepeatSubmitInterceptor;
+
+import java.util.List;
 
 /**
  * 通用配置
@@ -63,4 +66,10 @@ public class ResourcesConfig implements WebMvcConfigurer
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
+
+    @Override
+    public void extendMessageConverters(List<HttpMessageConverter<?>> messageConverters) {
+        messageConverters.add(new KryoHttpMessageConverter());
+    }
+
 }

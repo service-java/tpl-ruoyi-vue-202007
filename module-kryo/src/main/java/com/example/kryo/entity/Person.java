@@ -1,4 +1,4 @@
-package com.example.kyro.entity;
+package com.example.kryo.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
