@@ -9,10 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>module-kyro</artifactId>
+    <artifactId>module-kryo</artifactId>
 
     <description>
-        kyro模块
+        kryo模块
     </description>
 
     <dependencies>

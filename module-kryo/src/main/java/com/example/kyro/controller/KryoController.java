@@ -2,7 +2,7 @@ package com.example.kyro.controller;
 
 import com.example.common.base.BaseController;
 import com.example.kyro.entity.Person;
-import com.example.kyro.service.KyroRedisService;
+import com.example.kyro.service.KryoRedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2020-07-29
  */
 @RestController
-@RequestMapping("/kyro")
-public class KyroController extends BaseController
+@RequestMapping("/kryo")
+public class KryoController extends BaseController
 {
 
     @Autowired
-    KyroRedisService redisClient;
+    KryoRedisService redisClient;
 
     @GetMapping("/get")
     public Object get() {
@@ -31,7 +31,7 @@ public class KyroController extends BaseController
     @GetMapping("/add")
     public void add() {
         Person person = new Person();
-        person.setAge(11).setId(1).setName("hhaha");
+        person.setAge(11).setId(1).setName("hhaha嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻");
         redisClient.set("person_1", person);
     }
 

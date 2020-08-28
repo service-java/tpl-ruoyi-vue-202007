@@ -248,7 +248,7 @@
 
             <dependency>
                 <groupId>com.example</groupId>
-                <artifactId>module-kyro</artifactId>
+                <artifactId>module-kryo</artifactId>
                 <version>${example.version}</version>
             </dependency>
 
@@ -271,7 +271,7 @@
         <module>module-system</module>
         <module>module-quartz</module>
 <!--        <module>module-demo</module>-->
-        <module>module-kyro</module>
+        <module>module-kryo</module>
         <module>service-admin</module>
     </modules>
     <packaging>pom</packaging>

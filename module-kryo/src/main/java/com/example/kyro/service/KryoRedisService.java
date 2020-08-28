@@ -16,9 +16,9 @@ import org.springframework.stereotype.Service;
  * @Date : 2018-06-10 22:52
  */
 @Service
-public class KyroRedisService {
+public class KryoRedisService {
 
-    private static final Logger logger = LoggerFactory.getLogger(KyroRedisService.class);
+    private static final Logger logger = LoggerFactory.getLogger(KryoRedisService.class);
 
     @Autowired
     private RedisTemplate<Object, Object> redisTemplate;
