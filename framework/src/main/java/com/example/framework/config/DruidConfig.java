@@ -21,7 +21,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import com.alibaba.druid.spring.boot.autoconfigure.properties.DruidStatProperties;
 import com.alibaba.druid.util.Utils;
-import com.example.common.enums.DataSourceType;
+import com.example.common.enums.DataSourceTypeEnums;
 import com.example.common.util.spring.SpringUtils;
 import com.example.framework.datasource.DynamicDataSource;
 
@@ -55,8 +55,8 @@ public class DruidConfig
     public DynamicDataSource dataSource(DataSource masterDataSource)
     {
         Map<Object, Object> targetDataSources = new HashMap<>();
-        targetDataSources.put(DataSourceType.MASTER.name(), masterDataSource);
-        setDataSource(targetDataSources, DataSourceType.SLAVE.name(), "slaveDataSource");
+        targetDataSources.put(DataSourceTypeEnums.MASTER.name(), masterDataSource);
+        setDataSource(targetDataSources, DataSourceTypeEnums.SLAVE.name(), "slaveDataSource");
         return new DynamicDataSource(masterDataSource, targetDataSources);
     }
 

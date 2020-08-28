@@ -10,7 +10,6 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import com.example.common.util.StringUtils;
-import com.example.common.util.html.EscapeUtil;
 
 /**
  * XSS过滤处理
@@ -38,7 +37,7 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper
             for (int i = 0; i < length; i++)
             {
                 // 防xss攻击和过滤前后空格
-                escapseValues[i] = EscapeUtil.clean(values[i]).trim();
+                escapseValues[i] = EscapeUtils.clean(values[i]).trim();
             }
             return escapseValues;
         }
@@ -62,7 +61,7 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper
         }
 
         // xss过滤
-        json = EscapeUtil.clean(json).trim();
+        json = EscapeUtils.clean(json).trim();
         final ByteArrayInputStream bis = new ByteArrayInputStream(json.getBytes("utf-8"));
         return new ServletInputStream()
         {

@@ -326,7 +326,7 @@ export default {
     getList() {
       this.loading = true;
       listJob(this.queryParams).then(response => {
-        this.jobList = response.rows;
+        this.jobList = response.data;
         this.total = response.total;
         this.loading = false;
       });
@@ -469,7 +469,7 @@ export default {
     /** 导出按钮操作 */
     handleExport() {
       const queryParams = this.queryParams;
-      this.$confirm("是否确认导出所有定时任务数据项?", "警告", {
+      this.$confirm("是否确认导出当前所有定时任务数据项?", "警告", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
           type: "warning"

@@ -6,9 +6,9 @@ import com.example.common.base.BaseController;
 import com.example.common.model.vo.ResponseVO;
 import com.example.common.model.entity.SysDictType;
 import com.example.common.model.vo.PageVO;
-import com.example.common.enums.BusinessType;
+import com.example.common.enums.BusinessTypeEnums;
 import com.example.common.util.SecurityUtils;
-import com.example.common.util.poi.ExcelUtil;
+import com.example.common.util.poi.ExcelUtils;
 import com.example.system.service.SysDictTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -36,12 +36,12 @@ public class SysDictTypeController extends BaseController {
         return getDataTable(list);
     }
 
-    @Log(title = "字典类型", businessType = BusinessType.EXPORT)
+    @Log(title = "字典类型", businessType = BusinessTypeEnums.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:dict:export')")
     @GetMapping("/export")
     public ResponseVO export(SysDictType dictType) {
         List<SysDictType> list = dictTypeService.selectDictTypeList(dictType);
-        ExcelUtil<SysDictType> util = new ExcelUtil<SysDictType>(SysDictType.class);
+        ExcelUtils<SysDictType> util = new ExcelUtils<SysDictType>(SysDictType.class);
         return util.exportExcel(list, "字典类型");
     }
 
@@ -58,7 +58,7 @@ public class SysDictTypeController extends BaseController {
      * 新增字典类型
      */
     @PreAuthorize("@ss.hasPermi('system:dict:add')")
-    @Log(title = "字典类型", businessType = BusinessType.INSERT)
+    @Log(title = "字典类型", businessType = BusinessTypeEnums.INSERT)
     @PostMapping
     public ResponseVO add(@Validated @RequestBody SysDictType dict) {
         if (UserConstants.NOT_UNIQUE.equals(dictTypeService.checkDictTypeUnique(dict))) {
@@ -72,7 +72,7 @@ public class SysDictTypeController extends BaseController {
      * 修改字典类型
      */
     @PreAuthorize("@ss.hasPermi('system:dict:edit')")
-    @Log(title = "字典类型", businessType = BusinessType.UPDATE)
+    @Log(title = "字典类型", businessType = BusinessTypeEnums.UPDATE)
     @PutMapping
     public ResponseVO edit(@Validated @RequestBody SysDictType dict) {
         if (UserConstants.NOT_UNIQUE.equals(dictTypeService.checkDictTypeUnique(dict))) {
@@ -86,7 +86,7 @@ public class SysDictTypeController extends BaseController {
      * 删除字典类型
      */
     @PreAuthorize("@ss.hasPermi('system:dict:remove')")
-    @Log(title = "字典类型", businessType = BusinessType.DELETE)
+    @Log(title = "字典类型", businessType = BusinessTypeEnums.DELETE)
     @DeleteMapping("/{dictIds}")
     public ResponseVO remove(@PathVariable Long[] dictIds) {
         return toAjax(dictTypeService.deleteDictTypeByIds(dictIds));
@@ -96,7 +96,7 @@ public class SysDictTypeController extends BaseController {
      * 清空缓存
      */
     @PreAuthorize("@ss.hasPermi('system:dict:remove')")
-    @Log(title = "字典类型", businessType = BusinessType.CLEAN)
+    @Log(title = "字典类型", businessType = BusinessTypeEnums.CLEAN)
     @DeleteMapping("/clearCache")
     public ResponseVO clearCache() {
         dictTypeService.clearCache();

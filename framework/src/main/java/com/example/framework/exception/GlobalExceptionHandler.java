@@ -10,7 +10,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
-import com.example.common.constant.HttpStatus;
+import com.example.common.constant.HttpStatusConstants;
 import com.example.common.model.vo.ResponseVO;
 import com.example.common.exception.BaseException;
 import com.example.common.exception.CustomException;
@@ -53,14 +53,14 @@ public class GlobalExceptionHandler
     public ResponseVO handlerNoFoundException(Exception e)
     {
         log.error(e.getMessage(), e);
-        return ResponseVO.error(HttpStatus.NOT_FOUND, "路径不存在，请检查路径是否正确");
+        return ResponseVO.error(HttpStatusConstants.NOT_FOUND, "路径不存在，请检查路径是否正确");
     }
 
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseVO handleAuthorizationException(AccessDeniedException e)
     {
         log.error(e.getMessage());
-        return ResponseVO.error(HttpStatus.FORBIDDEN, "没有权限，请联系管理员授权");
+        return ResponseVO.error(HttpStatusConstants.FORBIDDEN, "没有权限，请联系管理员授权");
     }
 
     @ExceptionHandler(AccountExpiredException.class)

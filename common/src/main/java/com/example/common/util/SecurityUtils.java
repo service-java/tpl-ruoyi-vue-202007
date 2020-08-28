@@ -1,6 +1,6 @@
 package com.example.common.util;
 
-import com.example.common.constant.HttpStatus;
+import com.example.common.constant.HttpStatusConstants;
 import com.example.common.model.LoginUser;
 import com.example.common.exception.CustomException;
 import org.springframework.security.core.Authentication;
@@ -25,7 +25,7 @@ public class SecurityUtils
         }
         catch (Exception e)
         {
-            throw new CustomException("获取用户账户异常", HttpStatus.UNAUTHORIZED);
+            throw new CustomException("获取用户账户异常", HttpStatusConstants.UNAUTHORIZED);
         }
     }
 
@@ -40,7 +40,7 @@ public class SecurityUtils
         }
         catch (Exception e)
         {
-            throw new CustomException("获取用户信息异常", HttpStatus.UNAUTHORIZED);
+            throw new CustomException("获取用户信息异常", HttpStatusConstants.UNAUTHORIZED);
         }
     }
 

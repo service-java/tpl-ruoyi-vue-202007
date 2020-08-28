@@ -6,7 +6,7 @@ import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import com.example.common.enums.DataSourceType;
+import com.example.common.enums.DataSourceTypeEnums;
 
 /**
  * 自定义多数据源切换注解
@@ -24,5 +24,5 @@ public @interface DataSource
     /**
      * 切换数据源名称
      */
-    public DataSourceType value() default DataSourceType.MASTER;
+    public DataSourceTypeEnums value() default DataSourceTypeEnums.MASTER;
 }

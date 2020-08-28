@@ -2,7 +2,7 @@ package com.example.framework.aspectj;
 
 import java.lang.reflect.Method;
 
-import com.example.framework.service.TokenService;
+import com.example.framework.security.service.TokenService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Aspect;

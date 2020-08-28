@@ -14,7 +14,7 @@ public class IdUtils
      */
     public static String randomUUID()
     {
-        return UUID.randomUUID().toString();
+        return UUIDUtils.randomUUID().toString();
     }
 
     /**
@@ -24,7 +24,7 @@ public class IdUtils
      */
     public static String simpleUUID()
     {
-        return UUID.randomUUID().toString(true);
+        return UUIDUtils.randomUUID().toString(true);
     }
 
     /**
@@ -34,7 +34,7 @@ public class IdUtils
      */
     public static String fastUUID()
     {
-        return UUID.fastUUID().toString();
+        return UUIDUtils.fastUUID().toString();
     }
 
     /**
@@ -44,6 +44,6 @@ public class IdUtils
      */
     public static String fastSimpleUUID()
     {
-        return UUID.fastUUID().toString(true);
+        return UUIDUtils.fastUUID().toString(true);
     }
 }

@@ -3,7 +3,7 @@ package com.example.framework.manager;
 import java.util.TimerTask;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import com.example.common.util.Threads;
+import com.example.common.util.ThreadUtils;
 import com.example.common.util.spring.SpringUtils;
 
 /**
@@ -50,6 +50,6 @@ public class AsyncManager
      */
     public void shutdown()
     {
-        Threads.shutdownAndAwaitTermination(executor);
+        ThreadUtils.shutdownAndAwaitTermination(executor);
     }
 }

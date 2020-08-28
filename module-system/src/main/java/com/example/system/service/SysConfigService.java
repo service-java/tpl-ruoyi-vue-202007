@@ -2,11 +2,11 @@ package com.example.system.service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.common.annotation.DataSource;
-import com.example.common.constant.Constants;
+import com.example.common.constant.CommonConstants;
 import com.example.common.constant.UserConstants;
 import com.example.common.model.RedisCache;
-import com.example.common.util.text.Convert;
-import com.example.common.enums.DataSourceType;
+import com.example.common.util.text.ConvertUtils;
+import com.example.common.enums.DataSourceTypeEnums;
 import com.example.common.util.StringUtils;
 import com.example.system.entity.SysConfig;
 import com.example.system.mapper.SysConfigMapper;
@@ -47,7 +47,7 @@ public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> {
      * @param configId 参数配置ID
      * @return 参数配置信息
      */
-    @DataSource(DataSourceType.MASTER)
+    @DataSource(DataSourceTypeEnums.MASTER)
     public SysConfig selectConfigById(Long configId) {
         SysConfig config = new SysConfig();
         config.setConfigId(configId);
@@ -61,7 +61,7 @@ public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> {
      * @return 参数键值
      */
     public String selectConfigByKey(String configKey) {
-        String configValue = Convert.toStr(redisCache.getCacheObject(getCacheKey(configKey)));
+        String configValue = ConvertUtils.toStr(redisCache.getCacheObject(getCacheKey(configKey)));
         if (StringUtils.isNotEmpty(configValue)) {
             return configValue;
         }
@@ -122,7 +122,7 @@ public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> {
     public int deleteConfigByIds(Long[] configIds) {
         int count = configMapper.deleteConfigByIds(configIds);
         if (count > 0) {
-            Collection<String> keys = redisCache.keys(Constants.SYS_CONFIG_KEY + "*");
+            Collection<String> keys = redisCache.keys(CommonConstants.SYS_CONFIG_KEY + "*");
             redisCache.deleteObject(keys);
         }
         return count;
@@ -132,7 +132,7 @@ public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> {
      * 清空缓存数据
      */
     public void clearCache() {
-        Collection<String> keys = redisCache.keys(Constants.SYS_CONFIG_KEY + "*");
+        Collection<String> keys = redisCache.keys(CommonConstants.SYS_CONFIG_KEY + "*");
         redisCache.deleteObject(keys);
     }
 
@@ -158,6 +158,6 @@ public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> {
      * @return 缓存键key
      */
     private String getCacheKey(String configKey) {
-        return Constants.SYS_CONFIG_KEY + configKey;
+        return CommonConstants.SYS_CONFIG_KEY + configKey;
     }
 }

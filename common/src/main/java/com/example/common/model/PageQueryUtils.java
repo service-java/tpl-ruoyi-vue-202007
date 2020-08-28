@@ -1,4 +1,6 @@
-package com.example.common.model; /**
+package com.example.common.model;
+
+/**
  * Copyright (c) 2016-2019 人人开源 All rights reserved.
  * <p>
  * https://www.renren.io
@@ -15,8 +17,6 @@ import com.example.common.constant.PageConstants;
 import com.example.common.util.StringUtils;
 import com.example.common.xss.SQLFilterUtils;
 
-import java.util.Map;
-
 /**
  * 查询参数
  *
@@ -24,38 +24,36 @@ import java.util.Map;
  */
 public class PageQueryUtils<T> {
 
-    public IPage<T> getPage(Map<String, Object> params) {
-        return this.getPage(params, null, false);
+
+    public IPage<T> getPage(PageQuery pageQuery) {
+        return this.getPage(pageQuery, null, false);
     }
 
-    public IPage<T> getPage(Map<String, Object> params, String defaultOrderField, boolean isAsc) {
-        long curPage = 1;
+    public IPage<T> getPage(PageQuery pageQuery, String defaultOrderField, boolean isAsc) {
+        long currentPage = 1;
         long limit = 10;
 
-        if (params.get(PageConstants.PAGE_NUM) != null) {
-            // 可能会报 int -> String的错误
-            // curPage = Long.parseLong((String)params.get(Constants.PAGE));
-            curPage = Convert.toLong(params.get(PageConstants.PAGE_NUM));
+        if (pageQuery.getPageNum() != null) {
+            // @fix 可能会报 int -> String的错误
+            // currentPage = Long.parseLong((String)params.get(Constants.PAGE_NUM));
+            currentPage = Convert.toLong(pageQuery.getPageNum());
         }
 
-        if (params.get(PageConstants.PAGE_SIZE) != null) {
-            limit = Convert.toLong(params.get(PageConstants.PAGE_SIZE));
+        if (pageQuery.getPageSize() != null) {
+            limit = Convert.toLong(pageQuery.getPageSize());
         }
 
-        //分页对象
-        Page<T> page = new Page<>(curPage, limit);
-
-        //分页参数
-        params.put(PageConstants.PAGE_NUM, page);
+        // 分页对象
+        Page<T> page = new Page<>(currentPage, limit);
 
         // 排序字段
         // 防止SQL注入（因为sidx、order是通过拼接SQL实现排序的，会有SQL注入风险）
-        String orderField = SQLFilterUtils.sqlInject((String) params.get(PageConstants.ORDER_FIELD));
-        String order = (String) params.get(PageConstants.ORDER);
+        String orderField = SQLFilterUtils.sqlInject(pageQuery.getOrderByColumn());
+        String order = pageQuery.getIsAsc();
 
         // 前端字段排序
         if (StringUtils.isNotEmpty(orderField) && StringUtils.isNotEmpty(order)) {
-            if (PageConstants.ASC.equalsIgnoreCase(order)) {
+            if (PageConstants.IS_ASC.equalsIgnoreCase(order)) {
                 return page.addOrder(OrderItem.asc(defaultOrderField));
             } else {
                 return page.addOrder(OrderItem.desc(defaultOrderField));
@@ -72,3 +70,4 @@ public class PageQueryUtils<T> {
         return page;
     }
 }
+

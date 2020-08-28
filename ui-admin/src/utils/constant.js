@@ -18,3 +18,17 @@ export const MATCH_LIST = [
   }
 ]
 
+export const SYSTEM_ITEM_TYPE_LIST = [
+  {
+    value: 1,
+    title: '字符串',
+  },
+  {
+    value: 2,
+    title: '数值型',
+  },
+  {
+    value: 3,
+    title: '枚举型',
+  },
+]

@@ -3,7 +3,7 @@ package com.example.generator.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.common.util.text.Convert;
+import com.example.common.util.text.ConvertUtils;
 import com.example.generator.entity.GenTableColumn;
 import com.example.generator.mapper.GenTableColumnMapper;
 
@@ -63,6 +63,6 @@ public class GenTableColumnServiceImpl implements IGenTableColumnService
 	@Override
 	public int deleteGenTableColumnByIds(String ids)
 	{
-		return genTableColumnMapper.deleteGenTableColumnByIds(Convert.toLongArray(ids));
+		return genTableColumnMapper.deleteGenTableColumnByIds(ConvertUtils.toLongArray(ids));
 	}
 }

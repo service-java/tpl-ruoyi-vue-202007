@@ -8,12 +8,12 @@ import com.example.common.model.entity.SysRole;
 import com.example.common.model.entity.SysUser;
 import com.example.common.model.LoginUser;
 import com.example.common.model.vo.PageVO;
-import com.example.common.enums.BusinessType;
+import com.example.common.enums.BusinessTypeEnums;
 import com.example.common.util.SecurityUtils;
 import com.example.common.util.ServletUtils;
 import com.example.common.util.StringUtils;
-import com.example.common.util.poi.ExcelUtil;
-import com.example.framework.service.TokenService;
+import com.example.common.util.poi.ExcelUtils;
+import com.example.framework.security.service.TokenService;
 import com.example.system.service.SysPostService;
 import com.example.system.service.SysRoleService;
 import com.example.system.service.SysUserService;
@@ -57,20 +57,20 @@ public class SysUserController extends BaseController {
         return getDataTable(list);
     }
 
-    @Log(title = "用户管理", businessType = BusinessType.EXPORT)
+    @Log(title = "用户管理", businessType = BusinessTypeEnums.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:user:export')")
     @GetMapping("/export")
     public ResponseVO export(SysUser user) {
         List<SysUser> list = userService.selectUserList(user);
-        ExcelUtil<SysUser> util = new ExcelUtil<SysUser>(SysUser.class);
+        ExcelUtils<SysUser> util = new ExcelUtils<SysUser>(SysUser.class);
         return util.exportExcel(list, "用户数据");
     }
 
-    @Log(title = "用户管理", businessType = BusinessType.IMPORT)
+    @Log(title = "用户管理", businessType = BusinessTypeEnums.IMPORT)
     @PreAuthorize("@ss.hasPermi('system:user:import')")
     @PostMapping("/importData")
     public ResponseVO importData(MultipartFile file, boolean updateSupport) throws Exception {
-        ExcelUtil<SysUser> util = new ExcelUtil<SysUser>(SysUser.class);
+        ExcelUtils<SysUser> util = new ExcelUtils<SysUser>(SysUser.class);
         List<SysUser> userList = util.importExcel(file.getInputStream());
         LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
         String operName = loginUser.getUsername();
@@ -80,7 +80,7 @@ public class SysUserController extends BaseController {
 
     @GetMapping("/importTemplate")
     public ResponseVO importTemplate() {
-        ExcelUtil<SysUser> util = new ExcelUtil<SysUser>(SysUser.class);
+        ExcelUtils<SysUser> util = new ExcelUtils<SysUser>(SysUser.class);
         return util.importTemplateExcel("用户数据");
     }
 
@@ -106,7 +106,7 @@ public class SysUserController extends BaseController {
      * 新增用户
      */
     @PreAuthorize("@ss.hasPermi('system:user:add')")
-    @Log(title = "用户管理", businessType = BusinessType.INSERT)
+    @Log(title = "用户管理", businessType = BusinessTypeEnums.INSERT)
     @PostMapping
     public ResponseVO add(@Validated @RequestBody SysUser user) {
         if (UserConstants.NOT_UNIQUE.equals(userService.checkUserNameUnique(user.getUserName()))) {
@@ -125,7 +125,7 @@ public class SysUserController extends BaseController {
      * 修改用户
      */
     @PreAuthorize("@ss.hasPermi('system:user:edit')")
-    @Log(title = "用户管理", businessType = BusinessType.UPDATE)
+    @Log(title = "用户管理", businessType = BusinessTypeEnums.UPDATE)
     @PutMapping
     public ResponseVO edit(@Validated @RequestBody SysUser user) {
         userService.checkUserAllowed(user);
@@ -142,7 +142,7 @@ public class SysUserController extends BaseController {
      * 删除用户
      */
     @PreAuthorize("@ss.hasPermi('system:user:remove')")
-    @Log(title = "用户管理", businessType = BusinessType.DELETE)
+    @Log(title = "用户管理", businessType = BusinessTypeEnums.DELETE)
     @DeleteMapping("/{userIds}")
     public ResponseVO remove(@PathVariable Long[] userIds) {
         return toAjax(userService.deleteUserByIds(userIds));
@@ -152,7 +152,7 @@ public class SysUserController extends BaseController {
      * 重置密码
      */
     @PreAuthorize("@ss.hasPermi('system:user:edit')")
-    @Log(title = "用户管理", businessType = BusinessType.UPDATE)
+    @Log(title = "用户管理", businessType = BusinessTypeEnums.UPDATE)
     @PutMapping("/resetPwd")
     public ResponseVO resetPwd(@RequestBody SysUser user) {
         userService.checkUserAllowed(user);
@@ -165,7 +165,7 @@ public class SysUserController extends BaseController {
      * 状态修改
      */
     @PreAuthorize("@ss.hasPermi('system:user:edit')")
-    @Log(title = "用户管理", businessType = BusinessType.UPDATE)
+    @Log(title = "用户管理", businessType = BusinessTypeEnums.UPDATE)
     @PutMapping("/changeStatus")
     public ResponseVO changeStatus(@RequestBody SysUser user) {
         userService.checkUserAllowed(user);

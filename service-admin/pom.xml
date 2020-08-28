@@ -68,27 +68,22 @@
         </dependency>
 
         <!-- 示例模块 -->
+<!--        <dependency>-->
+<!--            <groupId>com.example</groupId>-->
+<!--            <artifactId>module-demo</artifactId>-->
+<!--        </dependency>-->
+
         <dependency>
             <groupId>com.example</groupId>
-            <artifactId>module-demo</artifactId>
+            <artifactId>module-kyro</artifactId>
         </dependency>
-
-        <!-- 特征标记模块 -->
-        <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>module-ctag</artifactId>
-        </dependency>
-
 
         <!-- 代码生成-->
         <dependency>
             <groupId>com.example</groupId>
             <artifactId>generator</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>module-ctag</artifactId>
-        </dependency>
+
 
     </dependencies>
 

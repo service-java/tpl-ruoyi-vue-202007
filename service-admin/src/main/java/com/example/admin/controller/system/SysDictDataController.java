@@ -20,9 +20,9 @@ import com.example.common.base.BaseController;
 import com.example.common.model.vo.ResponseVO;
 import com.example.common.model.entity.SysDictData;
 import com.example.common.model.vo.PageVO;
-import com.example.common.enums.BusinessType;
+import com.example.common.enums.BusinessTypeEnums;
 import com.example.common.util.SecurityUtils;
-import com.example.common.util.poi.ExcelUtil;
+import com.example.common.util.poi.ExcelUtils;
 
 
 /**
@@ -47,12 +47,12 @@ public class SysDictDataController extends BaseController {
         return getDataTable(list);
     }
 
-    @Log(title = "字典数据", businessType = BusinessType.EXPORT)
+    @Log(title = "字典数据", businessType = BusinessTypeEnums.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:dict:export')")
     @GetMapping("/export")
     public ResponseVO export(SysDictData dictData) {
         List<SysDictData> list = dictDataService.selectDictDataList(dictData);
-        ExcelUtil<SysDictData> util = new ExcelUtil<SysDictData>(SysDictData.class);
+        ExcelUtils<SysDictData> util = new ExcelUtils<SysDictData>(SysDictData.class);
         return util.exportExcel(list, "字典数据");
     }
 
@@ -77,7 +77,7 @@ public class SysDictDataController extends BaseController {
      * 新增字典类型
      */
     @PreAuthorize("@ss.hasPermi('system:dict:add')")
-    @Log(title = "字典数据", businessType = BusinessType.INSERT)
+    @Log(title = "字典数据", businessType = BusinessTypeEnums.INSERT)
     @PostMapping
     public ResponseVO add(@Validated @RequestBody SysDictData dict) {
         dict.setCreateBy(SecurityUtils.getUsername());
@@ -88,7 +88,7 @@ public class SysDictDataController extends BaseController {
      * 修改保存字典类型
      */
     @PreAuthorize("@ss.hasPermi('system:dict:edit')")
-    @Log(title = "字典数据", businessType = BusinessType.UPDATE)
+    @Log(title = "字典数据", businessType = BusinessTypeEnums.UPDATE)
     @PutMapping
     public ResponseVO edit(@Validated @RequestBody SysDictData dict) {
         dict.setUpdateBy(SecurityUtils.getUsername());
@@ -99,7 +99,7 @@ public class SysDictDataController extends BaseController {
      * 删除字典类型
      */
     @PreAuthorize("@ss.hasPermi('system:dict:remove')")
-    @Log(title = "字典类型", businessType = BusinessType.DELETE)
+    @Log(title = "字典类型", businessType = BusinessTypeEnums.DELETE)
     @DeleteMapping("/{dictCodes}")
     public ResponseVO remove(@PathVariable Long[] dictCodes) {
         return toAjax(dictDataService.deleteDictDataByIds(dictCodes));

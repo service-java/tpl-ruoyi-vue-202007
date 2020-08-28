@@ -1,23 +1,20 @@
-package com.example.web.controller.system;
+package com.example.admin.controller.system;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.example.common.annotation.Log;
 import com.example.common.base.BaseController;
 import com.example.common.constant.UserConstants;
-import com.example.common.enums.BusinessType;
-import com.example.common.model.PageQueryUtils;
-import com.example.common.model.vo.ResponseVO;
-import com.example.common.model.vo.PageVO;
+import com.example.common.enums.BusinessTypeEnums;
 import com.example.common.model.entity.SysRole;
+import com.example.common.model.vo.PageVO;
+import com.example.common.model.vo.ResponseVO;
 import com.example.common.util.SecurityUtils;
-import com.example.common.util.poi.ExcelUtil;
+import com.example.common.util.poi.ExcelUtils;
 import com.example.system.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -37,18 +34,15 @@ public class SysRoleController extends BaseController {
         startPage();
         List<SysRole> list = roleService.selectRoleList(role);
 
-//        IPage<SysRole> page = roleService.page(new PageQueryUtils<SysRole>().getPage(new HashMap<>()));
-//        PageVO dataTable = getDataTable(page);
-
         return getDataTable(list);
     }
 
-    @Log(title = "角色管理", businessType = BusinessType.EXPORT)
+    @Log(title = "角色管理", businessType = BusinessTypeEnums.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:role:export')")
     @GetMapping("/export")
     public ResponseVO export(SysRole role) {
         List<SysRole> list = roleService.selectRoleList(role);
-        ExcelUtil<SysRole> util = new ExcelUtil<SysRole>(SysRole.class);
+        ExcelUtils<SysRole> util = new ExcelUtils<SysRole>(SysRole.class);
         return util.exportExcel(list, "角色数据");
     }
 
@@ -65,7 +59,7 @@ public class SysRoleController extends BaseController {
      * 新增角色
      */
     @PreAuthorize("@ss.hasPermi('system:role:add')")
-    @Log(title = "角色管理", businessType = BusinessType.INSERT)
+    @Log(title = "角色管理", businessType = BusinessTypeEnums.INSERT)
     @PostMapping
     public ResponseVO add(@Validated @RequestBody SysRole role) {
         if (UserConstants.NOT_UNIQUE.equals(roleService.checkRoleNameUnique(role))) {
@@ -82,7 +76,7 @@ public class SysRoleController extends BaseController {
      * 修改保存角色
      */
     @PreAuthorize("@ss.hasPermi('system:role:edit')")
-    @Log(title = "角色管理", businessType = BusinessType.UPDATE)
+    @Log(title = "角色管理", businessType = BusinessTypeEnums.UPDATE)
     @PutMapping
     public ResponseVO edit(@Validated @RequestBody SysRole role) {
         roleService.checkRoleAllowed(role);
@@ -99,7 +93,7 @@ public class SysRoleController extends BaseController {
      * 修改保存数据权限
      */
     @PreAuthorize("@ss.hasPermi('system:role:edit')")
-    @Log(title = "角色管理", businessType = BusinessType.UPDATE)
+    @Log(title = "角色管理", businessType = BusinessTypeEnums.UPDATE)
     @PutMapping("/dataScope")
     public ResponseVO dataScope(@RequestBody SysRole role) {
         roleService.checkRoleAllowed(role);
@@ -110,7 +104,7 @@ public class SysRoleController extends BaseController {
      * 状态修改
      */
     @PreAuthorize("@ss.hasPermi('system:role:edit')")
-    @Log(title = "角色管理", businessType = BusinessType.UPDATE)
+    @Log(title = "角色管理", businessType = BusinessTypeEnums.UPDATE)
     @PutMapping("/changeStatus")
     public ResponseVO changeStatus(@RequestBody SysRole role) {
         roleService.checkRoleAllowed(role);
@@ -122,7 +116,7 @@ public class SysRoleController extends BaseController {
      * 删除角色
      */
     @PreAuthorize("@ss.hasPermi('system:role:remove')")
-    @Log(title = "角色管理", businessType = BusinessType.DELETE)
+    @Log(title = "角色管理", businessType = BusinessTypeEnums.DELETE)
     @DeleteMapping("/{roleIds}")
     public ResponseVO remove(@PathVariable Long[] roleIds) {
         return toAjax(roleService.deleteRoleByIds(roleIds));

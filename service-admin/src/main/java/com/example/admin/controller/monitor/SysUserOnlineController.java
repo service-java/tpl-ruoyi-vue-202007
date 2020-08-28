@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.common.annotation.Log;
-import com.example.common.constant.Constants;
+import com.example.common.constant.CommonConstants;
 import com.example.common.base.BaseController;
 import com.example.common.model.vo.ResponseVO;
 import com.example.common.model.LoginUser;
 import com.example.common.model.vo.PageVO;
 import com.example.common.model.RedisCache;
-import com.example.common.enums.BusinessType;
+import com.example.common.enums.BusinessTypeEnums;
 import com.example.common.util.StringUtils;
 import com.example.system.entity.SysUserOnline;
 import com.example.system.service.SysUserOnlineService;
@@ -41,7 +41,7 @@ public class SysUserOnlineController extends BaseController {
     @PreAuthorize("@ss.hasPermi('monitor:online:list')")
     @GetMapping("/list")
     public PageVO list(String ipaddr, String userName) {
-        Collection<String> keys = redisCache.keys(Constants.LOGIN_TOKEN_KEY + "*");
+        Collection<String> keys = redisCache.keys(CommonConstants.LOGIN_TOKEN_KEY + "*");
         List<SysUserOnline> userOnlineList = new ArrayList<SysUserOnline>();
         for (String key : keys) {
             LoginUser user = redisCache.getCacheObject(key);
@@ -71,10 +71,10 @@ public class SysUserOnlineController extends BaseController {
      * 强退用户
      */
     @PreAuthorize("@ss.hasPermi('monitor:online:forceLogout')")
-    @Log(title = "在线用户", businessType = BusinessType.DELETE)
+    @Log(title = "在线用户", businessType = BusinessTypeEnums.DELETE)
     @DeleteMapping("/{tokenId}")
     public ResponseVO forceLogout(@PathVariable String tokenId) {
-        redisCache.deleteObject(Constants.LOGIN_TOKEN_KEY + tokenId);
+        redisCache.deleteObject(CommonConstants.LOGIN_TOKEN_KEY + tokenId);
         return ResponseVO.success();
     }
 }

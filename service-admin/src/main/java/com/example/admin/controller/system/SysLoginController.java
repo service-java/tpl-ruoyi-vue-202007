@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.common.constant.Constants;
+import com.example.common.constant.CommonConstants;
 import com.example.common.model.vo.ResponseVO;
 import com.example.common.model.entity.SysMenu;
 import com.example.common.model.entity.SysUser;
 import com.example.common.model.LoginBody;
 import com.example.common.model.LoginUser;
 import com.example.common.util.ServletUtils;
-import com.example.framework.service.SysLoginService;
-import com.example.framework.service.SysPermissionService;
-import com.example.framework.service.TokenService;
+import com.example.framework.security.service.SysLoginService;
+import com.example.framework.security.service.SysPermissionService;
+import com.example.framework.security.service.TokenService;
 import com.example.system.service.SysMenuService;
 
 /**
@@ -51,7 +51,7 @@ public class SysLoginController {
         // 生成令牌
         String token = loginService.login(loginBody.getUsername(), loginBody.getPassword(), loginBody.getCode(),
                 loginBody.getUuid());
-        ajax.put(Constants.TOKEN, token);
+        ajax.put(CommonConstants.TOKEN, token);
         return ajax;
     }
 
@@ -83,6 +83,7 @@ public class SysLoginController {
     @GetMapping("getRouters")
     public ResponseVO getRouters() {
         LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
+
         // 用户信息
         SysUser user = loginUser.getUser();
         List<SysMenu> menus = menuService.selectMenuTreeByUserId(user.getUserId());

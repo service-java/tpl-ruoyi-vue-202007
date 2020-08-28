@@ -19,9 +19,9 @@ import com.example.common.constant.UserConstants;
 import com.example.common.base.BaseController;
 import com.example.common.model.vo.ResponseVO;
 import com.example.common.model.vo.PageVO;
-import com.example.common.enums.BusinessType;
+import com.example.common.enums.BusinessTypeEnums;
 import com.example.common.util.SecurityUtils;
-import com.example.common.util.poi.ExcelUtil;
+import com.example.common.util.poi.ExcelUtils;
 import com.example.system.entity.SysConfig;
 import com.example.system.service.SysConfigService;
 
@@ -47,12 +47,12 @@ public class SysConfigController extends BaseController {
         return getDataTable(list);
     }
 
-    @Log(title = "参数管理", businessType = BusinessType.EXPORT)
+    @Log(title = "参数管理", businessType = BusinessTypeEnums.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:config:export')")
     @GetMapping("/export")
     public ResponseVO export(SysConfig config) {
         List<SysConfig> list = configService.selectConfigList(config);
-        ExcelUtil<SysConfig> util = new ExcelUtil<SysConfig>(SysConfig.class);
+        ExcelUtils<SysConfig> util = new ExcelUtils<SysConfig>(SysConfig.class);
         return util.exportExcel(list, "参数数据");
     }
 
@@ -77,7 +77,7 @@ public class SysConfigController extends BaseController {
      * 新增参数配置
      */
     @PreAuthorize("@ss.hasPermi('system:config:add')")
-    @Log(title = "参数管理", businessType = BusinessType.INSERT)
+    @Log(title = "参数管理", businessType = BusinessTypeEnums.INSERT)
     @PostMapping
     @RepeatSubmit
     public ResponseVO add(@Validated @RequestBody SysConfig config) {
@@ -92,7 +92,7 @@ public class SysConfigController extends BaseController {
      * 修改参数配置
      */
     @PreAuthorize("@ss.hasPermi('system:config:edit')")
-    @Log(title = "参数管理", businessType = BusinessType.UPDATE)
+    @Log(title = "参数管理", businessType = BusinessTypeEnums.UPDATE)
     @PutMapping
     public ResponseVO edit(@Validated @RequestBody SysConfig config) {
         if (UserConstants.NOT_UNIQUE.equals(configService.checkConfigKeyUnique(config))) {
@@ -106,7 +106,7 @@ public class SysConfigController extends BaseController {
      * 删除参数配置
      */
     @PreAuthorize("@ss.hasPermi('system:config:remove')")
-    @Log(title = "参数管理", businessType = BusinessType.DELETE)
+    @Log(title = "参数管理", businessType = BusinessTypeEnums.DELETE)
     @DeleteMapping("/{configIds}")
     public ResponseVO remove(@PathVariable Long[] configIds) {
         return toAjax(configService.deleteConfigByIds(configIds));
@@ -116,7 +116,7 @@ public class SysConfigController extends BaseController {
      * 清空缓存
      */
     @PreAuthorize("@ss.hasPermi('system:config:remove')")
-    @Log(title = "参数管理", businessType = BusinessType.CLEAN)
+    @Log(title = "参数管理", businessType = BusinessTypeEnums.CLEAN)
     @DeleteMapping("/clearCache")
     public ResponseVO clearCache() {
         configService.clearCache();

@@ -13,8 +13,8 @@ import com.example.common.annotation.Log;
 import com.example.common.base.BaseController;
 import com.example.common.model.vo.ResponseVO;
 import com.example.common.model.vo.PageVO;
-import com.example.common.enums.BusinessType;
-import com.example.common.util.poi.ExcelUtil;
+import com.example.common.enums.BusinessTypeEnums;
+import com.example.common.util.poi.ExcelUtils;
 import com.example.system.entity.SysLogininfor;
 import com.example.system.service.SysLogininforService;
 
@@ -37,24 +37,24 @@ public class SysLogininforController extends BaseController {
         return getDataTable(list);
     }
 
-    @Log(title = "登陆日志", businessType = BusinessType.EXPORT)
+    @Log(title = "登陆日志", businessType = BusinessTypeEnums.EXPORT)
     @PreAuthorize("@ss.hasPermi('monitor:logininfor:export')")
     @GetMapping("/export")
     public ResponseVO export(SysLogininfor logininfor) {
         List<SysLogininfor> list = logininforService.selectLogininforList(logininfor);
-        ExcelUtil<SysLogininfor> util = new ExcelUtil<SysLogininfor>(SysLogininfor.class);
+        ExcelUtils<SysLogininfor> util = new ExcelUtils<SysLogininfor>(SysLogininfor.class);
         return util.exportExcel(list, "登陆日志");
     }
 
     @PreAuthorize("@ss.hasPermi('monitor:logininfor:remove')")
-    @Log(title = "登陆日志", businessType = BusinessType.DELETE)
+    @Log(title = "登陆日志", businessType = BusinessTypeEnums.DELETE)
     @DeleteMapping("/{infoIds}")
     public ResponseVO remove(@PathVariable Long[] infoIds) {
         return toAjax(logininforService.deleteLogininforByIds(infoIds));
     }
 
     @PreAuthorize("@ss.hasPermi('monitor:logininfor:remove')")
-    @Log(title = "登陆日志", businessType = BusinessType.CLEAN)
+    @Log(title = "登陆日志", businessType = BusinessTypeEnums.CLEAN)
     @DeleteMapping("/clean")
     public ResponseVO clean() {
         logininforService.cleanLogininfor();

@@ -13,8 +13,8 @@ import com.example.common.annotation.Log;
 import com.example.common.base.BaseController;
 import com.example.common.model.vo.ResponseVO;
 import com.example.common.model.vo.PageVO;
-import com.example.common.enums.BusinessType;
-import com.example.common.util.poi.ExcelUtil;
+import com.example.common.enums.BusinessTypeEnums;
+import com.example.common.util.poi.ExcelUtils;
 import com.example.system.entity.SysOperLog;
 import com.example.system.service.SysOperLogService;
 
@@ -37,12 +37,12 @@ public class SysOperlogController extends BaseController {
         return getDataTable(list);
     }
 
-    @Log(title = "操作日志", businessType = BusinessType.EXPORT)
+    @Log(title = "操作日志", businessType = BusinessTypeEnums.EXPORT)
     @PreAuthorize("@ss.hasPermi('monitor:operlog:export')")
     @GetMapping("/export")
     public ResponseVO export(SysOperLog operLog) {
         List<SysOperLog> list = operLogService.selectOperLogList(operLog);
-        ExcelUtil<SysOperLog> util = new ExcelUtil<SysOperLog>(SysOperLog.class);
+        ExcelUtils<SysOperLog> util = new ExcelUtils<SysOperLog>(SysOperLog.class);
         return util.exportExcel(list, "操作日志");
     }
 
@@ -52,7 +52,7 @@ public class SysOperlogController extends BaseController {
         return toAjax(operLogService.deleteOperLogByIds(operIds));
     }
 
-    @Log(title = "操作日志", businessType = BusinessType.CLEAN)
+    @Log(title = "操作日志", businessType = BusinessTypeEnums.CLEAN)
     @PreAuthorize("@ss.hasPermi('monitor:operlog:remove')")
     @DeleteMapping("/clean")
     public ResponseVO clean() {

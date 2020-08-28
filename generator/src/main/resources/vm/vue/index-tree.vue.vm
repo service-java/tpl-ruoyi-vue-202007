@@ -109,6 +109,7 @@
           <el-button
             size="mini"
             type="text"
+            class="color-red"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
             v-hasPermi="['${moduleName}:${businessName}:remove']"

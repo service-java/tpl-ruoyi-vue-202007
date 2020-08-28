@@ -5,7 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.example.framework.service.TokenService;
+import com.example.framework.security.service.TokenService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -21,8 +21,8 @@ import org.springframework.web.servlet.HandlerMapping;
 import com.alibaba.fastjson.JSON;
 import com.example.common.annotation.Log;
 import com.example.common.model.LoginUser;
-import com.example.common.enums.BusinessStatus;
-import com.example.common.enums.HttpMethod;
+import com.example.common.enums.BusinessStatusEnums;
+import com.example.common.enums.HttpMethodEnums;
 import com.example.common.util.ServletUtils;
 import com.example.common.util.StringUtils;
 import com.example.common.util.ip.IpUtils;
@@ -87,7 +87,7 @@ public class LogAspect
 
             // *========数据库日志=========*//
             SysOperLog operLog = new SysOperLog();
-            operLog.setStatus(BusinessStatus.SUCCESS.ordinal());
+            operLog.setStatus(BusinessStatusEnums.SUCCESS.ordinal());
             // 请求的地址
             String ip = IpUtils.getIpAddr(ServletUtils.getRequest());
             operLog.setOperIp(ip);
@@ -102,7 +102,7 @@ public class LogAspect
 
             if (e != null)
             {
-                operLog.setStatus(BusinessStatus.FAIL.ordinal());
+                operLog.setStatus(BusinessStatusEnums.FAIL.ordinal());
                 operLog.setErrorMsg(StringUtils.substring(e.getMessage(), 0, 2000));
             }
             // 设置方法名称
@@ -157,7 +157,7 @@ public class LogAspect
     private void setRequestValue(JoinPoint joinPoint, SysOperLog operLog) throws Exception
     {
         String requestMethod = operLog.getRequestMethod();
-        if (HttpMethod.PUT.name().equals(requestMethod) || HttpMethod.POST.name().equals(requestMethod))
+        if (HttpMethodEnums.PUT.name().equals(requestMethod) || HttpMethodEnums.POST.name().equals(requestMethod))
         {
             String params = argsArrayToString(joinPoint.getArgs());
             operLog.setOperParam(StringUtils.substring(params, 0, 2000));

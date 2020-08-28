@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.example.common.properties.CommonProperties;
-import com.example.common.constant.Constants;
+import com.example.common.constant.CommonConstants;
 import com.example.common.model.vo.ResponseVO;
 import com.example.common.util.StringUtils;
 import com.example.common.util.file.FileUploadUtils;
@@ -86,7 +86,7 @@ public class CommonController {
         // 本地资源路径
         String localPath = CommonProperties.getProfile();
         // 数据库资源地址
-        String downloadPath = localPath + StringUtils.substringAfter(name, Constants.RESOURCE_PREFIX);
+        String downloadPath = localPath + StringUtils.substringAfter(name, CommonConstants.RESOURCE_PREFIX);
         // 下载名称
         String downloadName = StringUtils.substringAfterLast(downloadPath, "/");
         response.setCharacterEncoding("utf-8");

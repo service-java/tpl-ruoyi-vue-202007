@@ -1,24 +1,25 @@
 package com.example.common.base;
 
-import java.beans.PropertyEditorSupport;
-import java.util.Date;
-import java.util.List;
-
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.example.common.constant.HttpStatus;
+import com.example.common.constant.HttpStatusConstants;
+import com.example.common.constant.PageConstants;
+import com.example.common.model.PageQuery;
+import com.example.common.model.vo.PageVO;
 import com.example.common.model.vo.ResponseVO;
-import com.example.common.model.TableSupport;
 import com.example.common.util.DateUtils;
+import com.example.common.util.ServletUtils;
 import com.example.common.util.StringUtils;
-import com.example.common.util.sql.SqlUtil;
+import com.example.common.util.sql.SqlUtils;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import com.example.common.model.PageQuery;
-import com.example.common.model.vo.PageVO;
+
+import java.beans.PropertyEditorSupport;
+import java.util.Date;
+import java.util.List;
 
 /**
  * web层通用数据处理
@@ -46,13 +47,25 @@ public class BaseController {
      * 设置请求分页数据
      */
     protected void startPage() {
-        PageQuery pageQuery = TableSupport.buildPageRequest();
+        PageQuery pageQuery = this.buildPageRequest();
         Integer pageNum = pageQuery.getPageNum();
         Integer pageSize = pageQuery.getPageSize();
         if (StringUtils.isNotNull(pageNum) && StringUtils.isNotNull(pageSize)) {
-            String orderBy = SqlUtil.escapeOrderBySql(pageQuery.getOrderBy());
+            String orderBy = SqlUtils.escapeOrderBySql(pageQuery.getOrderBy());
             PageHelper.startPage(pageNum, pageSize, orderBy);
         }
+    }
+
+    /**
+     * 封装分页对象
+     */
+    public static PageQuery buildPageRequest() {
+        PageQuery pageQuery = new PageQuery();
+        pageQuery.setPageNum(ServletUtils.getParameterToInt(PageConstants.PAGE_NUM));
+        pageQuery.setPageSize(ServletUtils.getParameterToInt(PageConstants.PAGE_SIZE));
+        pageQuery.setOrderByColumn(ServletUtils.getParameter(PageConstants.ORDER_BY_COLUMN));
+        pageQuery.setIsAsc(ServletUtils.getParameter(PageConstants.IS_ASC));
+        return pageQuery;
     }
 
     /**
@@ -61,18 +74,18 @@ public class BaseController {
     @SuppressWarnings({"rawtypes", "unchecked"})
     protected PageVO getDataTable(IPage<?> page) {
         PageVO respData = new PageVO();
-        respData.setCode(HttpStatus.SUCCESS);
+        respData.setCode(HttpStatusConstants.SUCCESS);
         respData.setMsg("查询成功");
-        respData.setRows(page.getRecords());
+        respData.setData(page.getRecords());
         respData.setTotal(page.getTotal());
         return respData;
     }
 
     protected PageVO getDataTable(List<?> list) {
         PageVO respData = new PageVO();
-        respData.setCode(HttpStatus.SUCCESS);
+        respData.setCode(HttpStatusConstants.SUCCESS);
         respData.setMsg("查询成功");
-        respData.setRows(list);
+        respData.setData(list);
         respData.setTotal(new PageInfo(list).getTotal());
         return respData;
     }

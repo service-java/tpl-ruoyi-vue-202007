@@ -17,11 +17,11 @@ import com.example.common.base.BaseController;
 import com.example.common.model.vo.ResponseVO;
 import com.example.common.model.entity.SysUser;
 import com.example.common.model.LoginUser;
-import com.example.common.enums.BusinessType;
+import com.example.common.enums.BusinessTypeEnums;
 import com.example.common.util.SecurityUtils;
 import com.example.common.util.ServletUtils;
 import com.example.common.util.file.FileUploadUtils;
-import com.example.framework.service.TokenService;
+import com.example.framework.security.service.TokenService;
 import com.example.system.service.SysUserService;
 
 /**
@@ -54,7 +54,7 @@ public class SysProfileController extends BaseController {
     /**
      * 修改用户
      */
-    @Log(title = "个人信息", businessType = BusinessType.UPDATE)
+    @Log(title = "个人信息", businessType = BusinessTypeEnums.UPDATE)
     @PutMapping
     public ResponseVO updateProfile(@RequestBody SysUser user) {
         if (userService.updateUserProfile(user) > 0) {
@@ -73,7 +73,7 @@ public class SysProfileController extends BaseController {
     /**
      * 重置密码
      */
-    @Log(title = "个人信息", businessType = BusinessType.UPDATE)
+    @Log(title = "个人信息", businessType = BusinessTypeEnums.UPDATE)
     @PutMapping("/updatePwd")
     public ResponseVO updatePwd(String oldPassword, String newPassword) {
         LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
@@ -97,7 +97,7 @@ public class SysProfileController extends BaseController {
     /**
      * 头像上传
      */
-    @Log(title = "用户头像", businessType = BusinessType.UPDATE)
+    @Log(title = "用户头像", businessType = BusinessTypeEnums.UPDATE)
     @PostMapping("/avatar")
     public ResponseVO avatar(@RequestParam("avatarfile") MultipartFile file) throws IOException {
         if (!file.isEmpty()) {

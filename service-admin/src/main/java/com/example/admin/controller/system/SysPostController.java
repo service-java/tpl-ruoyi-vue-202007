@@ -5,9 +5,9 @@ import com.example.common.constant.UserConstants;
 import com.example.common.base.BaseController;
 import com.example.common.model.vo.ResponseVO;
 import com.example.common.model.vo.PageVO;
-import com.example.common.enums.BusinessType;
+import com.example.common.enums.BusinessTypeEnums;
 import com.example.common.util.SecurityUtils;
-import com.example.common.util.poi.ExcelUtil;
+import com.example.common.util.poi.ExcelUtils;
 import com.example.system.entity.SysPost;
 import com.example.system.service.SysPostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +39,12 @@ public class SysPostController extends BaseController {
         return getDataTable(list);
     }
 
-    @Log(title = "岗位管理", businessType = BusinessType.EXPORT)
+    @Log(title = "岗位管理", businessType = BusinessTypeEnums.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:post:export')")
     @GetMapping("/export")
     public ResponseVO export(SysPost post) {
         List<SysPost> list = postService.selectPostList(post);
-        ExcelUtil<SysPost> util = new ExcelUtil<SysPost>(SysPost.class);
+        ExcelUtils<SysPost> util = new ExcelUtils<SysPost>(SysPost.class);
         return util.exportExcel(list, "岗位数据");
     }
 
@@ -61,7 +61,7 @@ public class SysPostController extends BaseController {
      * 新增岗位
      */
     @PreAuthorize("@ss.hasPermi('system:post:add')")
-    @Log(title = "岗位管理", businessType = BusinessType.INSERT)
+    @Log(title = "岗位管理", businessType = BusinessTypeEnums.INSERT)
     @PostMapping
     public ResponseVO add(@Validated @RequestBody SysPost post) {
         if (UserConstants.NOT_UNIQUE.equals(postService.checkPostNameUnique(post))) {
@@ -77,7 +77,7 @@ public class SysPostController extends BaseController {
      * 修改岗位
      */
     @PreAuthorize("@ss.hasPermi('system:post:edit')")
-    @Log(title = "岗位管理", businessType = BusinessType.UPDATE)
+    @Log(title = "岗位管理", businessType = BusinessTypeEnums.UPDATE)
     @PutMapping
     public ResponseVO edit(@Validated @RequestBody SysPost post) {
         if (UserConstants.NOT_UNIQUE.equals(postService.checkPostNameUnique(post))) {
@@ -93,7 +93,7 @@ public class SysPostController extends BaseController {
      * 删除岗位
      */
     @PreAuthorize("@ss.hasPermi('system:post:remove')")
-    @Log(title = "岗位管理", businessType = BusinessType.DELETE)
+    @Log(title = "岗位管理", businessType = BusinessTypeEnums.DELETE)
     @DeleteMapping("/{postIds}")
     public ResponseVO remove(@PathVariable Long[] postIds) {
         return toAjax(postService.deletePostByIds(postIds));

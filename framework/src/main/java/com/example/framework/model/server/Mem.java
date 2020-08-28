@@ -1,6 +1,6 @@
 package com.example.framework.model.server;
 
-import com.example.common.util.Arith;
+import com.example.common.util.ArithUtils;
 
 /**
  * 內存相关信息
@@ -26,7 +26,7 @@ public class Mem
 
     public double getTotal()
     {
-        return Arith.div(total, (1024 * 1024 * 1024), 2);
+        return ArithUtils.div(total, (1024 * 1024 * 1024), 2);
     }
 
     public void setTotal(long total)
@@ -36,7 +36,7 @@ public class Mem
 
     public double getUsed()
     {
-        return Arith.div(used, (1024 * 1024 * 1024), 2);
+        return ArithUtils.div(used, (1024 * 1024 * 1024), 2);
     }
 
     public void setUsed(long used)
@@ -46,7 +46,7 @@ public class Mem
 
     public double getFree()
     {
-        return Arith.div(free, (1024 * 1024 * 1024), 2);
+        return ArithUtils.div(free, (1024 * 1024 * 1024), 2);
     }
 
     public void setFree(long free)
@@ -56,6 +56,6 @@ public class Mem
 
     public double getUsage()
     {
-        return Arith.mul(Arith.div(used, total, 4), 100);
+        return ArithUtils.mul(ArithUtils.div(used, total, 4), 100);
     }
 }

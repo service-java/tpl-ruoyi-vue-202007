@@ -5,7 +5,7 @@ import com.example.common.constant.UserConstants;
 import com.example.common.base.BaseController;
 import com.example.common.model.vo.ResponseVO;
 import com.example.common.model.entity.SysDept;
-import com.example.common.enums.BusinessType;
+import com.example.common.enums.BusinessTypeEnums;
 import com.example.common.util.SecurityUtils;
 import com.example.common.util.StringUtils;
 import com.example.system.service.SysDeptService;
@@ -91,7 +91,7 @@ public class SysDeptController extends BaseController {
      * 新增部门
      */
     @PreAuthorize("@ss.hasPermi('system:dept:add')")
-    @Log(title = "部门管理", businessType = BusinessType.INSERT)
+    @Log(title = "部门管理", businessType = BusinessTypeEnums.INSERT)
     @PostMapping
     public ResponseVO add(@Validated @RequestBody SysDept dept) {
         if (UserConstants.NOT_UNIQUE.equals(deptService.checkDeptNameUnique(dept))) {
@@ -105,7 +105,7 @@ public class SysDeptController extends BaseController {
      * 修改部门
      */
     @PreAuthorize("@ss.hasPermi('system:dept:edit')")
-    @Log(title = "部门管理", businessType = BusinessType.UPDATE)
+    @Log(title = "部门管理", businessType = BusinessTypeEnums.UPDATE)
     @PutMapping
     public ResponseVO edit(@Validated @RequestBody SysDept dept) {
         if (UserConstants.NOT_UNIQUE.equals(deptService.checkDeptNameUnique(dept))) {
@@ -124,7 +124,7 @@ public class SysDeptController extends BaseController {
      * 删除部门
      */
     @PreAuthorize("@ss.hasPermi('system:dept:remove')")
-    @Log(title = "部门管理", businessType = BusinessType.DELETE)
+    @Log(title = "部门管理", businessType = BusinessTypeEnums.DELETE)
     @DeleteMapping("/{deptId}")
     public ResponseVO remove(@PathVariable Long deptId) {
         if (deptService.hasChildByDeptId(deptId)) {

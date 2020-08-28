@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import com.example.common.util.text.StrFormatter;
+import com.example.common.util.text.StrFormatterUtils;
 
 /**
  * 字符串工具类
@@ -257,7 +257,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
         {
             return template;
         }
-        return StrFormatter.format(template, params);
+        return StrFormatterUtils.format(template, params);
     }
 
     /**

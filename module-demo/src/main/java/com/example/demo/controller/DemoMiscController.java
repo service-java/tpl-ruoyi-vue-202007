@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.common.annotation.Log;
 import com.example.common.base.BaseController;
 import com.example.common.model.vo.ResponseVO;
-import com.example.common.enums.BusinessType;
+import com.example.common.enums.BusinessTypeEnums;
 import com.example.demo.entity.DemoMisc;
 import com.example.demo.service.DemoMiscService;
 import com.example.common.util.poi.ExcelUtil;
@@ -49,7 +49,7 @@ public class DemoMiscController extends BaseController
      * 导出示例模块列表
      */
     @PreAuthorize("@ss.hasPermi('demo:misc:export')")
-    @Log(title = "示例模块", businessType = BusinessType.EXPORT)
+    @Log(title = "示例模块", businessType = BusinessTypeEnums.EXPORT)
     @GetMapping("/export")
     public ResponseVO export(DemoMisc demoMisc)
     {
@@ -72,7 +72,7 @@ public class DemoMiscController extends BaseController
      * 新增示例模块
      */
     @PreAuthorize("@ss.hasPermi('demo:misc:add')")
-    @Log(title = "示例模块", businessType = BusinessType.INSERT)
+    @Log(title = "示例模块", businessType = BusinessTypeEnums.INSERT)
     @PostMapping
     public ResponseVO add(@RequestBody DemoMisc demoMisc)
     {
@@ -83,7 +83,7 @@ public class DemoMiscController extends BaseController
      * 修改示例模块
      */
     @PreAuthorize("@ss.hasPermi('demo:misc:edit')")
-    @Log(title = "示例模块", businessType = BusinessType.UPDATE)
+    @Log(title = "示例模块", businessType = BusinessTypeEnums.UPDATE)
     @PutMapping
     public ResponseVO edit(@RequestBody DemoMisc demoMisc)
     {
@@ -94,7 +94,7 @@ public class DemoMiscController extends BaseController
      * 删除示例模块
      */
     @PreAuthorize("@ss.hasPermi('demo:misc:remove')")
-    @Log(title = "示例模块", businessType = BusinessType.DELETE)
+    @Log(title = "示例模块", businessType = BusinessTypeEnums.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseVO remove(@PathVariable Long[] ids)
     {

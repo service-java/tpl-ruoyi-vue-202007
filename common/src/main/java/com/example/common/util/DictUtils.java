@@ -3,7 +3,7 @@ package com.example.common.util;
 import java.util.Collection;
 import java.util.List;
 
-import com.example.common.constant.Constants;
+import com.example.common.constant.CommonConstants;
 import com.example.common.util.spring.SpringUtils;
 import com.example.common.model.entity.SysDictData;
 import com.example.common.model.RedisCache;
@@ -157,7 +157,7 @@ public class DictUtils
      */
     public static void clearDictCache()
     {
-        Collection<String> keys = SpringUtils.getBean(RedisCache.class).keys(Constants.SYS_DICT_KEY + "*");
+        Collection<String> keys = SpringUtils.getBean(RedisCache.class).keys(CommonConstants.SYS_DICT_KEY + "*");
         SpringUtils.getBean(RedisCache.class).deleteObject(keys);
     }
 
@@ -169,6 +169,6 @@ public class DictUtils
      */
     public static String getCacheKey(String configKey)
     {
-        return Constants.SYS_DICT_KEY + configKey;
+        return CommonConstants.SYS_DICT_KEY + configKey;
     }
 }

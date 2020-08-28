@@ -1,6 +1,6 @@
 package com.example.framework.model.server;
 
-import com.example.common.util.Arith;
+import com.example.common.util.ArithUtils;
 
 /**
  * CPU相关信息
@@ -51,7 +51,7 @@ public class Cpu
 
     public double getTotal()
     {
-        return Arith.round(Arith.mul(total, 100), 2);
+        return ArithUtils.round(ArithUtils.mul(total, 100), 2);
     }
 
     public void setTotal(double total)
@@ -61,7 +61,7 @@ public class Cpu
 
     public double getSys()
     {
-        return Arith.round(Arith.mul(sys / total, 100), 2);
+        return ArithUtils.round(ArithUtils.mul(sys / total, 100), 2);
     }
 
     public void setSys(double sys)
@@ -71,7 +71,7 @@ public class Cpu
 
     public double getUsed()
     {
-        return Arith.round(Arith.mul(used / total, 100), 2);
+        return ArithUtils.round(ArithUtils.mul(used / total, 100), 2);
     }
 
     public void setUsed(double used)
@@ -81,7 +81,7 @@ public class Cpu
 
     public double getWait()
     {
-        return Arith.round(Arith.mul(wait / total, 100), 2);
+        return ArithUtils.round(ArithUtils.mul(wait / total, 100), 2);
     }
 
     public void setWait(double wait)
@@ -91,7 +91,7 @@ public class Cpu
 
     public double getFree()
     {
-        return Arith.round(Arith.mul(free / total, 100), 2);
+        return ArithUtils.round(ArithUtils.mul(free / total, 100), 2);
     }
 
     public void setFree(double free)

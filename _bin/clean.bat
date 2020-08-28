@@ -1,6 +1,6 @@
 @echo off
 echo.
-echo [信息] 清理
+echo [info] clean
 echo.
 
 %~d0

@@ -4,7 +4,7 @@ import com.example.common.annotation.Log;
 import com.example.common.base.BaseController;
 import com.example.common.model.vo.ResponseVO;
 import com.example.common.model.vo.PageVO;
-import com.example.common.enums.BusinessType;
+import com.example.common.enums.BusinessTypeEnums;
 import com.example.common.util.SecurityUtils;
 import com.example.system.entity.SysNotice;
 import com.example.system.service.SysNoticeService;
@@ -50,7 +50,7 @@ public class SysNoticeController extends BaseController {
      * 新增通知公告
      */
     @PreAuthorize("@ss.hasPermi('system:notice:add')")
-    @Log(title = "通知公告", businessType = BusinessType.INSERT)
+    @Log(title = "通知公告", businessType = BusinessTypeEnums.INSERT)
     @PostMapping
     public ResponseVO add(@Validated @RequestBody SysNotice notice) {
         notice.setCreateBy(SecurityUtils.getUsername());
@@ -61,7 +61,7 @@ public class SysNoticeController extends BaseController {
      * 修改通知公告
      */
     @PreAuthorize("@ss.hasPermi('system:notice:edit')")
-    @Log(title = "通知公告", businessType = BusinessType.UPDATE)
+    @Log(title = "通知公告", businessType = BusinessTypeEnums.UPDATE)
     @PutMapping
     public ResponseVO edit(@Validated @RequestBody SysNotice notice) {
         notice.setUpdateBy(SecurityUtils.getUsername());
@@ -72,7 +72,7 @@ public class SysNoticeController extends BaseController {
      * 删除通知公告
      */
     @PreAuthorize("@ss.hasPermi('system:notice:remove')")
-    @Log(title = "通知公告", businessType = BusinessType.DELETE)
+    @Log(title = "通知公告", businessType = BusinessTypeEnums.DELETE)
     @DeleteMapping("/{noticeIds}")
     public ResponseVO remove(@PathVariable Long[] noticeIds) {
         return toAjax(noticeService.deleteNoticeByIds(noticeIds));

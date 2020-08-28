@@ -235,7 +235,7 @@ export default {
     getList() {
       this.loading = true;
       listConfig(this.addDateRange(this.queryParams, this.dateRange)).then(response => {
-          this.configList = response.rows;
+          this.configList = response.data;
           this.total = response.total;
           this.loading = false;
         }
@@ -336,7 +336,7 @@ export default {
     /** 导出按钮操作 */
     handleExport() {
       const queryParams = this.queryParams;
-      this.$confirm('是否确认导出所有参数数据项?', "警告", {
+      this.$confirm('是否确认导出当前所有参数数据项?', "警告", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
           type: "warning"

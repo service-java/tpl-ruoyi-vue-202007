@@ -6,7 +6,7 @@ import com.example.system.service.SysLogininforService;
 import com.example.system.service.SysOperLogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.example.common.constant.Constants;
+import com.example.common.constant.CommonConstants;
 import com.example.common.util.LogUtils;
 import com.example.common.util.ServletUtils;
 import com.example.common.util.ip.AddressUtils;
@@ -67,13 +67,13 @@ public class AsyncFactory
                 logininfor.setOs(os);
                 logininfor.setMsg(message);
                 // 日志状态
-                if (Constants.LOGIN_SUCCESS.equals(status) || Constants.LOGOUT.equals(status))
+                if (CommonConstants.LOGIN_SUCCESS.equals(status) || CommonConstants.LOGOUT.equals(status))
                 {
-                    logininfor.setStatus(Constants.SUCCESS);
+                    logininfor.setStatus(CommonConstants.SUCCESS);
                 }
-                else if (Constants.LOGIN_FAIL.equals(status))
+                else if (CommonConstants.LOGIN_FAIL.equals(status))
                 {
-                    logininfor.setStatus(Constants.FAIL);
+                    logininfor.setStatus(CommonConstants.FAIL);
                 }
                 // 插入数据
                 SpringUtils.getBean(SysLogininforService.class).insertLogininfor(logininfor);

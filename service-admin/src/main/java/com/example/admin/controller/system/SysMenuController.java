@@ -14,17 +14,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.common.annotation.Log;
-import com.example.common.constant.Constants;
+import com.example.common.constant.CommonConstants;
 import com.example.common.constant.UserConstants;
 import com.example.common.base.BaseController;
 import com.example.common.model.vo.ResponseVO;
 import com.example.common.model.entity.SysMenu;
 import com.example.common.model.LoginUser;
-import com.example.common.enums.BusinessType;
+import com.example.common.enums.BusinessTypeEnums;
 import com.example.common.util.SecurityUtils;
 import com.example.common.util.ServletUtils;
 import com.example.common.util.StringUtils;
-import com.example.framework.service.TokenService;
+import com.example.framework.security.service.TokenService;
 import com.example.system.service.SysMenuService;
 
 /**
@@ -90,13 +90,13 @@ public class SysMenuController extends BaseController {
      * 新增菜单
      */
     @PreAuthorize("@ss.hasPermi('system:menu:add')")
-    @Log(title = "菜单管理", businessType = BusinessType.INSERT)
+    @Log(title = "菜单管理", businessType = BusinessTypeEnums.INSERT)
     @PostMapping
     public ResponseVO add(@Validated @RequestBody SysMenu menu) {
         if (UserConstants.NOT_UNIQUE.equals(menuService.checkMenuNameUnique(menu))) {
             return ResponseVO.error("新增菜单'" + menu.getMenuName() + "'失败，菜单名称已存在");
         } else if (UserConstants.YES_FRAME.equals(menu.getIsFrame())
-                && !StringUtils.startsWithAny(menu.getPath(), Constants.HTTP, Constants.HTTPS)) {
+                && !StringUtils.startsWithAny(menu.getPath(), CommonConstants.HTTP, CommonConstants.HTTPS)) {
             return ResponseVO.error("新增菜单'" + menu.getMenuName() + "'失败，地址必须以http(s)://开头");
         }
         menu.setCreateBy(SecurityUtils.getUsername());
@@ -107,13 +107,13 @@ public class SysMenuController extends BaseController {
      * 修改菜单
      */
     @PreAuthorize("@ss.hasPermi('system:menu:edit')")
-    @Log(title = "菜单管理", businessType = BusinessType.UPDATE)
+    @Log(title = "菜单管理", businessType = BusinessTypeEnums.UPDATE)
     @PutMapping
     public ResponseVO edit(@Validated @RequestBody SysMenu menu) {
         if (UserConstants.NOT_UNIQUE.equals(menuService.checkMenuNameUnique(menu))) {
             return ResponseVO.error("修改菜单'" + menu.getMenuName() + "'失败，菜单名称已存在");
         } else if (UserConstants.YES_FRAME.equals(menu.getIsFrame())
-                && !StringUtils.startsWithAny(menu.getPath(), Constants.HTTP, Constants.HTTPS)) {
+                && !StringUtils.startsWithAny(menu.getPath(), CommonConstants.HTTP, CommonConstants.HTTPS)) {
             return ResponseVO.error("新增菜单'" + menu.getMenuName() + "'失败，地址必须以http(s)://开头");
         }
         menu.setUpdateBy(SecurityUtils.getUsername());
@@ -124,7 +124,7 @@ public class SysMenuController extends BaseController {
      * 删除菜单
      */
     @PreAuthorize("@ss.hasPermi('system:menu:remove')")
-    @Log(title = "菜单管理", businessType = BusinessType.DELETE)
+    @Log(title = "菜单管理", businessType = BusinessTypeEnums.DELETE)
     @DeleteMapping("/{menuId}")
     public ResponseVO remove(@PathVariable("menuId") Long menuId) {
         if (menuService.hasChildByMenuId(menuId)) {

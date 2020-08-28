@@ -1,7 +1,7 @@
 package com.example.common.model.vo;
 
 import java.util.HashMap;
-import com.example.common.constant.HttpStatus;
+import com.example.common.constant.HttpStatusConstants;
 import com.example.common.util.StringUtils;
 
 /**
@@ -98,7 +98,7 @@ public class ResponseVO extends HashMap<String, Object>
      */
     public static ResponseVO success(String msg, Object data)
     {
-        return new ResponseVO(HttpStatus.SUCCESS, msg, data);
+        return new ResponseVO(HttpStatusConstants.SUCCESS, msg, data);
     }
 
     /**
@@ -131,7 +131,7 @@ public class ResponseVO extends HashMap<String, Object>
      */
     public static ResponseVO error(String msg, Object data)
     {
-        return new ResponseVO(HttpStatus.ERROR, msg, data);
+        return new ResponseVO(HttpStatusConstants.ERROR, msg, data);
     }
 
     /**
@@ -145,4 +145,5 @@ public class ResponseVO extends HashMap<String, Object>
     {
         return new ResponseVO(code, msg, null);
     }
+
 }

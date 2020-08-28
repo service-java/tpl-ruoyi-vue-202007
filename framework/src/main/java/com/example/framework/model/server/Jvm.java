@@ -1,7 +1,7 @@
 package com.example.framework.model.server;
 
 import java.lang.management.ManagementFactory;
-import com.example.common.util.Arith;
+import com.example.common.util.ArithUtils;
 import com.example.common.util.DateUtils;
 
 /**
@@ -38,7 +38,7 @@ public class Jvm
 
     public double getTotal()
     {
-        return Arith.div(total, (1024 * 1024), 2);
+        return ArithUtils.div(total, (1024 * 1024), 2);
     }
 
     public void setTotal(double total)
@@ -48,7 +48,7 @@ public class Jvm
 
     public double getMax()
     {
-        return Arith.div(max, (1024 * 1024), 2);
+        return ArithUtils.div(max, (1024 * 1024), 2);
     }
 
     public void setMax(double max)
@@ -58,7 +58,7 @@ public class Jvm
 
     public double getFree()
     {
-        return Arith.div(free, (1024 * 1024), 2);
+        return ArithUtils.div(free, (1024 * 1024), 2);
     }
 
     public void setFree(double free)
@@ -68,12 +68,12 @@ public class Jvm
 
     public double getUsed()
     {
-        return Arith.div(total - free, (1024 * 1024), 2);
+        return ArithUtils.div(total - free, (1024 * 1024), 2);
     }
 
     public double getUsage()
     {
-        return Arith.mul(Arith.div(total - free, total, 4), 100);
+        return ArithUtils.mul(ArithUtils.div(total - free, total, 4), 100);
     }
 
     /**

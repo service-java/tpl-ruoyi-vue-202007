@@ -1,6 +1,6 @@
 @echo off
 echo.
-echo [信息] 运行
+echo [info] run
 echo.
 
 cd %~dp0

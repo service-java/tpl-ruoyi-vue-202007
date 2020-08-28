@@ -2,7 +2,7 @@ package com.example.generator.util;
 
 import java.util.Properties;
 import org.apache.velocity.app.Velocity;
-import com.example.common.constant.Constants;
+import com.example.common.constant.CommonConstants;
 
 /**
  * VelocityEngine工厂
@@ -22,8 +22,8 @@ public class VelocityInitializer
             // 加载classpath目录下的vm文件
             p.setProperty("file.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
             // 定义字符集
-            p.setProperty(Velocity.ENCODING_DEFAULT, Constants.UTF8);
-            p.setProperty(Velocity.OUTPUT_ENCODING, Constants.UTF8);
+            p.setProperty(Velocity.ENCODING_DEFAULT, CommonConstants.UTF8);
+            p.setProperty(Velocity.OUTPUT_ENCODING, CommonConstants.UTF8);
             // 初始化Velocity引擎，指定配置Properties
             Velocity.init(p);
         }

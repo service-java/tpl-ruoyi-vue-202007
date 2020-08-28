@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.example.common.util.text.Convert;
+import com.example.common.util.text.ConvertUtils;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -30,7 +30,7 @@ public class ServletUtils
      */
     public static String getParameter(String name, String defaultValue)
     {
-        return Convert.toStr(getRequest().getParameter(name), defaultValue);
+        return ConvertUtils.toStr(getRequest().getParameter(name), defaultValue);
     }
 
     /**
@@ -38,7 +38,7 @@ public class ServletUtils
      */
     public static Integer getParameterToInt(String name)
     {
-        return Convert.toInt(getRequest().getParameter(name));
+        return ConvertUtils.toInt(getRequest().getParameter(name));
     }
 
     /**
@@ -46,7 +46,7 @@ public class ServletUtils
      */
     public static Integer getParameterToInt(String name, Integer defaultValue)
     {
-        return Convert.toInt(getRequest().getParameter(name), defaultValue);
+        return ConvertUtils.toInt(getRequest().getParameter(name), defaultValue);
     }
 
     /**

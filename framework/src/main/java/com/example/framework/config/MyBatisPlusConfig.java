@@ -1,19 +1,13 @@
 package com.example.framework.config;
 
-import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
-import com.baomidou.mybatisplus.core.MybatisConfiguration;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.pagination.optimize.JsqlParserCountOptimize;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
-import com.github.pagehelper.PageInterceptor;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.type.JdbcType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
@@ -47,8 +41,7 @@ public class MyBatisPlusConfig {
     @Autowired
     private PaginationInterceptor paginationInterceptor;
 
-//    @Autowired
-//    private PageInterceptor pageInterceptor;
+
 
     public static String setTypeAliasesPackage(String typeAliasesPackage) {
         ResourcePatternResolver resolver = (ResourcePatternResolver) new PathMatchingResourcePatternResolver();
@@ -106,7 +99,6 @@ public class MyBatisPlusConfig {
 
         // 配置分页插件
         // @fix https://blog.csdn.net/qq_36241003/article/details/100056609
-//        Interceptor[] interceptors = { pageInterceptor, paginationInterceptor };
         Interceptor[] interceptors = { paginationInterceptor };
         sessionFactory.setPlugins(interceptors);
 
@@ -132,12 +124,5 @@ public class MyBatisPlusConfig {
         // paginationInterceptor.setCountSqlParser(new JsqlParserCountOptimize(true));
         return paginationInterceptor;
     }
-
-/*    @Bean
-    public ConfigurationCustomizer mybatisConfigurationCustomizer() {
-        return configuration -> configuration.addInterceptor(new PageInterceptor());
-    }*/
-
-
 
 }

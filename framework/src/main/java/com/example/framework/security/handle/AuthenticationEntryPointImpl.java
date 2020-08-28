@@ -8,7 +8,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 import com.alibaba.fastjson.JSON;
-import com.example.common.constant.HttpStatus;
+import com.example.common.constant.HttpStatusConstants;
 import com.example.common.model.vo.ResponseVO;
 import com.example.common.util.ServletUtils;
 import com.example.common.util.StringUtils;
@@ -27,7 +27,7 @@ public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint, S
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e)
             throws IOException
     {
-        int code = HttpStatus.UNAUTHORIZED;
+        int code = HttpStatusConstants.UNAUTHORIZED;
         String msg = StringUtils.format("请求访问：{}，认证失败，无法访问系统资源", request.getRequestURI());
         ServletUtils.renderString(response, JSON.toJSONString(ResponseVO.error(code, msg)));
     }

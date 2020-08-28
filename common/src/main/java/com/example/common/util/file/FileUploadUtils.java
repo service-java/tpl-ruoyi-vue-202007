@@ -7,7 +7,7 @@ import com.example.common.exception.file.FileNameLengthLimitExceededException;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.multipart.MultipartFile;
 import com.example.common.properties.CommonProperties;
-import com.example.common.constant.Constants;
+import com.example.common.constant.CommonConstants;
 import com.example.common.exception.file.FileSizeLimitExceededException;
 import com.example.common.exception.file.InvalidExtensionException;
 import com.example.common.util.DateUtils;
@@ -147,7 +147,7 @@ public class FileUploadUtils
     {
         int dirLastIndex = CommonProperties.getProfile().length() + 1;
         String currentDir = StringUtils.substring(uploadDir, dirLastIndex);
-        String pathFileName = Constants.RESOURCE_PREFIX + "/" + currentDir + "/" + fileName;
+        String pathFileName = CommonConstants.RESOURCE_PREFIX + "/" + currentDir + "/" + fileName;
         return pathFileName;
     }
 

@@ -4,8 +4,8 @@ import com.example.common.annotation.Log;
 import com.example.common.base.BaseController;
 import com.example.common.model.vo.ResponseVO;
 import com.example.common.model.vo.PageVO;
-import com.example.common.enums.BusinessType;
-import com.example.common.util.poi.ExcelUtil;
+import com.example.common.enums.BusinessTypeEnums;
+import com.example.common.util.poi.ExcelUtils;
 import com.example.quartz.entity.SysJobLog;
 import com.example.quartz.service.SysJobLogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,11 +40,11 @@ public class SysJobLogController extends BaseController {
      * 导出定时任务调度日志列表
      */
     @PreAuthorize("@ss.hasPermi('monitor:job:export')")
-    @Log(title = "任务调度日志", businessType = BusinessType.EXPORT)
+    @Log(title = "任务调度日志", businessType = BusinessTypeEnums.EXPORT)
     @GetMapping("/export")
     public ResponseVO export(SysJobLog sysJobLog) {
         List<SysJobLog> list = jobLogService.selectJobLogList(sysJobLog);
-        ExcelUtil<SysJobLog> util = new ExcelUtil<SysJobLog>(SysJobLog.class);
+        ExcelUtils<SysJobLog> util = new ExcelUtils<SysJobLog>(SysJobLog.class);
         return util.exportExcel(list, "调度日志");
     }
 
@@ -62,7 +62,7 @@ public class SysJobLogController extends BaseController {
      * 删除定时任务调度日志
      */
     @PreAuthorize("@ss.hasPermi('monitor:job:remove')")
-    @Log(title = "定时任务调度日志", businessType = BusinessType.DELETE)
+    @Log(title = "定时任务调度日志", businessType = BusinessTypeEnums.DELETE)
     @DeleteMapping("/{jobLogIds}")
     public ResponseVO remove(@PathVariable Long[] jobLogIds) {
         return toAjax(jobLogService.deleteJobLogByIds(jobLogIds));
@@ -72,7 +72,7 @@ public class SysJobLogController extends BaseController {
      * 清空定时任务调度日志
      */
     @PreAuthorize("@ss.hasPermi('monitor:job:remove')")
-    @Log(title = "调度日志", businessType = BusinessType.CLEAN)
+    @Log(title = "调度日志", businessType = BusinessTypeEnums.CLEAN)
     @DeleteMapping("/clean")
     public ResponseVO clean() {
         jobLogService.cleanJobLog();

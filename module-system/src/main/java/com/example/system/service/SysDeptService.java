@@ -3,7 +3,7 @@ package com.example.system.service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.common.annotation.DataScope;
 import com.example.common.constant.UserConstants;
-import com.example.common.model.TreeSelect;
+import com.example.common.model.vo.TreeSelectVO;
 import com.example.common.model.entity.SysDept;
 import com.example.common.exception.CustomException;
 import com.example.common.util.StringUtils;
@@ -72,9 +72,9 @@ public class SysDeptService extends ServiceImpl<SysDeptMapper, SysDept> {
      * @return 下拉树结构列表
      */
 
-    public List<TreeSelect> buildDeptTreeSelect(List<SysDept> depts) {
+    public List<TreeSelectVO> buildDeptTreeSelect(List<SysDept> depts) {
         List<SysDept> deptTrees = buildDeptTree(depts);
-        return deptTrees.stream().map(TreeSelect::new).collect(Collectors.toList());
+        return deptTrees.stream().map(TreeSelectVO::new).collect(Collectors.toList());
     }
 
     /**

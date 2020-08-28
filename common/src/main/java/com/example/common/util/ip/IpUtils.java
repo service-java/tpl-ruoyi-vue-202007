@@ -4,7 +4,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import javax.servlet.http.HttpServletRequest;
 import com.example.common.util.StringUtils;
-import com.example.common.util.html.EscapeUtil;
+import com.example.common.xss.EscapeUtils;
 
 /**
  * 获取IP方法
@@ -41,7 +41,7 @@ public class IpUtils
         {
             ip = request.getRemoteAddr();
         }
-        return "0:0:0:0:0:0:0:1".equals(ip) ? "127.0.0.1" : EscapeUtil.clean(ip);
+        return "0:0:0:0:0:0:0:1".equals(ip) ? "127.0.0.1" : EscapeUtils.clean(ip);
     }
 
     public static boolean internalIp(String ip)

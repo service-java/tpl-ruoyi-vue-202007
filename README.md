@@ -1,93 +1,55 @@
 # README
 
-- 在 https://gitee.com/y_project/RuoYi-Vue 基础上修改
-- 注意mybatis-plus的configuration配置
-
-# 修改
-
-- 去掉部分ruoyi的标志, 方便直接套用
-- 按照个人命名习惯, 调整模块名称 @eg 业务模块下的domain改名为entity
-- 将层级扁平化, 模块往下算起最多两层 @eg /common/config/properties/xxx.properties
-- service如果没有必要写接口, 就不要写, 会把Java的臃肿暴露无疑的
-- 添加lombok及其全局链式支持的配置(lombok.config)
-- 部分支持mybatis-plus @eg 代码生成generator模块
-- 添加hutool + apache-common依赖包
-
-# TODO
-
-- 添加OSS模块
-- 去掉RestFul风格代码
-- BaseEntity调整参数
-- 添加easyexcel示例
-
-# 同步
-
-# 常见问题 @faq
-
-- 出现 Invalid bound statement (not found) 异常
-    - https://mp.baomidou.com/guide/faq.html
-    - https://blog.csdn.net/qq_25940921/article/details/88527773
+- 测试账号
 
 ```
-SqlSessionFactory不要使用原生的，请使用MybatisSqlSessionFactory
-
-最后发现
-开发工具没有同步配置!! 
-我重启貌似就不报错了
+admin/admin123
 ```
 
-- 解决mybatis plus 3.x 和pagehelper无法共用、包冲突问题
-    - 先不要用pagehelper-sprng-boot-starter
-    - https://blog.csdn.net/u012280292/article/details/99678037
-    - https://blog.csdn.net/xieec/article/details/106124325
+# 项目简介
 
-```xml
-<dependency>
-    <groupId>com.github.pagehelper</groupId>
-    <artifactId>pagehelper</artifactId>
-    <version>5.1.10</version>
-</dependency>
+- 用一两句话简单描述该项目所实现的业务功能
 
-<dependency>
-    <groupId>com.github.jsqlparser</groupId>
-    <artifactId>jsqlparser</artifactId>
-    <version>2.1</version>
-</dependency>
+# 技术选型
+
+- 列出项目的技术栈，包括语言、框架和中间件等
+
+```
+mybatis-plus
 ```
 
-- mybatis-plus分页插件不生效
-    - https://blog.csdn.net/qq_36241003/article/details/100056609
-    - https://github.com/baomidou/mybatis-plus/issues/2516
+# 本地构建
 
-```java
-@Bean
-public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-    // 自定义SqlSessionFactory后这里需要配置, 需要以数组形式
-    Interceptor[] interceptors = { paginationInterceptor };
-    sessionFactory.setPlugins(interceptors);
-    
-    return sessionFactory.getObject();
-}
+- 列出本地开发过程中所用到的工具命令
 
-===
-// 分页查询 @demo
-IPage<SysRole> page = roleService.page(new PageQueryUtils<SysRole>().getPage(new HashMap<>()));
-PageVO dataTable = getDataTable(page);
-```
+# 领域模型 @ignore
 
-- 热部署 LoginUser 类型转换失败
-    - https://gitee.com/y_project/RuoYi-Vue/issues/I1H2JB
-    
-```
-最后发现
-文件位置因为被调整过
-redis中存储的信息@type是旧的地址 
+- 核心的领域概念，比如对于示例电商系统来说有Order、Product等；
 
-===
-Object obj = redisCache.getCacheObject(userKey);
-String userValue = JSON.toJSONString(obj);
-LoginUser user = JSON.parseObject(userValue, LoginUser.class);
+# 测试策略 @ignore
 
-关掉devtools
-直接用jrebel
-```        
+- 自动化测试如何分类，哪些必须写测试，哪些没有必要写测试；
+
+# 技术架构 @ignore
+
+- 技术架构图；
+
+# 部署架构 @ignore
+
+- 部署架构图；
+
+# 外部依赖 @ignore
+
+- 项目运行时所依赖的外部集成方，比如订单系统会依赖于会员系统；
+
+# 环境信息
+
+- 各个环境的访问方式，数据库连接等；
+
+# 编码实践
+
+- 统一的编码实践，比如异常处理原则、分页封装等；
+
+# 常见问题
+
+- 开发过程中常见问题的解答

@@ -5,8 +5,8 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import com.example.common.enums.BusinessType;
-import com.example.common.enums.OperatorType;
+import com.example.common.enums.BusinessTypeEnums;
+import com.example.common.enums.OperatorTypeEnums;
 
 /**
  * 自定义操作日志记录注解
@@ -27,12 +27,12 @@ public @interface Log
     /**
      * 功能
      */
-    public BusinessType businessType() default BusinessType.OTHER;
+    public BusinessTypeEnums businessType() default BusinessTypeEnums.OTHER;
 
     /**
      * 操作人类别
      */
-    public OperatorType operatorType() default OperatorType.MANAGE;
+    public OperatorTypeEnums operatorType() default OperatorTypeEnums.MANAGE;
 
     /**
      * 是否保存请求的参数

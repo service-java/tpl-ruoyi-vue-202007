@@ -156,7 +156,7 @@ export default {
     if (tableId) {
       // 获取表详细信息
       getGenTable(tableId).then(res => {
-        this.cloumns = res.data.rows;
+        this.cloumns = res.data.data;
         this.info = res.data.info;
       });
       /** 查询字典下拉列表 */

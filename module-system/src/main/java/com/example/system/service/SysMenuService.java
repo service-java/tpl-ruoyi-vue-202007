@@ -2,7 +2,7 @@ package com.example.system.service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.common.constant.UserConstants;
-import com.example.common.model.TreeSelect;
+import com.example.common.model.vo.TreeSelectVO;
 import com.example.common.model.entity.SysMenu;
 import com.example.common.model.entity.SysUser;
 import com.example.common.util.SecurityUtils;
@@ -174,9 +174,9 @@ public class SysMenuService  extends ServiceImpl<SysMenuMapper, SysMenu>  {
      * @return 下拉树结构列表
      */
 
-    public List<TreeSelect> buildMenuTreeSelect(List<SysMenu> menus) {
+    public List<TreeSelectVO> buildMenuTreeSelect(List<SysMenu> menus) {
         List<SysMenu> menuTrees = buildMenuTree(menus);
-        return menuTrees.stream().map(TreeSelect::new).collect(Collectors.toList());
+        return menuTrees.stream().map(TreeSelectVO::new).collect(Collectors.toList());
     }
 
     /**
