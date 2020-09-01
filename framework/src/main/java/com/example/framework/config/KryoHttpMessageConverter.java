@@ -3,6 +3,7 @@ package com.example.framework.config;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
+import de.javakaffee.kryoserializers.SynchronizedCollectionsSerializer;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
@@ -22,6 +23,12 @@ public class KryoHttpMessageConverter extends AbstractHttpMessageConverter<Objec
 
     private static final ThreadLocal<Kryo> kryoThreadLocal = ThreadLocal.withInitial(() -> {
         Kryo kryo = new Kryo();
+
+        // @fix 使用kryo做序列化会遇到的几个坑 --> 暂时不需要
+        // https://my.oschina.net/yangming0322/blog/740949/print
+        // https://blog.csdn.net/paoma_1008/article/details/79827803
+//        SynchronizedCollectionsSerializer.registerSerializers(kryo);
+
         return kryo;
     });
 

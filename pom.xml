@@ -36,7 +36,7 @@
         <jwt.version>0.9.0</jwt.version>
         <lombok.version>1.18.4</lombok.version>
         <easyexcel.version>2.2.3</easyexcel.version>
-        <hutool.version>5.4.0</hutool.version>
+        <hutool.version>5.4.1</hutool.version>
         <guava.version>29.0-jre</guava.version>
         <aliyun-sdk-oss.version>3.8.0</aliyun-sdk-oss.version>
         <kryo.version>4.0.0</kryo.version>
