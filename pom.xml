@@ -252,6 +252,12 @@
                 <version>${example.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.example</groupId>
+                <artifactId>module-kryo-entity</artifactId>
+                <version>${example.version}</version>
+            </dependency>
+
 
             <!-- 通用工具-->
             <dependency>
@@ -272,6 +278,7 @@
         <module>module-quartz</module>
 <!--        <module>module-demo</module>-->
         <module>module-kryo</module>
+        <module>module-kryo-entity</module>
         <module>service-admin</module>
     </modules>
     <packaging>pom</packaging>

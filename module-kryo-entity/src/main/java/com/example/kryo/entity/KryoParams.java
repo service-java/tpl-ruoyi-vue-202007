@@ -2,7 +2,6 @@ package com.example.kryo.entity;
 
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -12,12 +11,13 @@ import java.util.List;
  * @Version 1.0
  **/
 @Data
-public class ApiCategoryAttr implements Serializable {
+public class KryoParams {
 
-    private static final long serialVersionUID = 3920592371672192840L;
+
     private String name;
     private String code;
     private Integer level;
     private Boolean isAttr;
-    private List<ApiCategoryAttr> children;
+
+    private List<KryoParams> children;
 }
